@@ -1,0 +1,8 @@
+diff --git a/tmp/texto.tct b/tmp/texto.tct
+index 5c1b149..f0b0371 100644
+--- a/tmp/texto.tct
++++ b/tmp/texto.tct
+@@ -1 +1,3 @@
+ hola
++
++ver archivo modificado con git diff
