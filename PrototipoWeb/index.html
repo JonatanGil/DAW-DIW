@@ -4,53 +4,97 @@
     <meta charset="utf-8">
     <style>
 
-        /*Colores
-        
-        */
 
     body{
-        background-color: #3730FF;
+        background-color: #CFD0E6;
+        background-image: url("butacas.jpg");
     }
 
 
     header img{
         float: left;
-        height: 130px;
+        height: 150px;
     }
 
     header h3{
         float: right;
     }
 
+    header h2{
+        float: right;
+        letter-spacing: 0.50em;
+        word-spacing: 1.25em;
+    }
+
     header{
         padding: 15px;
-        height: 18%;
-        border: 5px solid #504AFF;
-        
+        margin: 25px;
+        margin-bottom: 0px;
+        background-color: rgba(40, 135, 171, 0.7);
+        overflow: auto;
+
     }
 
 
     nav{
-        padding-top: 10px;
-    }
-    nav estrenos {
-        width: 78%;
-    }
-    nav estrenos article figure{
+        /*overflow: hidden;*/
+        width: 100%;
+        margin: 10px;
         float: left;
-        margin: 0px;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
-    nav estrenos article figure figcaption{
+    nav article{
+        width: 65%;
+        padding: 18px;
+        overflow: auto;
+        text-align: justify;
+        margin-top: 18px;
+        float: left;
+        background-color: rgba(207, 208, 230, 0.7);
+    }
+    nav article figure{
+        float: left;
+        margin: 15px;
+    }
+    nav article figure img{
+      border: 2px solid #E05A1D;
+      margin-bottom: 2px;
+      height: 400px;
+    }
+    nav article figure figcaption{
         text-align: center;
     }
-    nav estrenos article{
-        padding: 18px;
-        height: 300px;
-        width: 78%;
-        border: 5px solid #FFDC30;
+    nav article h1{
+      margin-top: 50px;
+      margin-bottom: 50px;
     }
 
-    
+    nav noticia {
+      width: 30%;
+      height: 600px;
+      margin: 18px;
+      float: right;
+	    text-align:center;
+
+    }
+
+    nav noticia a{
+      float: left;
+    }
+
+    footer {
+      text-align: center;
+      width: 99.5%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      float: left;
+      background-color: #333333;
+      letter-spacing: 0.50em;
+      word-spacing: 1.25em;
+      font: small-caps 80% serif;
+    }
+
     </style>
   </head>
   <body>
@@ -58,36 +102,87 @@
     <contenedor>
         <header>
 
-            <img  src="./logo2.jpeg" alt="logo"/>
-            <img  src="./logo2.jpeg" alt="logo"/>
-            <img  src="./logo2.jpeg" alt="logo"/>
+            <img  src="./logo.png" alt="logo"/>
 
-            <h3>Usuario  <input type="text" value="Usuario">  -  Contraseña  <input type="password" value=""> Recordar usuario <input type="submit" value="login"></h3>
-            <br/> <br/> <br/>
-            <h3>Inicio - Peliculas - Cines - Minijuego</h3>
+            <h3>Usuario  <input type="text" value="User">  -  Contraseña  <input type="password" value="contraseña"> Recordar usuario <input type="checkbox" value="login"></h3>
+            <br/> <br/> <br/> <br/> <br/>
+
+            <h2>[ Inicio - Peliculas - Cines - Minijuego ] </h2>
 
         </header>
 
         <nav>
-            <estrenos>
                 <article>
                         <figure>
-                                <img src="logo1.jpg" alt="pelicula">
+                                <img src="AvengersMarvel.jpg" alt="pelicula">
                                 <figcaption>Pelicula 1</figcaption>
-                        </figure> 
+                        </figure>
 
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!</p>
+                        <h1>Pelicula Legal</h1>
+
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                        </p>
                 </article>
-            </estrenos>
 
-            <noticias>
 
-            </noticias>
+                <noticia>
+                          <a class="twitter-timeline" href="https://twitter.com/MarvelSpain?ref_src=twsrc%5Etfw" height="96%" >Tweets by MarvelSpain</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                          <a href="https://twitter.com/MarvelSpain?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" >Follow @MarvelSpain</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                </noticia>
+
+
+                <article>
+                        <figure>
+                                <img src="MarvelUltron.jpg" alt="pelicula">
+                                <figcaption>Pelicula 1</figcaption>
+                        </figure>
+
+                        <h1>Pelicula Legal</h1>
+
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                        </p>
+                </article>
+
+                                <noticia>
+                                          <a class="twitter-timeline" href="https://twitter.com/DCComics?ref_src=twsrc%5Etfw" height="96%">Tweets by DCComics</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                            <a href="https://twitter.com/MarvelSpain?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-show-count="false" >Follow @MarvelSpain</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                                </noticia>
+
+                <article>
+                        <figure>
+                                <img src="yasuo.jpg" alt="pelicula">
+                                <figcaption>Pelicula 1</figcaption>
+                        </figure>
+
+                        <h1>Pelicula Legal</h1>
+
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Aperiam, amet modi aliquam doloribus laudantium autem ipsam dicta temporibus in asperiores reprehenderit perferendis delectus voluptatum, sapiente unde quis natus excepturi molestias!
+                        </p>
+                </article>
+
+
+
 
         </nav>
 
+              <h1 style="text-align:center;color:#FFFFFF">Anterior < - > siguiente</h1>
+
 
         <footer>
+
+          <h1>Todos los fukones reservados © Universo Marvel</h1>
 
 
         </footer>
@@ -96,20 +191,12 @@
 
 
 
-
-
-
     </contenedor>
 
-    
+
 
   </body>
 </html>
-
-
-
-
-
 
 
 
