@@ -95,19 +95,29 @@
 }
 
 /*por defecto*/
-@media screen and (max-width: 1055px){
+@media screen and (max-width: 1200px){
 body{
     background-color: #CFD0E6;
 }
 
 header img{
+    text-align: center;
     width: 250px;
-    float: left;
+    display: block;
     margin: 10px;
 }
 
-h3{
-    float: right;
+header h3{
+    border: 1px solid red;
+    float: left;
    margin: 10px; 
+   text-align: center;
+   
 }
+header nav{
+    border: 1px solid black;
+    float: inline-start;
+    width: 100%;
+    letter-spacing: 0.30em;
+} 
 }
