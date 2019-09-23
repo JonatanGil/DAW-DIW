@@ -1,0 +1,113 @@
+@media screen and (min-width: 1055px){
+    body{
+        background-color: #CFD0E6;
+        background-image: url("butacas.jpg");
+    }
+
+    header img{
+        float: left;
+        width: 250px;
+    }
+
+    header ul, ul li{
+        float: right;
+
+    }
+
+    header h3{
+        float: right;
+    }
+
+    header h2{
+        float: right;
+        letter-spacing: 0.50em;
+        word-spacing: 1.25em;
+    }
+
+    header{
+        padding: 15px;
+        margin: 25px;
+        margin-bottom: 0px;
+        background-color: rgba(40, 135, 171, 0.7);
+        overflow: auto;
+
+    }
+
+
+    nav{
+        /*overflow: hidden;*/
+        width: 100%;
+        margin: 10px;
+        float: left;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    nav article{
+        width: 65%;
+        padding: 18px;
+        overflow: auto;
+        text-align: justify;
+        margin-top: 18px;
+        float: left;
+        background-color: rgba(207, 208, 230, 0.7);
+    }
+    nav article figure{
+        float: left;
+        margin: 15px;
+    }
+    nav article figure img{
+      border: 2px solid #E05A1D;
+      margin-bottom: 2px;
+      height: 400px;
+    }
+    nav article figure figcaption{
+        text-align: center;
+    }
+    nav article h1{
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+
+    nav noticia {
+      width: 30%;
+      height: 600px;
+      margin: 18px;
+      float: right;
+	    text-align:center;
+
+    }
+
+    nav noticia a{
+      float: left;
+    }
+
+    footer {
+      text-align: center;
+      width: 99.5%;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      float: left;
+      background-color: #333333;
+      letter-spacing: 0.50em;
+      word-spacing: 1.25em;
+      font: small-caps 80% serif;
+    }
+}
+
+/*por defecto*/
+@media screen and (max-width: 1055px){
+body{
+    background-color: #CFD0E6;
+}
+
+header img{
+    width: 250px;
+    float: left;
+    margin: 10px;
+}
+
+h3{
+    float: right;
+   margin: 10px; 
+}
+}
