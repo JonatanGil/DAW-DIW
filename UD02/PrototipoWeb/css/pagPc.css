@@ -4,6 +4,10 @@
         background-image: url("butacas.jpg");
     }
 
+    nav ul li{
+        margin: 10px;
+    }
+
     header img{
         float: left;
         width: 250px;
@@ -121,3 +125,8 @@ header nav{
     letter-spacing: 0.30em;
 } 
 }
+
+
+
+
+

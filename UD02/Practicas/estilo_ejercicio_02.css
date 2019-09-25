@@ -1,0 +1,52 @@
+body{
+    background-color: #b4b4b4;
+}
+h1{
+    text-align: center;
+}
+    
+a{
+    color: black;
+    text-decoration: none;
+    font-family: Open Sans;
+}
+
+li{
+    list-style: none;
+    float: left;
+    margin: 6%;
+    margin-bottom: 90px;
+    margin-top: 25px;
+}
+
+
+a[rel='alternate']:after{
+    content:" Brexi";
+}
+
+a[rel='next']:before{
+    content:url("./add_circle_outline-24px.svg");
+}
+
+a[rel='tag']:before{
+    content:url("./shopping_cart-24px.svg");
+}
+
+a[rel='bookmark']:before{
+    content:url("./24px.svg");
+}
+a[href='ayuda.pdf']:before{
+    content:url("./picture_as_pdf-24px.svg");
+}
+a[rel='help']:before{
+    content:url("./picture_as_pdf-24px.svg");
+}
+
+a[rel='search']:before{
+    content:url("./image_search-24px.svg");
+}
+
+a[rel='nofollow']:before{
+    content:url("./security-24px.svg");
+}
+
