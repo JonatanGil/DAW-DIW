@@ -14,6 +14,7 @@ a{
 li{
     list-style: none;
     float: left;
+    height: 150px;
     margin: 6%;
     margin-bottom: 90px;
     margin-top: 25px;
@@ -21,7 +22,7 @@ li{
 
 
 a[rel='alternate']:after{
-    content:" Brexi";
+    content:" Brexit";
 }
 
 a[rel='next']:before{
