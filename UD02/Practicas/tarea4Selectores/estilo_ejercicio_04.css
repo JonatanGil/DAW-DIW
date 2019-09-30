@@ -1,0 +1,48 @@
+body{
+    font-family: 'Grenze';
+}
+
+div *{
+    margin: 7px;
+}
+
+
+input[type="text"]:valid{background-color: yellow;}
+input[type="text"]:invalid{background-color: red;}
+
+input[type="number"]:in-range{background-color: yellow;}
+input[type="number"]:out-of-range{background-color: red;}
+
+input[type="checkbox"]:checked{
+
+    content: url("./cthulhu.svg");
+    margin-left: 0px;
+}
+
+input[type="checkbox"]:not(:checked){
+
+    content: url("");
+    margin-left: 5px;
+}
+
+
+input[type="submit"]{
+    text-transform: uppercase;
+    background-color: yellow;
+    border-style: none;
+    box-shadow: 2px 2px 10px red;  
+    border-radius: 15px 15px 15px 15px;
+}
+
+/*
+#dificultad:checked::after{
+    content: url()
+    content: "";
+}*/
+
+input:target{
+
+    color: red;
+    background: brown !important;
+    
+}
