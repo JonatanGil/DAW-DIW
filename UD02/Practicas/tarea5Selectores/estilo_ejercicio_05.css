@@ -1,0 +1,98 @@
+@media screen and (max-width: 700px){
+
+    .modulo{
+        display: inline-block;
+        width: 25%;
+        height: 400px;
+    }
+    li{
+        margin:10%;
+    }
+    
+    h2{
+        margin-left:15px;
+    }
+    article{
+       margin-left:15px;
+    }
+}   
+
+@media screen and (min-width: 700px){
+article{
+    text-align: center;
+}
+
+div{
+    display: inline-block;
+    width: 28%;
+}
+.arti-titulo{
+    display: inline;
+    text-align: left;
+}
+ul li{
+    display: inline-block;
+}
+ul{
+    text-align: right;
+    
+}
+h2{
+    margin-left: 23%;
+}
+article{
+    margin-left:50px;
+ }
+
+ header{
+ background-color: lightgray;
+ padding: 10px;
+ padding-top: 30px;
+ padding-bottom:1px;
+}
+div:nth-child(2n){
+    background-color: lightgray;
+}
+/*.activo{
+    overflow: hidden;
+}*/
+
+.activo::before{
+    content: ""; 
+    position: auto;
+    width: 12%;
+    height: 12%;
+    z-index: 1;
+    background-image:url(cthulhu.svg);    opacity: .7;
+}
+
+
+}
+
+
+
+*{
+
+    font-size: 112%;
+}
+
+
+ul li{
+    list-style-type:none;
+}
+
+p{
+    font-family: Amatic SC;
+}
+
+a{
+    font-family: Amatic SC;
+    text-decoration: none;
+    color: green;
+    font-size: 40px;
+}
+
+.logo{
+    color:black;
+    font-weight: bold;
+}

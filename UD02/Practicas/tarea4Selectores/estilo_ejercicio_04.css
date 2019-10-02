@@ -16,6 +16,7 @@ input[type="number"]:out-of-range{background-color: red;}
 input[type="checkbox"]:checked{
 
     content: url("./cthulhu.svg");
+    background-image: url("./cthulhu.svg");
     margin-left: 0px;
 }
 
