@@ -2,7 +2,7 @@
 
     .modulo{
         display: inline-block;
-        width: 25%;
+        width: 30%;
         height: 400px;
     }
     li{
@@ -13,8 +13,34 @@
         margin-left:15px;
     }
     article{
-       margin-left:15px;
+       margin-left:30px;
     }
+    header{
+        background-color: lightgray;
+        padding: 10px;
+        padding-top: 30px;
+        padding-bottom:1px;
+       }
+
+.activo:after{
+    background-image:url(cthulhu.svg); 
+    content: ""; 
+    position: auto;
+    background-size: 73px 60px;
+    width: 73px;
+    height: 60px;
+    position: absolute;
+    margin-left: 40%;
+}
+
+div:nth-child(2n){
+    background-color: lightgray;
+}
+
+.menu-it:hover{
+  background-color: rgba(170,170,170,5);
+}
+
 }   
 
 @media screen and (min-width: 700px){
@@ -32,6 +58,7 @@ div{
 }
 ul li{
     display: inline-block;
+    z-index: 1;
 }
 ul{
     text-align: right;
@@ -57,15 +84,19 @@ div:nth-child(2n){
     overflow: hidden;
 }*/
 
-.activo::before{
+.activo:before{
+    background-image:url(cthulhu.svg); 
     content: ""; 
     position: auto;
-    width: 12%;
-    height: 12%;
-    z-index: 1;
-    background-image:url(cthulhu.svg);    opacity: .7;
+    background-size: 73px 60px;
+    width: 73px;
+    height: 60px;
+    position: absolute;
 }
 
+.menu-it:hover{
+  background-color: rgba(170,170,170,5);
+}
 
 }
 
