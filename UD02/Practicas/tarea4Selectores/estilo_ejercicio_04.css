@@ -13,18 +13,6 @@ input[type="text"]:invalid{background-color: red;}
 input[type="number"]:in-range{background-color: yellow;}
 input[type="number"]:out-of-range{background-color: red;}
 
-input[type="checkbox"]:checked{
-
-    content: url("./cthulhu.svg");
-    background-image: url("./cthulhu.svg");
-    margin-left: 0px;
-}
-
-input[type="checkbox"]:not(:checked){
-
-    content: url("");
-    margin-left: 5px;
-}
 
 
 input[type="submit"]{
@@ -34,16 +22,38 @@ input[type="submit"]{
     box-shadow: 2px 2px 10px red;  
     border-radius: 15px 15px 15px 15px;
 }
-
 /*
-#dificultad:checked::after{
-    content: url()
-    content: "";
+.activo:after{
+    background-image:url(cthulhu.svg); 
+    content: ""; 
+    position: auto;
+    background-size: 73px 60px;
+    width: 73px;
+    height: 60px;
+    position: absolute;
+    margin-left: 40%;
 }*/
+input[type="checkbox"]:checked:before{
+
+    background-image:url(cthulhu.svg); 
+    content: ""; 
+    position: auto;
+    background-size: 30px 30px;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    margin-left: 7%;
+}
+
+
 
 input:target{
 
     color: red;
     background: brown !important;
     
+}
+a{
+    text-decoration: none;
+    color: black;
 }
