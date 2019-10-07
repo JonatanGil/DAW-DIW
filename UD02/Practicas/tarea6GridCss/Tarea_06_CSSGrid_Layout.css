@@ -1,0 +1,66 @@
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: repeat(5, 80px);
+    grid-gap: 12px;
+}
+
+.item2{
+    
+  grid-column: span 3;
+}
+
+
+/* Con indicar el item hover + otro item si el primero esta hover el backgroduncambia*/
+.item1:hover + .item2, .item1:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+/*cada dos es un numero con su dios*/
+.item3:hover + .item4, .item3:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item5:hover + .item6, .item5:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item7:hover + .item8, .item7:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item9:hover + .item10, .item9:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item11:hover + .item12, .item11:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item13:hover + .item14, .item13:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item15:hover + .item16, .item15:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item17:hover + .item18, .item17:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+.item19:hover + .item20, .item19:hover{
+    -webkit-box-shadow: 5px 6px 4px 1px rgba(0,0,0,1);
+}
+
+
+
+#SealOfApproval:before{
+    background-image:url(cthulhu_approval.gif); 
+    content: ""; 
+    position: auto;
+    background-size: 73px 60px;
+    width: 73px;
+    height: 60px;
+    position: absolute;
+}
