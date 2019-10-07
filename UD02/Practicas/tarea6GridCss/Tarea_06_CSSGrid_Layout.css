@@ -1,8 +1,8 @@
 
 .container{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr; 
-    grid-template-rows: repeat(5, 80px);
+    grid-template-columns: 1fr 2fr 1fr 2fr; 
+    grid-template-rows: repeat(5, 70px);
     grid-gap: 12px;
 }
 
@@ -58,9 +58,10 @@
 #SealOfApproval:before{
     background-image:url(cthulhu_approval.gif); 
     content: ""; 
-    position: auto;
-    background-size: 73px 60px;
-    width: 73px;
-    height: 60px;
-    position: absolute;
+    background-size: 222px 190px;
+    width: 120px;
+    height: 110px;
+    position:fixed;
+    bottom: 5px;
+    right: 5px;
 }
