@@ -46,6 +46,7 @@ h4,
 h5,
 h6 {
     margin: 0 0 5px 0;
+    text-align: center;
 }
 
 
@@ -65,4 +66,20 @@ h6 {
 
 .item p {
     margin: 0 0 5px 0;
+}
+
+div:nth-child(odd){
+    background-color: gray;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; 
+    grid-template-rows: repeat(5, 80px);
+    grid-gap: 12px;
+}
+
+.item2{
+    
+  grid-column: span 3;
 }
