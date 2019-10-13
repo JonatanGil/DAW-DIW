@@ -1,0 +1,116 @@
+@media screen and (min-width: 700px){
+
+
+  
+
+    .pagina{
+        display: grid;
+        grid-template-rows: repeat(1, 150px);
+    }
+    
+    header{
+        grid-column: span 4;
+        /*no se porq no va esto, centrar el elemento header, pero no el texto*/
+        justify-items:center;
+        align-content: center;
+        /*Kappa*/
+        text-align: center;
+        
+    }
+
+    nav ul li{
+        text-decoration: none;
+        list-style: none;
+        margin-left: 0;
+        box-shadow: 0px 1px 10px 15px rgba(0,0,0,0.22);     
+    }
+
+    nav ul li a{
+        text-decoration:none; 
+    }
+
+    nav ul{
+        display: grid;
+        grid-template-columns:200px ; 
+        align-items: stretch;
+        grid-row-gap: 25px;
+        margin-right:40px;
+    }
+    main{
+
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr; 
+        grid-template-rows: repeat(3, 340px);
+    }
+
+    div img{
+        background-color: white;
+        padding: 1.4px;
+        align-items: stretch;
+        -webkit-box-shadow: 10px 10px 5px 0px rgba(189, 143, 90, 0.45);
+        
+    }
+
+    footer{
+        
+        grid-column: span 4;
+        text-align: center;
+
+
+    }
+    :root{
+        font-size: 25px;
+    }
+
+    img[id='tintin2']:target{
+        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+    }
+    img[id='tintin3']:target{
+        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+    }
+    img[id='tintin4']:target{
+        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+    }
+    img[id='tintin5']:target{
+        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+    }
+    img[id='tintin6']:target{
+        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+    }
+    img[id='tintin7']:target{
+        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+    }
+    img[id='tintin8']:target{
+        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+    }
+
+
+}
+
+
+@media screen and (max-width: 700px){
+
+    .pagina{
+        display: grid;
+        
+        grid-template-columns: 1fr; 
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
