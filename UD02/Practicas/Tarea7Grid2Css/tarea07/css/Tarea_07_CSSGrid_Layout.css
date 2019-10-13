@@ -1,7 +1,4 @@
-@media screen and (min-width: 700px){
 
-
-  
 
     .pagina{
         display: grid;
@@ -10,11 +7,7 @@
     
     header{
         grid-column: span 4;
-        /*no se porq no va esto, centrar el elemento header, pero no el texto*/
-        justify-items:center;
-        align-content: center;
-        /*Kappa*/
-        text-align: center;
+        justify-self: center;
         
     }
 
@@ -54,7 +47,9 @@
     footer{
         
         grid-column: span 4;
-        text-align: center;
+        /*alinio al centro lo pongo al final de la pagina*/
+        justify-self: center;
+        align-self: end;
 
 
     }
@@ -62,51 +57,35 @@
         font-size: 25px;
     }
 
-    img[id='tintin2']:target{
-        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
-    }
-    img[id='tintin3']:target{
-        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
-    }
-    img[id='tintin4']:target{
-        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
-    }
-    img[id='tintin5']:target{
-        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
-    }
-    img[id='tintin6']:target{
-        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
-    }
-    img[id='tintin7']:target{
-        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
-    }
-    img[id='tintin8']:target{
-        -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
-    }
 
 
+
+
+
+
+
+
+img[id='tintin2']:target{
+    -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
 }
-
-
-@media screen and (max-width: 700px){
-
-    .pagina{
-        display: grid;
-        
-        grid-template-columns: 1fr; 
-    }
-
+img[id='tintin3']:target{
+    -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
 }
-
-
-
-
-
-
-
-
-
-
+img[id='tintin4']:target{
+    -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+}
+img[id='tintin5']:target{
+    -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+}
+img[id='tintin6']:target{
+    -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+}
+img[id='tintin7']:target{
+    -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+}
+img[id='tintin8']:target{
+    -webkit-box-shadow: 8px 7px 3px 2px rgb(42, 209, 78,0.8) ;
+}
 
 
 
