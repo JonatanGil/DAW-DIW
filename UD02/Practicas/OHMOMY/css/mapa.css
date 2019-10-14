@@ -1,0 +1,53 @@
+/*
+#6e4a3b color de cuadrado sin ver
+#d44d2d cuadrado con cofre
+#3a65ca color de sarcofago y llave
+#1d2c55 pergamino 
+#fbfb2b momia
+*/
+
+:root{
+    background-color: #fbfb2c;
+}
+
+header{
+    display: grid;
+    grid-template-columns: 2.5fr 2.5fr; 
+    justify-items: center;
+}
+
+content{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    
+}
+
+.men{
+    color:Red;
+    font-size: 18px;
+}
+
+.score{
+    color:Red;
+    font-size: 18px;
+}
+
+.puntuacion{
+    display: inline-block;
+    color:blue;
+    font-size: 18px;
+    margin-left:40px;
+}
+
+/*
+
+*/
+
+.cuadrado{
+    background-size: 40px 40px;
+    border:1px solid red;
+}
+
+div{
+    border:1px solid red;
+}
