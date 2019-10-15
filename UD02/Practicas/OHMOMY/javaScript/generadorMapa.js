@@ -50,10 +50,6 @@ window.onload = function(){
     //div 8 es la columna
     var posicionDivPersonaje=8;
 
-    var cuadrado1X = 5;
-    var cuadrado1Y = 1;
-
-
     var mapa = [];
 
     //creo 21 columnas 
@@ -137,50 +133,103 @@ window.onload = function(){
     function confirmarCuadrado(mapa){
 
         var caja = 25;
-        var cuadradoOK=true;
+        var cuadradoDerecha=true;
+        var cuadradIzquierda=true;
+        var cuadradoArriba=true;
+        var cuadradoAbajo=true;
         console.log("entra la funcion confirmacuadraod");
-        while(caja<231){
-            //hacia a la derecha
-        for (let i = caja; i > caja-5; i-1,caja-1) {
-            console.log("primer for");
-            var cajas = document.getElementById(caja);
-            var valor = cajas.getAttribute("valor");
-            console.log(valor);
-            if(valor==1){
-                console.log("primer cuadrao ok");
-                cuadradoOK=true;
-            }else{
-                cuadradoOK=false;
-                break;
+        while(caja<28){
+            //hacia a la izquierda
+       
+            for (let i = 0; i < 4; i++) {
+                var cajas = document.getElementById(caja);
+                var valor = cajas.getAttribute("valor");
+                if(valor == 1){
+                    cuadradIzquierda=true;
+                }else{
+                    cuadradIzquierda=false;
+                    break;
+                }
+                caja--;
             }
-        }
 
-        if(!cuadradoOK){
-            break;
-        }
+            console.log("moverhacialaizquierda"+cuadradIzquierda);
+            caja+=21;
 
-        for (let i = caja; i < caja+21+21+21+1; i+21,caja+21) {
-            var cajas = document.getElementById(caja);
-            var valor = cajas.getAttribute("valor");
-            if(valor==1){
-                cuadradoOK=true;
-            }else{
-                cuadradoOK=false;
-                break;
+            //hacia abajo
+            for (let i = 0; i < 3; i++) {
+                var cajas = document.getElementById(caja);
+                var valor = cajas.getAttribute("valor");
+                if(valor == 1){
+                    cuadradoAbajo=true;
+                }else{
+                    cuadradoAbajo=false;
+                    break;
+                }
+                caja+=21;
             }
+         console.log("moverhaciaabajo"+cuadradoAbajo);
+
+
+         caja-=21;
+            //hacia la derecha
+            for (let i = 0; i < 4; i++) {
+                var cajas = document.getElementById(caja);
+                var valor = cajas.getAttribute("valor");
+                if(valor == 1){
+                    cuadradoDerecha=true;
+                }else{
+                    cuadradoDerecha=false;
+                    break;
+                }
+                console.log(caja);
+                caja++;
+            }
+            console.log("moverhacialaderecha"+cuadradoDerecha);
+
+
+
+            //hacia arriba
+            for (let i = 0; i < 3; i++) {
+                var cajas = document.getElementById(caja);
+                var valor = cajas.getAttribute("valor");
+                if(valor == 1){
+                    cuadradoArriba=true;
+                }else{
+                    cuadradoArriba=false;
+                    break;
+                }
+                caja-=21;
+            }
+
+            //para salir del while
+            caja=Number.MAX_VALUE;
+
         }
 
-
-
-            caja+=4;
+        if(cuadradIzquierda && cuadradoDerecha && cuadradoAbajo && cuadradoArriba){
+            var primeraCaja=43;
+            for (let dosveces = 0; dosveces < 2; dosveces++) {
+                
+                for (let B = primeraCaja; B < primeraCaja+3; B++) {
+                    console.log("cambiar perimrea caja");
+                    var caja = document.getElementById(B);
+                    caja.classList.add("visibleCaja");
+                    
+                }
+                primeraCaja+=21;
+            }
+           
         }
+
 
 
     }
 
 
 
-   function moverPerosnaje(movimiento,individuo){
+
+   function moverPerosnaje(movimiento){
 
             //obtengo el div viejo
             var posicionPersonajeVieja = document.getElementById(posicionDivPersonaje);

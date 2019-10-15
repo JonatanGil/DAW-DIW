@@ -63,6 +63,11 @@ div{
     user-select: none; 
     
 }
+
+.visibleCaja{
+    background-color: green;    
+}
+
 .divCamino{
     background-color: black;
     color:black;    
