@@ -69,15 +69,50 @@ div{
     user-select: none; 
 }
 
-.momia{
+.momia:before{
 
-        background-image:url(../img/Noggin.webp); 
-        content: ""; 
-        background-size: 30px 30px;
-        width: 30px;
-        height: 30px;
+        background-image:url(../img/Noggin.png);
+        content: "";
+        background-size: 40px 46px;
+        width: 40px;
+        height: 46px;
         position:fixed;
+        margin-left: -12px;
         /*bottom: 14px;
         right: 14px;*/
+
+}
+
+.personaje:before{
+    background-image:url(../img/yasuoQuieto.png);
+    content: "";
+    background-size: 60px 60px;
+    width: 50px;
+    height: 50px;
+    position:fixed;
+    /*bottom: 14px;
+    right: 14px;*/
+    transition: 1s;
+    margin-left: -25px;
+    background-image:url(../img/da5vmuh-27d5aa71-55c5-45aa-affb-334cc8c840f8.gif);
+
+
+
+
+    /*
+    la transitiojn funciona sin after
+    background-image:url(../img/yasuoQuieto.png);
+    
+    background-size: cover;
+    
+    bottom: 14px;
+    right: 14px;
+    transition: 1s;
+    margin-left: -25px;*/
+
+}
+
+.divCaminado{
+    background-color:purple;
 
 }

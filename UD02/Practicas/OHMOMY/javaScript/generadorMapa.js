@@ -1,6 +1,36 @@
 
 window.onload = function(){
 
+    document.addEventListener("keypress", flechas, false);
+
+
+    function flechas(flecha){
+
+
+        var keyCode = event.keyCode;
+        //a = 97
+        //s = 115
+        //d = 100
+        //w = 119
+        console.log(keyCode);
+
+        if(keyCode == 119){
+            moverPerosnaje("up","personaje");
+        }
+        if(keyCode == 115){
+            moverPerosnaje("down","personaje");
+        }
+        if(keyCode == 100){
+            moverPerosnaje("rigth","personaje");
+        }
+        if(keyCode == 97){
+            moverPerosnaje("left","personaje");
+        }
+
+
+    }
+
+
     let hombrecillo = "P";
     let momia = "M";
     let figura="";
@@ -8,9 +38,20 @@ window.onload = function(){
     let camino = 1;
     let caminoPisado = 2;
 
-    //y largo, x ancho
+    //id para los divs
+    var divs = 0;
+
+    //x columnas, filas Y
     var momiaX = 20;
     var momiaY = 13;
+
+    var personajeX = 8;
+    var personajeY = 0;
+    //div 8 es la columna
+    var posicionDivPersonaje=8;
+
+    var cuadrado1X = 5;
+    var cuadrado1Y = 1;
 
 
     var mapa = [];
@@ -40,14 +81,19 @@ window.onload = function(){
         //primero vemos si es una momia o jugador. despues imprimimos camino caja si no es.
         console.log((filas)+" "+momiaY);
         console.log(columnas+" "+momiaX);
-        if(filas==momiaY && columnas==momiaX){
-
+        if(filas==momiaY && columnas==momiaX ){
+            console.log("entraMomia");
             mapa[columnas][filas]="M";
-            addFigura("M");
+            addDiv(0,0,0,"M");
 
         }else{
 
+            if(filas==personajeY && columnas==personajeX){
 
+                console.log("entraPersonaje");
+                mapa[columnas][filas]="P";
+                addDiv(0,0,0,"P");
+            }else{
 
             //filas que no chocan con las cajas que contienen cofres llaves etc..
             if(filas==1 | filas==4 | filas==7 | filas==10 | filas==13 | (columnas==4 && filas!=0) | columnas==8 | 
@@ -80,6 +126,7 @@ window.onload = function(){
             }
 
         }
+    }
             /*console.log(mapa[columnas][filas]);
             this.console.log(columnas+" "+filas);*/
 
@@ -87,37 +134,165 @@ window.onload = function(){
 
     }
 
+    function confirmarCuadrado(mapa){
 
-    function addFigura(figura){
+        var caja = 25;
+        var cuadradoOK=true;
+        console.log("entra la funcion confirmacuadraod");
+        while(caja<231){
+            //hacia a la derecha
+        for (let i = caja; i > caja-5; i-1,caja-1) {
+            console.log("primer for");
+            var cajas = document.getElementById(caja);
+            var valor = cajas.getAttribute("valor");
+            console.log(valor);
+            if(valor==1){
+                console.log("primer cuadrao ok");
+                cuadradoOK=true;
+            }else{
+                cuadradoOK=false;
+                break;
+            }
+        }
 
-        
+        if(!cuadradoOK){
+            break;
+        }
+
+        for (let i = caja; i < caja+21+21+21+1; i+21,caja+21) {
+            var cajas = document.getElementById(caja);
+            var valor = cajas.getAttribute("valor");
+            if(valor==1){
+                cuadradoOK=true;
+            }else{
+                cuadradoOK=false;
+                break;
+            }
+        }
+
+
+
+            caja+=4;
+        }
+
+
     }
+
+
+
+   function moverPerosnaje(movimiento,individuo){
+
+            //obtengo el div viejo
+            var posicionPersonajeVieja = document.getElementById(posicionDivPersonaje);
+            //remover individuo
+            posicionPersonajeVieja.classList.remove("personaje");
+
+            posicionPersonajeVieja.classList.add("divCaminado");
+
+            posicionPersonajeVieja.setAttribute("valor",1);
+
+       
+            console.log(movimiento);
+
+        if(movimiento=="down"){
+            //sumo una a la fila "Y"
+            personajeY+=1;
+            //ir hacia abajo-21
+            var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje+21);
+            posicionDivPersonaje+=21;
+            //añado personaje al cuadrao nuevo
+            PosicionPersonajeNueva.classList.add("personaje");
+        }
+        if(movimiento=="up"){
+            //sumo una a la fila "Y"
+            personajeY-=1;
+            //ir hacia abajo-21
+            var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje-21);
+            posicionDivPersonaje-=21;
+            //añado personaje al cuadrao nuevo
+            PosicionPersonajeNueva.classList.add("personaje");
+        }
+        if(movimiento=="rigth"){
+            //sumo una a la columna "Y"
+            personajeY-=1;
+            //ir hacia la derecha +1
+            var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje+1);
+            posicionDivPersonaje+=1;
+            //añado personaje al cuadrao nuevo
+            PosicionPersonajeNueva.classList.add("personaje");
+        }
+        if(movimiento=="left"){
+            //sumo una a la fila "Y"
+            personajeY-=1;
+            //ir hacia a la izquierda -11
+            var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje-1);
+            posicionDivPersonaje-=1;
+            //añado personaje al cuadrao nuevo
+            PosicionPersonajeNueva.classList.add("personaje");
+        }
+
+
+
+        console.log(posicionDivPersonaje+" personajeX:"+personajeX+" personajeY"+personajeY);
+
+
+        confirmarCuadrado(mapa);
+
+
+   }
 
     function addDiv(colum,fil,style,figura){
           
       //creamos div 
       var para = document.createElement("div");
 
+      para.id=divs;
+      divs++;
+        
       if(style==0){
-        if(colum==8 && fil==0){ para.classList.add("divCamino"); }}else{
-        if(style==1){ para.classList.add("divCamino"); } else{
-            para.classList.add("divCaja");
+        if(colum==8 && fil==0){ 
+            para.classList.add("divCamino");
         }
+    }else{
+        if(style==1){ 
+            para.classList.add("divCamino");
+         } else{
+             if(style==3){
+                para.classList.add("divCaminado");
+             }else{
+                para.classList.add("divCaja");
+             }
+        }
+    }
+
+    if(figura=="M"){
+        console.log("añado momia");
+        if(style==1 | style==0){
+            para.classList.add("divCamino");
+        }else{
+            console.log(style);
+            para.setAttribute("value","momia");
+            para.classList.add("divCamino");
+        }
+      para.classList.add("momia");
+    }
+    if(figura=="P"){
+        console.log("añado personaje");
+        if(style==1 | style==0){
+            para.classList.add("divCamino");
+        }else{
+            console.log(style);
+            para.setAttribute("value","jugador");
+            para.classList.add("divCamino");
+        }
+      para.classList.add("personaje");
+
     }
 
       //creamos texto
       var t = document.createTextNode(mapa[colum][fil]); 
       //metemos texto en div
       para.appendChild(t);
-
-
-
-      if(figura=="M"){
-          console.log();
-        para.classList.add("momia");
-    }
-
-
       //insertamos div en html
       document.getElementById("main").appendChild(para);  
 
