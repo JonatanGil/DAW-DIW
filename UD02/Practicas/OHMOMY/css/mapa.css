@@ -12,13 +12,23 @@
 
 header{
     display: grid;
+    /*mitad para score mitad para las vidas*/
     grid-template-columns: 2.5fr 2.5fr; 
     justify-items: center;
 }
 
 content{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr; 
+    /*21columnas*/
+    grid-template-columns: repeat(21,1fr); 
+    height: 680px;  
+    align-self: center;
+    justify-self: center;
+
+
+    /*//quitar
+    grid-gap:4px;*/
+    
     
 }
 
@@ -43,11 +53,31 @@ content{
 
 */
 
-.cuadrado{
-    background-size: 40px 40px;
-    border:1px solid red;
+div{
+    text-align: center;
 }
 
-div{
-    border:1px solid red;
+.divCaja{
+    background-color: #6e4a3b;
+    color:#6e4a3b;
+    user-select: none; 
+    
+}
+.divCamino{
+    background-color: black;
+    color:black;    
+    user-select: none; 
+}
+
+.momia{
+
+        background-image:url(../img/Noggin.webp); 
+        content: ""; 
+        background-size: 30px 30px;
+        width: 30px;
+        height: 30px;
+        position:fixed;
+        /*bottom: 14px;
+        right: 14px;*/
+
 }
