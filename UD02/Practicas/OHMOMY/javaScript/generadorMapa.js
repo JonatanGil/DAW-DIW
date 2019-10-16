@@ -12,7 +12,7 @@ window.onload = function(){
         //s = 115
         //d = 100
         //w = 119
-        console.log(keyCode);
+        /*console.log(keyCode);*/
 
         if(keyCode == 119){
             moverPerosnaje("up","personaje");
@@ -43,7 +43,7 @@ window.onload = function(){
 
     //x columnas, filas Y
     var momiaX = 20;
-    var momiaY = 13;
+    var momiaY = 5;
 
     var personajeX = 8;
     var personajeY = 0;
@@ -51,6 +51,7 @@ window.onload = function(){
     var posicionDivPersonaje=8;
 
     var mapa = [];
+    var cuadradoDescubierto = [];
 
     //creo 21 columnas 
     for(var i=0; i<21; i++) {
@@ -60,8 +61,6 @@ window.onload = function(){
 
 
     
-    console.log(mapa.length);
-    console.log(mapa[0].length);
     /*
     var para = document.createElement("div");                       // Create a <p> node
     var t = document.createTextNode("This is a paragraph.");      // Create a text node
@@ -74,21 +73,22 @@ window.onload = function(){
     for (var columnas = 0; columnas < mapa.length; columnas++) {
         
 
-        //primero vemos si es una momia o jugador. despues imprimimos camino caja si no es.
+        //primero vemos si es una momia o jugador. despues imprimimos camino CajaPosicion si no es.
         console.log((filas)+" "+momiaY);
         console.log(columnas+" "+momiaX);
         if(filas==momiaY && columnas==momiaX ){
             console.log("entraMomia");
             mapa[columnas][filas]="M";
-            addDiv(0,0,0,"M");
+            addDiv(columnas,filas,1,"M");
 
         }else{
 
             if(filas==personajeY && columnas==personajeX){
 
                 console.log("entraPersonaje");
-                mapa[columnas][filas]="P";
-                addDiv(0,0,0,"P");
+                mapa[columnas][filas]="1";
+                addDiv(columnas,filas,1,"P");
+
             }else{
 
             //filas que no chocan con las cajas que contienen cofres llaves etc..
@@ -104,15 +104,31 @@ window.onload = function(){
             }else{
 
                 if(filas==0){
-
+                    console.log(columnas+" columna"+" filas"+filas);
+                    if(columnas==8){
                     //primera fila solo el start
-                    mapa[columnas][filas]="*";
+                    mapa[columnas][filas]="1";
                     //la primera linea solo marcamos el start 0 para el style vacio
                     addDiv(columnas,filas,0,figura);
+                }else{
+                    if(columnas==8 && filas==0){
+                        alert("1");
+                        //primera fila solo el start
+                        mapa[columnas][filas]="1";
+                        //la primera linea solo marcamos el start 0 para el style vacio
+                        addDiv(columnas,filas,0,figura);
+                    }else{
+                        //primera fila solo el start
+                        mapa[columnas][filas]="0";
+                        //la primera linea solo marcamos el start 0 para el style vacio
+                        addDiv(columnas,filas,0,figura);
+                    }
+                   
+                }
 
                 }else{
 
-                    //añadimos el 2 para el style de la caja
+                    //añadimos el 2 para el style de la CajaPosicion
                     mapa[columnas][filas]="2";
                     //las cajas pasamos el 2 para el style
                     addDiv(columnas,filas,2,figura);
@@ -132,96 +148,118 @@ window.onload = function(){
 
     function confirmarCuadrado(mapa){
 
-        var caja = 25;
-        var cuadradoDerecha=true;
-        var cuadradIzquierda=true;
-        var cuadradoArriba=true;
-        var cuadradoAbajo=true;
-        console.log("entra la funcion confirmacuadraod");
-        while(caja<28){
-            //hacia a la izquierda
-       
-            for (let i = 0; i < 4; i++) {
-                var cajas = document.getElementById(caja);
+        var CajaPosicion = 25;
+        ///sumas al bucle 47 para pasar de la quinta caja a las sextacon los divs* para pintar y saber si esta rodeado
+        var contarCajas = 47;
+
+        var cuadradoDerecha=false;
+        var cuadradIzquierda=false;
+        var cuadradoArriba=false;
+        var cuadradoAbajo=false;
+
+        let posicionDelCuadradoDiv=[43,47,51,55,59,106,110,114,118,122,169,173,177,181,183,232,236,240,244,248];
+
+        for (var i = 0; i < 1; i++) {
+
+
+            for (let index = CajaPosicion; index > CajaPosicion-5; index--) {
+
+                var cajas = document.getElementById(index);
                 var valor = cajas.getAttribute("valor");
+
+                console.log(index+"posicion     valor"+valor+"  izquierda");
+                
                 if(valor == 1){
                     cuadradIzquierda=true;
                 }else{
                     cuadradIzquierda=false;
-                    break;
+                    //es falso salimos false el bolean
+                    console.log("sale");
+                    index=Number.MAX_VALUE;
                 }
-                caja--;
             }
+            
 
-            console.log("moverhacialaizquierda"+cuadradIzquierda);
-            caja+=21;
 
-            //hacia abajo
-            for (let i = 0; i < 3; i++) {
-                var cajas = document.getElementById(caja);
+            //arriba a abajo
+            CajaPosicion=CajaPosicion-4+21;
+            console.log(CajaPosicion);
+
+            for (var index = CajaPosicion; index < CajaPosicion+21+21+21; index=index+21) {
+
+                var cajas = document.getElementById(index);
                 var valor = cajas.getAttribute("valor");
+                
+                console.log(index+"posicion     valor"+valor+"  abajo");
                 if(valor == 1){
                     cuadradoAbajo=true;
                 }else{
                     cuadradoAbajo=false;
-                    break;
+                    //es falso salimos false el bolean
+                    console.log("sale");
+                    index=Number.MIN_VALUE;
                 }
-                caja+=21;
+
+                
             }
-         console.log("moverhaciaabajo"+cuadradoAbajo);
+/*
+            //izquierda 
+            for (let index = CajaPosicion; index < CajaPosicion+5; index++) {
 
-
-         caja-=21;
-            //hacia la derecha
-            for (let i = 0; i < 4; i++) {
-                var cajas = document.getElementById(caja);
+                var cajas = document.getElementById(index);
                 var valor = cajas.getAttribute("valor");
+
+                console.log(index+"posicion     valor"+valor+"  izquierda");
+                
                 if(valor == 1){
-                    cuadradoDerecha=true;
+                    cuadradIzquierda=true;
                 }else{
-                    cuadradoDerecha=false;
-                    break;
+                    cuadradIzquierda=false;
+                    //es falso salimos false el bolean
+                    console.log("sale");
+                    index=Number.MAX_VALUE;
                 }
-                console.log(caja);
-                caja++;
             }
-            console.log("moverhacialaderecha"+cuadradoDerecha);
+            
+*/
 
 
+            console.log(cuadradIzquierda+"-izquierda");
+            console.log(cuadradoAbajo+"-abajo");
+            console.log(cuadradoDerecha+"-derecha");
+            console.log(cuadradoArriba+"-arriba");
+        
 
-            //hacia arriba
-            for (let i = 0; i < 3; i++) {
-                var cajas = document.getElementById(caja);
-                var valor = cajas.getAttribute("valor");
-                if(valor == 1){
-                    cuadradoArriba=true;
-                }else{
-                    cuadradoArriba=false;
-                    break;
-                }
-                caja-=21;
-            }
+            cuadradoDerecha=false;
+            cuadradIzquierda=false;
+            cuadradoArriba=false;
+            cuadradoAbajo=false;
 
-            //para salir del while
-            caja=Number.MAX_VALUE;
 
         }
+/*
+        for (let index = 0; index <= 1; index++) {
 
-        if(cuadradIzquierda && cuadradoDerecha && cuadradoAbajo && cuadradoArriba){
-            var primeraCaja=43;
+        
+
+        //obetenesmoes el div para pintar las caja 3 a la derecgha y abajo repetimos
+            var primeraPosicionDelaCaja = cuadradoDescubierto.shift();
+            var pintarCaja = posicionDelCuadradoDiv[primeraPosicionDelaCaja];
+            console.log(primeraPosicionDelaCaja+"cuadrad a pintar             "+pintarCaja+"numero de la caja prierma a pintar");
             for (let dosveces = 0; dosveces < 2; dosveces++) {
                 
-                for (let B = primeraCaja; B < primeraCaja+3; B++) {
-                    console.log("cambiar perimrea caja");
-                    var caja = document.getElementById(B);
-                    caja.classList.add("visibleCaja");
+                for (let B = pintarCaja; B < pintarCaja+3; B++) {
+                    var CajaPosicion = document.getElementById(B);
+                    
+                    CajaPosicion.classList.add("visibleCaja");
                     
                 }
-                primeraCaja+=21;
-            }
+                pintarCaja  +=21;
+            
            
         }
-
+    }
+*/
 
 
     }
@@ -233,51 +271,80 @@ window.onload = function(){
 
             //obtengo el div viejo
             var posicionPersonajeVieja = document.getElementById(posicionDivPersonaje);
-            //remover individuo
-            posicionPersonajeVieja.classList.remove("personaje");
 
             posicionPersonajeVieja.classList.add("divCaminado");
 
             posicionPersonajeVieja.setAttribute("valor",1);
 
-       
-            console.log(movimiento);
 
         if(movimiento=="down"){
             //sumo una a la fila "Y"
             personajeY+=1;
             //ir hacia abajo-21
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje+21);
+            var movimientoValido = document.getElementById(posicionDivPersonaje+21).innerHTML;
+            //si es uno se mueve
+            if(movimientoValido==1){
+            //remover individuo
+            posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje+=21;
             //añado personaje al cuadrao nuevo
             PosicionPersonajeNueva.classList.add("personaje");
+            }else{
+            posicionPersonajeVieja.classList.add("personaje");
+            }
         }
         if(movimiento=="up"){
             //sumo una a la fila "Y"
             personajeY-=1;
             //ir hacia abajo-21
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje-21);
+            //obtenemos el valor del texto, si es uno puede mover si es dos o no existe no se mueve
+            var movimientoValido = document.getElementById(posicionDivPersonaje-21).innerHTML;
+            //si es uno se mueve
+            if(movimientoValido==1){
+                //remover individuo
+                posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje-=21;
             //añado personaje al cuadrao nuevo
             PosicionPersonajeNueva.classList.add("personaje");
+        }else{
+        posicionPersonajeVieja.classList.add("personaje");
+        }
         }
         if(movimiento=="rigth"){
             //sumo una a la columna "Y"
             personajeY-=1;
             //ir hacia la derecha +1
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje+1);
+            var movimientoValido = document.getElementById(posicionDivPersonaje+1).innerHTML;
+            //si es uno se mueve
+            if(movimientoValido==1){
+                //remover individuo
+                posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje+=1;
             //añado personaje al cuadrao nuevo
             PosicionPersonajeNueva.classList.add("personaje");
+            }else{
+            posicionPersonajeVieja.classList.add("personaje");
+            }
         }
         if(movimiento=="left"){
             //sumo una a la fila "Y"
             personajeY-=1;
             //ir hacia a la izquierda -11
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje-1);
+            var movimientoValido = document.getElementById(posicionDivPersonaje-1).innerHTML;
+            //si es uno se mueve
+            if(movimientoValido==1){
+                //remover individuo
+                posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje-=1;
             //añado personaje al cuadrao nuevo
             PosicionPersonajeNueva.classList.add("personaje");
+            }else{
+            posicionPersonajeVieja.classList.add("personaje");
+            }
         }
 
 
@@ -319,7 +386,6 @@ window.onload = function(){
         if(style==1 | style==0){
             para.classList.add("divCamino");
         }else{
-            console.log(style);
             para.setAttribute("value","momia");
             para.classList.add("divCamino");
         }
@@ -330,13 +396,13 @@ window.onload = function(){
         if(style==1 | style==0){
             para.classList.add("divCamino");
         }else{
-            console.log(style);
             para.setAttribute("value","jugador");
             para.classList.add("divCamino");
         }
       para.classList.add("personaje");
 
     }
+
 
       //creamos texto
       var t = document.createTextNode(mapa[colum][fil]); 
@@ -350,7 +416,7 @@ window.onload = function(){
 
 }
 
-    console.log(mapa);
+
 
 
   

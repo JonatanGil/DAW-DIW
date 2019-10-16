@@ -65,7 +65,7 @@ div{
 }
 
 .visibleCaja{
-    background-color: green;    
+    background-color: green;   
 }
 
 .divCamino{
@@ -119,5 +119,6 @@ div{
 
 .divCaminado{
     background-color:purple;
+    color:purple;
 
 }
