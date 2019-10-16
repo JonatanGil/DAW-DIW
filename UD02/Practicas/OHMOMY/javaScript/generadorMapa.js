@@ -183,9 +183,9 @@ window.onload = function(){
 
             //arriba a abajo
             CajaPosicion=CajaPosicion-4+21;
-            console.log(CajaPosicion);
+            console.log(CajaPosicion+21+21+" cajanormal"+CajaPosicion);
 
-            for (var index = CajaPosicion; index < CajaPosicion+21+21+21; index=index+21) {
+            for (var index = CajaPosicion; index <= CajaPosicion+21+21; index=index+21) {
 
                 var cajas = document.getElementById(index);
                 var valor = cajas.getAttribute("valor");
@@ -196,32 +196,53 @@ window.onload = function(){
                 }else{
                     cuadradoAbajo=false;
                     //es falso salimos false el bolean
-                    console.log("sale");
-                    index=Number.MIN_VALUE;
+                    index=Number.MAX_VALUE;
                 }
 
-                
+
             }
-/*
-            //izquierda 
+
+
+            CajaPosicion=CajaPosicion+21+21;
+            //derecha
             for (let index = CajaPosicion; index < CajaPosicion+5; index++) {
 
                 var cajas = document.getElementById(index);
                 var valor = cajas.getAttribute("valor");
 
-                console.log(index+"posicion     valor"+valor+"  izquierda");
+                console.log(index+"posicion     valor"+valor+"  derecha");
                 
                 if(valor == 1){
-                    cuadradIzquierda=true;
+                    cuadradoDerecha=true;
                 }else{
-                    cuadradIzquierda=false;
+                    cuadradoDerecha=false;
                     //es falso salimos false el bolean
                     console.log("sale");
                     index=Number.MAX_VALUE;
                 }
             }
+
+
+            CajaPosicion=CajaPosicion+4-21;
+
+            for (let index = CajaPosicion; index > CajaPosicion-21-21; index=index-21) {
+
+                var cajas = document.getElementById(index);
+                var valor = cajas.getAttribute("valor");
+
+                console.log(index+"posicion     valor"+valor+"  arriba");
+                if(valor == 1){
+                    cuadradoArriba=true;
+                }else{
+                    cuadradoArriba=false;
+                    //es falso salimos false el bolean
+                    console.log("sale");
+                    index=Number.MAX_VALUE;
+                }
+                
+            }
             
-*/
+
 
 
             console.log(cuadradIzquierda+"-izquierda");
@@ -229,14 +250,21 @@ window.onload = function(){
             console.log(cuadradoDerecha+"-derecha");
             console.log(cuadradoArriba+"-arriba");
         
-
+            if(cuadradoDerecha && cuadradIzquierda && cuadradoArriba && cuadradoAbajo){
+                if(cuadradoDescubierto.indexOf(i,0)){
+                    cuadradoDescubierto.push(i);
+            }
+            }
             cuadradoDerecha=false;
             cuadradIzquierda=false;
             cuadradoArriba=false;
             cuadradoAbajo=false;
 
 
+
         }
+
+        console.log(cuadradoDescubierto);
 /*
         for (let index = 0; index <= 1; index++) {
 
