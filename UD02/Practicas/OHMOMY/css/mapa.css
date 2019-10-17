@@ -5,6 +5,9 @@
 #1d2c55 pergamino 
 #fbfb2b momia
 */
+article{
+    height: 650px;
+}
 
 :root{
     background-color: #fbfb2c;
@@ -14,14 +17,16 @@ header{
     display: grid;
     /*mitad para score mitad para las vidas*/
     grid-template-columns: 2.5fr 2.5fr; 
-    justify-items: center;
+    height: 7%;
+    align-self: center;
+    justify-self: center;
 }
 
 content{
     display: grid;
     /*21columnas*/
     grid-template-columns: repeat(21,1fr); 
-    height: 680px;  
+    height: 92%;  
     align-self: center;
     justify-self: center;
 
@@ -32,21 +37,27 @@ content{
     
 }
 
+
 .men{
     color:Red;
-    font-size: 18px;
+    font-size: 15px;
+}
+.vidas{
+    display: inline-block;
+    color:blue;
+    font-size: 15px;
+    margin-left:15px;
 }
 
 .score{
     color:Red;
-    font-size: 18px;
+    font-size: 15px;
 }
-
 .puntuacion{
     display: inline-block;
     color:blue;
-    font-size: 18px;
-    margin-left:40px;
+    font-size: 15px;
+    margin-left:15px;
 }
 
 /*
@@ -55,6 +66,7 @@ content{
 
 div{
     text-align: center;
+    font-size: 0px;
 }
 
 .divCaja{
@@ -74,32 +86,54 @@ div{
     user-select: none; 
 }
 
-.momia:before{
+.momia:after{
 
+    background-position: center;
+    background-image:url(../img/da5vmuh-27d5aa71-55c5-45aa-affb-334cc8c840f8.gif);
+    content: "";
+    background-size: cover;
+    width: 100%;
+    overflow: unset;
+    height: 200%;
+    margin-top: -80%;
+    z-index: 4;
+    display: block;
+
+/*  momia fized
         background-image:url(../img/Noggin.png);
         content: "";
         background-size: 40px 46px;
         width: 40px;
         height: 46px;
         position:fixed;
-        margin-left: -12px;
-        /*bottom: 14px;
-        right: 14px;*/
+        margin-left: -12px;*/
 
 }
 
 .personaje:before{
-    background-image:url(../img/yasuoQuieto.png);
+    
+    background-position: center;
+    background-image:url(../img/pixel1.png);
     content: "";
-    background-size: 60px 60px;
-    width: 50px;
-    height: 50px;
-    position:fixed;
-    /*bottom: 14px;
-    right: 14px;*/
-    transition: 1s;
-    margin-left: -25px;
-    background-image:url(../img/da5vmuh-27d5aa71-55c5-45aa-affb-334cc8c840f8.gif);
+    background-size: cover;
+    width: 100%;
+    overflow: unset;
+    height: 200%;
+    margin-top: -70%;
+    z-index: 6;
+    display: block;
+   /* display: block;
+    background-image:url(../img/pixel1.png);
+    content: "";
+    background-size:90%;
+    overflow:initial;
+    background-position: center;
+    width: 40px;
+    height: 46px;
+    
+
+    z-index: 6;*/
+    
 
 
 
@@ -118,7 +152,25 @@ div{
 }
 
 .divCaminado{
-    background-color:purple;
-    color:purple;
+   /*
+    background-position: center;
+    background-image:url(../img/seta1-1.png);
+    content: "";
+    background-size: cover;
+    width: 50%;
+    overflow: unset;
+    height: 50%;
+    z-index: 6;
+    display: block;
+    margin-left: +25%;
+    margin-top: -5%;
+*/
+
+    background-image: url(../img/seta1-1.png);
+    background-size: 30px 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent;
+    background-color:black;
 
 }
