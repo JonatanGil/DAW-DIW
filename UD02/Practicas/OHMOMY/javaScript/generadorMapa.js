@@ -30,13 +30,10 @@ window.onload = function(){
 
     }
 
-
-    let hombrecillo = "P";
-    let momia = "M";
-    let figura="";
-
+    //el camino pisado en una clase divCaminado(con seta alucinogena)   divCamnino(el negro normal
     let camino = 1;
-    let caminoPisado = 2;
+  
+    var figura="";
 
     //id para los divs
     var divs = 0;
@@ -50,8 +47,12 @@ window.onload = function(){
     //div 8 es la columna
     var posicionDivPersonaje=8;
 
+    var nivelMapa=5;
     var mapa = [];
+    //añado el numero contando desde 0 de la caja totalmente rodeada
     var cuadradoDescubierto = [];
+    //POSICIONES para pintar los cuadrados
+    let idDeLaCaja=[43,47,51,55,59,106,110,114,118,122,169,173,177,181,185,232,236,240,244,248];
 
     //creo 21 columnas 
     for(var i=0; i<21; i++) {
@@ -67,12 +68,14 @@ window.onload = function(){
     para.appendChild(t);                                          // Append the text to <p>
     document.getElementById("main").appendChild(para);           // Append <p> to <div> with id="myDIV" */
 
-    terminar();
+    AjustarAlturaPagina();
 
 
 
     function dibujarMapa(){
 
+        
+        //dibujo el mapa
 
         for (var filas = 0; filas < mapa[0].length; filas++) {
 
@@ -80,10 +83,10 @@ window.onload = function(){
                 
         
                 //primero vemos si es una momia o jugador. despues imprimimos camino CajaPosicion si no es.
-                console.log((filas)+" "+momiaY);
-                console.log(columnas+" "+momiaX);
+              /*  console.log((filas)+" "+momiaY);
+                console.log(columnas+" "+momiaX);*/
                 if(filas==momiaY && columnas==momiaX ){
-                    console.log("entraMomia");
+                   // console.log("entraMomia");
                     mapa[columnas][filas]="M";
                     addDiv(columnas,filas,1,"M");
         
@@ -91,8 +94,8 @@ window.onload = function(){
         
                     if(filas==personajeY && columnas==personajeX){
         
-                        console.log("entraPersonaje");
-                        mapa[columnas][filas]="1";
+                      //  console.log("entraPersonaje");
+                        mapa[columnas][filas]=camino;
                         addDiv(columnas,filas,1,"P");
         
                     }else{
@@ -110,17 +113,17 @@ window.onload = function(){
                     }else{
         
                         if(filas==0){
-                            console.log(columnas+" columna"+" filas"+filas);
+                          //  console.log(columnas+" columna"+" filas"+filas);
                             if(columnas==8){
                             //primera fila solo el start
-                            mapa[columnas][filas]="1";
+                            mapa[columnas][filas]=camino;
                             //la primera linea solo marcamos el start 0 para el style vacio
                             addDiv(columnas,filas,0,figura);
                         }else{
                             if(columnas==8 && filas==0){
                                 alert("1");
                                 //primera fila solo el start
-                                mapa[columnas][filas]="1";
+                                mapa[columnas][filas]=camino;
                                 //la primera linea solo marcamos el start 0 para el style vacio
                                 addDiv(columnas,filas,0,figura);
                             }else{
@@ -149,10 +152,66 @@ window.onload = function(){
                     this.console.log(columnas+" "+filas);*/
         
                 }
+                
         
             }
 
+
+            /*
+            do{
+            var cofre = Math.random() * (19 - 0) + 0;
+            var llave = Math.random() * (19 - 0) + 0;
+            var urna = Math.random() * (19 - 0) + 0;
+            var pergamino = Math.random() * (19 - 0) + 0;
+        }while(cofre!=llave && cofre!=urna && cofre!=pergamino &&
+            llave!=cofre && llave!=urna && llave!=pergamino &&
+            urna!=cofre && urna!=llave && urna!= pergamino &&
+            pergamino!=cofre && pergamino!=llave && pergamino!=urna);
+*/
+
+            //undefined el valor del atributo del div, 
+            
+
     }
+
+
+    atributoDivItems();
+    console.log("sale");
+
+    function atributoDivItems(){
+
+       /* var Objetos = ["Llave","Urna","Pergamino","Cofre"]*/
+
+       var Objetos = ["Llave"];
+
+        //cuantas momias quieres es decir nivel del mapa es 5-4 1=momia en una caja
+       /* for (let b = 0; b < nivelMapa-4; b++) {
+            Objetos.push("momia");
+
+        }*/
+
+        for (var i = 0; i < Objetos.length; ) {
+
+
+            var random =Math.floor(Math.random() * (19 - 0 + 1)) + 0;
+            var div = document.getElementById(idDeLaCaja[0]);
+            //si no tiene atributo undefined y pasa al siguiente div ee
+            
+            var divAtributo = div.getAttribute("value");
+            
+            if(divAtributo==null){
+                console.log("cambio value");
+                div.setAttribute("value", Objetos[i]);
+                i++;
+            }
+            
+                console.log(divAtributo+" r_:"+random+"      div id="+idDeLaCaja[random]);
+            console.log(Objetos);
+            
+        }
+
+    }
+
 
     function confirmarCuadrado(mapa){
 
@@ -165,9 +224,9 @@ window.onload = function(){
         var cuadradoArriba=false;
         var cuadradoAbajo=false;
 
-        let posicionDelCuadradoDiv=[43,47,51,55,59,106,110,114,118,122,169,173,177,181,183,232,236,240,244,248];
 
-        for (var i = 0; i < 20; i++) {
+                        //bucle cuando llege a 5 baja a la segunda fila de las cajas para comprobar
+        for (var i = 0, bucle = 1; i < 20; i++,bucle++) {
 
             try {
                 
@@ -289,22 +348,34 @@ window.onload = function(){
             console.log("*******");
         
             if(cuadradoDerecha && cuadradoIzquierda && cuadradoArriba && cuadradoAbajo){
-                    if(cuadradoDescubierto.indexOf(i)){
+
+
+
+
+                    if(cuadradoDescubierto.indexOf(i)==-1){
                     cuadradoDescubierto.push(i);
                 }
             
+
+
+
+
             }
 
-           /* if(i%4==0){
-        }else{
-            CajaPosicion==CajaPosicion+6;
-        }*/
+            
+             if(i>8){
+                /* console.log(bucle);*/
+                    console.log(CajaPosicion+"   i"+i);
+            }
 
-        if(i%4==4){
-            CajaPosicion=CajaPosicion+6;
-        }else{
-            CajaPosicion=CajaPosicion-21-21+4;
-        }
+                //cuando se la quinta caja(4)  bajara a las 6(5)   para bajar a la segunda fila, sumo +5 para el div para seguir con la siguiente caja cuando bajo de fila* 
+                if(bucle==5){
+                    CajaPosicion=CajaPosicion+5;
+                    bucle=0;
+                }else{
+                    CajaPosicion=CajaPosicion-21-21+4;
+                }
+
             //alert(" Posicion de las cajas"+CajaPosicion);
 
 
@@ -319,28 +390,79 @@ window.onload = function(){
         console.log(cuadradoDescubierto+"  mas length de los cuadrados ok"+cuadradoDescubierto.length);
 
         
-
+        //si en el array de todos los lados = true, metes en cuadradosDescubiertos l caja que esta ok i imprimes
+        
             for (let index = 0; index < cuadradoDescubierto.length; index++) {
                 
             
 
                 var primeraPosicionDelaCaja = cuadradoDescubierto[index];
-                var pintarCaja = posicionDelCuadradoDiv[primeraPosicionDelaCaja];
+                var dibujarObjeto = idDeLaCaja[primeraPosicionDelaCaja];
     
-              //  console.log(primeraPosicionDelaCaja+"cuadrad a pintar             "+pintarCaja+"numero de la caja prierma a pintar");
-                  //obetenesmoes el div para pintar las caja 3 a la derecgha y abajo repetimos
+                var CajaPosicion = document.getElementById(dibujarObjeto);
+                var valorDiv = CajaPosicion.getAttribute("value");
+/*
+                //para el fondo
+                var CajaPosicionParaFondo = document.getElementById(dibujarObjeto+21);*/
+
+
+
+               /* console.log(dibujarObjeto+21);
+                console.log(valorDiv+"atributo     pos:"+dibujarObjeto);*/
+                switch (valorDiv) {
+                    case "Llave":{
+
+                      /*  CajaPosicionParaFondo.classList.add("fondo");*/
+
+                        console.log("cambio llave caja");
+                        CajaPosicion.classList.add("Llave");
+                        
+                      break;}
+                    case "Cofre":{
+                        console.log("cambio llave caja");
+                        CajaPosicion.classList.remove("divCaja");
+                        CajaPosicion.classList.add("Cofre");
+                        
+                      break;}
+                    case "Urna":{
+                        console.log("cambio llave caja");
+                        CajaPosicion.classList.remove("divCaja");
+                        CajaPosicion.classList.add("Urna");
+                        
+                      break;}
+                    case "Pergamino":{
+                        console.log("cambio llave caja");
+                        CajaPosicion.classList.remove("divCaja");
+                        CajaPosicion.classList.add("Llave");
+                        
+                      break;}
+                    case "Momia":{
+                        console.log("cambio llave caja");
+                        CajaPosicion.classList.remove("divCaja");
+                        CajaPosicion.classList.add("Llave");
+                        
+                      break;}
+                  
+                  }
+
+
+
+
+
+              //  console.log(primeraPosicionDelaCaja+"cuadrad a pintar             "+dibujarObjeto+"numero de la caja prierma a pintar");
+                 /* //obetenesmoes el div para pintar las caja 3 a la derecgha y abajo repetimos
                for (let dosveces = 0; dosveces < 2; dosveces++) {
                 
-                   for (let B = pintarCaja; B < pintarCaja+3; B++) {
+                   for (let B = dibujarObjeto; B < dibujarObjeto+3; B++) {
                        var CajaPosicion = document.getElementById(B);
                     
                            CajaPosicion.classList.add("visibleCaja");
 
                  }
-                    pintarCaja  +=21;
+                    dibujarObjeto  +=21;
             
            
-                  }
+                  }*/
     
     }
 
@@ -470,7 +592,7 @@ window.onload = function(){
     }
 
     if(figura=="M"){
-        console.log("añado momia");
+       // console.log("añado momia");
         if(style==1 | style==0){
             para.classList.add("divCamino");
         }else{
@@ -480,7 +602,7 @@ window.onload = function(){
       para.classList.add("momia");
     }
     if(figura=="P"){
-        console.log("añado personaje");
+       // console.log("añado personaje");
         if(style==1 | style==0){
             para.classList.add("divCamino");
         }else{
@@ -513,7 +635,7 @@ window.onload = function(){
     classDiv.classList.add("cuadradp");*/
 
 
-    function terminar(){
+    function AjustarAlturaPagina(){
         var altura = window.innerHeight-18+"px";
         
 

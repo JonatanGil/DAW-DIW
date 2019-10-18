@@ -63,7 +63,6 @@ content{
 /*
 
 */
-
 div{
     text-align: center;
     font-size: 0px;
@@ -83,7 +82,7 @@ div{
 .divCamino{
     background-color: black;
     color:black;    
-    user-select: none; 
+    user-select: none;
 }
 
 .momia:after{
@@ -96,7 +95,6 @@ div{
     overflow: unset;
     height: 200%;
     margin-top: -80%;
-    z-index: 4;
     display: block;
 
 /*  momia fized
@@ -120,7 +118,6 @@ div{
     overflow: unset;
     height: 200%;
     margin-top: -70%;
-    z-index: 6;
     display: block;
    /* display: block;
     background-image:url(../img/pixel1.png);
@@ -131,8 +128,6 @@ div{
     width: 40px;
     height: 46px;
     
-
-    z-index: 6;*/
     
 
 
@@ -160,7 +155,6 @@ div{
     width: 50%;
     overflow: unset;
     height: 50%;
-    z-index: 6;
     display: block;
     margin-left: +25%;
     margin-top: -5%;
@@ -172,5 +166,36 @@ div{
     background-position: center;
     color: transparent;
     background-color:black;
+
+
+}
+/*
+.fondo:after{
+    background-position: center;
+    background-image:url(../img/fondo.png);
+    content: "";
+    background-size: 50%;
+    background-repeat: no-repeat;
+    width: 150%;
+    overflow: unset;
+    height: 250%;
+    display: block;
+    margin-top: -95%;
+    background-color: black;
+
+}*/
+.Llave:after{
+    
+     
+    background-position: center;
+    background-image:url(../img/llave.png);
+    content: "";
+    background-size: 300%;
+    width: 100%;
+    overflow: unset;
+    height: 100%;
+    display: block;
+    margin-right: -95%;
+
 
 }
