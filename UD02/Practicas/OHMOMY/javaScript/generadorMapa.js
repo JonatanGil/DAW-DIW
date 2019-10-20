@@ -182,7 +182,7 @@ window.onload = function(){
 
        /* var Objetos = ["Llave","Urna","Pergamino","Cofre"]*/
 
-       var Objetos = ["Llave"];
+       var Objetos = ["Llave","Urna","Pergamino","Cofre","momia"];
 
         //cuantas momias quieres es decir nivel del mapa es 5-4 1=momia en una caja
        /* for (let b = 0; b < nivelMapa-4; b++) {
@@ -194,18 +194,19 @@ window.onload = function(){
 
 
             var random =Math.floor(Math.random() * (19 - 0 + 1)) + 0;
-            var div = document.getElementById(idDeLaCaja[0]);
+            var div = document.getElementById(idDeLaCaja[random]);
             //si no tiene atributo undefined y pasa al siguiente div ee
             
             var divAtributo = div.getAttribute("value");
-            
+
             if(divAtributo==null){
                 console.log("cambio value");
                 div.setAttribute("value", Objetos[i]);
                 i++;
-            }
+               
+            }   
             
-                console.log(divAtributo+" r_:"+random+"      div id="+idDeLaCaja[random]);
+            console.log(divAtributo+" r_:"+random+"      div id="+idDeLaCaja[random]);
             console.log(Objetos);
             
         }
@@ -433,13 +434,13 @@ window.onload = function(){
                     case "Pergamino":{
                         console.log("cambio llave caja");
                         CajaPosicion.classList.remove("divCaja");
-                        CajaPosicion.classList.add("Llave");
+                        CajaPosicion.classList.add("Pergamino");
                         
                       break;}
                     case "Momia":{
                         console.log("cambio llave caja");
                         CajaPosicion.classList.remove("divCaja");
-                        CajaPosicion.classList.add("Llave");
+                        CajaPosicion.classList.add("momia");
                         
                       break;}
                   
@@ -489,8 +490,16 @@ window.onload = function(){
             //sumo una a la fila "Y"
             personajeY+=1;
             //ir hacia abajo-21
+            try {
+            
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje+21);
             var movimientoValido = document.getElementById(posicionDivPersonaje+21).innerHTML;
+
+                
+        } catch (error) {
+         //fallo, no existe div debajo de la ultima fila*, pues no puede mover y peta(fallo de compilacion) en obtener el id de un div que no existe.       
+        }
+
             //si es uno se mueve
             if(movimientoValido==1){
             //remover individuo
