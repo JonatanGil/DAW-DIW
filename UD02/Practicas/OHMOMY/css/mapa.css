@@ -195,11 +195,10 @@ div{
     overflow: unset;
     height: 80%;
     display: block;
-    margin-right: -95%;
 
 }
 
-.Cofre{
+.Cofre:before{
       
     background-position: center;
     background-image:url(../img/cofre.png);
@@ -209,11 +208,10 @@ div{
     overflow: unset;
     height: 80%;
     display: block;
-    margin-right: -95%;
 
 }
 
-.Urna{
+.Urna:before{
       
     background-position: center;
     background-image:url(../img/urna.png);
@@ -223,10 +221,9 @@ div{
     overflow: unset;
     height: 80%;
     display: block;
-    margin-right: -95%;
 
 }
-.Pergamino{
+.Pergamino:before{
       
     background-position: center;
     background-image:url(../img/pergaminoDardo.png);
@@ -236,6 +233,16 @@ div{
     overflow: unset;
     height: 80%;
     display: block;
-    margin-right: -95%;
 
+}
+
+.cajaVacia{
+    background-position: center;
+    background-image:url(../img/vacio.png);
+    background-size: 102%;
+    content: "";
+    width: 100%;
+    overflow: unset;
+    height: 100%;
+    display: block;
 }

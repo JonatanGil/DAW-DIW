@@ -176,7 +176,6 @@ window.onload = function(){
 
 
     atributoDivItems();
-    console.log("sale");
 
     function atributoDivItems(){
 
@@ -200,13 +199,13 @@ window.onload = function(){
             var divAtributo = div.getAttribute("value");
 
             if(divAtributo==null){
-                console.log("cambio value");
+               // console.log("cambio value");
                 div.setAttribute("value", Objetos[i]);
                 i++;
                
             }   
             
-            console.log(divAtributo+" r_:"+random+"      div id="+idDeLaCaja[random]);
+            console.log(divAtributo+" r_:"+random+"      div id="+idDeLaCaja[random]+" obejtos puntos leng"+Objetos.length);
             console.log(Objetos);
             
         }
@@ -238,10 +237,10 @@ window.onload = function(){
                 var valor = cajas.getAttribute("valor");
 
                 //console.log(a+"posicion     valor"+valor+"  izquierda");
-                console.log("porque es true"+a);
+              //  console.log("porque es true"+a);
                 if(valor == 1){
                     cuadradoIzquierda=true;
-                    console.log("posicion del div: "+a+"      valor==1"+valor+"      numerodelacaja:"+i);
+                   // console.log("posicion del div: "+a+"      valor==1"+valor+"      numerodelacaja:"+i);
                 }else{
                     cuadradoIzquierda=false;
                     //es falso salimos false el bolean
@@ -341,12 +340,12 @@ window.onload = function(){
     }
 
 
-
+/*
             console.log(cuadradoIzquierda+"-izquierda");
             console.log(cuadradoAbajo+"-abajo");
             console.log(cuadradoDerecha+"-derecha");
             console.log(cuadradoArriba+"-arriba\n");
-            console.log("*******");
+            console.log("*******");*/
         
             if(cuadradoDerecha && cuadradoIzquierda && cuadradoArriba && cuadradoAbajo){
 
@@ -364,10 +363,6 @@ window.onload = function(){
             }
 
             
-             if(i>8){
-                /* console.log(bucle);*/
-                    console.log(CajaPosicion+"   i"+i);
-            }
 
                 //cuando se la quinta caja(4)  bajara a las 6(5)   para bajar a la segunda fila, sumo +5 para el div para seguir con la siguiente caja cuando bajo de fila* 
                 if(bucle==5){
@@ -388,11 +383,14 @@ window.onload = function(){
 
         }
 
-        console.log(cuadradoDescubierto+"  mas length de los cuadrados ok"+cuadradoDescubierto.length);
+       // console.log(cuadradoDescubierto+"  mas length de los cuadrados ok"+cuadradoDescubierto.length);
 
         
         //si en el array de todos los lados = true, metes en cuadradosDescubiertos l caja que esta ok i imprimes
         
+
+            /*hacer function de pintarCajaCuadrado o no*/
+
             for (let index = 0; index < cuadradoDescubierto.length; index++) {
                 
             
@@ -421,58 +419,50 @@ window.onload = function(){
                       break;}
                     case "Cofre":{
                         console.log("cambio llave caja");
-                        CajaPosicion.classList.remove("divCaja");
                         CajaPosicion.classList.add("Cofre");
                         
                       break;}
                     case "Urna":{
-                        console.log("cambio llave caja");
-                        CajaPosicion.classList.remove("divCaja");
+                        console.log("cambio llave urna");
                         CajaPosicion.classList.add("Urna");
                         
                       break;}
                     case "Pergamino":{
-                        console.log("cambio llave caja");
-                        CajaPosicion.classList.remove("divCaja");
+                        console.log("cambio llave pergamino");
                         CajaPosicion.classList.add("Pergamino");
                         
                       break;}
-                    case "Momia":{
-                        console.log("cambio llave caja");
-                        CajaPosicion.classList.remove("divCaja");
+                    case "momia":{
+                        console.log("cambio llave momia");
                         CajaPosicion.classList.add("momia");
                         
                       break;}
-                  
+                    default:{
+
+                        //si entra en dafault la caja q esta siendo vista no contiene nada entonces la pintamos de otro color
+                        for (let dosveces = 0; dosveces < 2; dosveces++) {
+                
+                            for (let B = dibujarObjeto; B < dibujarObjeto+3; B++) {
+                                var CajaPosicion = document.getElementById(B);
+                             
+                                CajaPosicion.classList.remove("divCaja");
+                                CajaPosicion.classList.add("cajaVacia");
+         
+                          }
+                             dibujarObjeto  +=21;
+                     
+                           }
+
+                       
+                    }
+                    
                   }
 
-
-
-
-
-              //  console.log(primeraPosicionDelaCaja+"cuadrad a pintar             "+dibujarObjeto+"numero de la caja prierma a pintar");
-                 /* //obetenesmoes el div para pintar las caja 3 a la derecgha y abajo repetimos
-               for (let dosveces = 0; dosveces < 2; dosveces++) {
-                
-                   for (let B = dibujarObjeto; B < dibujarObjeto+3; B++) {
-                       var CajaPosicion = document.getElementById(B);
-                    
-                           CajaPosicion.classList.add("visibleCaja");
-
-                 }
-                    dibujarObjeto  +=21;
-            
-           
-                  }*/
-    
     }
 
 
 
     }
-
-
-
 
    function moverPerosnaje(movimiento){
 
@@ -635,20 +625,13 @@ window.onload = function(){
 
 }
 
-
-
-
-  
-   /*
-    var classDiv = document.getElementsByClassName("cuadrado");
-    classDiv.classList.add("cuadradp");*/
-
-
     function AjustarAlturaPagina(){
+
         var altura = window.innerHeight-18+"px";
         
-
         document.getElementById("pagina").style.height=altura;
         dibujarMapa();
 }
+
+
 };
