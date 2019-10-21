@@ -10,7 +10,8 @@ article{
 }
 
 :root{
-    background-color: #fbfb2c;
+    background-image: url(../img/fondoGrieta.jpg);
+    background-size: cover;
 }
 
 header{
@@ -169,32 +170,40 @@ div{
 
 
 }
-/*
-.fondo:after{
+
+.fondoCaja:after{
+
+     
     background-position: center;
-    background-image:url(../img/fondo.png);
-    content: "";
-    background-size: 50%;
+    background-image:url(../img/fondoCaja.png);
+    background-size: 100%;
     background-repeat: no-repeat;
-    width: 150%;
+    content: "";
+    width: 310%;
     overflow: unset;
     height: 250%;
     display: block;
-    margin-top: -95%;
+    /*margin-left: -204%;*/
+    /*margin-top:-100%;*/
     background-color: black;
 
-}*/
+    
+    
+}
 .Llave:before{
     
-     
+    z-index: 10; 
     background-position: center;
     background-image:url(../img/Key.png);
-    background-size: 102%;
+    background-size: 100%;
+    background-repeat: no-repeat;
     content: "";
     width: 80%;
     overflow: unset;
     height: 80%;
     display: block;
+    background-color: transparent;
+    
 
 }
 
@@ -235,7 +244,7 @@ div{
     display: block;
 
 }
-
+/*
 .cajaVacia{
     background-position: center;
     background-image:url(../img/vacio.png);
@@ -245,4 +254,4 @@ div{
     overflow: unset;
     height: 100%;
     display: block;
-}
+}*/

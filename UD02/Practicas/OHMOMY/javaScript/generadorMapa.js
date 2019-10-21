@@ -15,16 +15,16 @@ window.onload = function(){
         /*console.log(keyCode);*/
 
         if(keyCode == 119){
-            moverPerosnaje("up","personaje");
+            moverPersonaje("up","personaje");
         }
         if(keyCode == 115){
-            moverPerosnaje("down","personaje");
+            moverPersonaje("down","personaje");
         }
         if(keyCode == 100){
-            moverPerosnaje("rigth","personaje");
+            moverPersonaje("rigth","personaje");
         }
         if(keyCode == 97){
-            moverPerosnaje("left","personaje");
+            moverPersonaje("left","personaje");
         }
 
 
@@ -52,7 +52,7 @@ window.onload = function(){
     //añado el numero contando desde 0 de la caja totalmente rodeada
     var cuadradoDescubierto = [];
     //POSICIONES para pintar los cuadrados
-    let idDeLaCaja=[43,47,51,55,59,106,110,114,118,122,169,173,177,181,185,232,236,240,244,248];
+    let idDeLaCaja=[66,47,51,55,59,106,110,114,118,122,169,173,177,181,185,232,236,240,244,248];
 
     //creo 21 columnas 
     for(var i=0; i<21; i++) {
@@ -157,19 +157,6 @@ window.onload = function(){
             }
 
 
-            /*
-            do{
-            var cofre = Math.random() * (19 - 0) + 0;
-            var llave = Math.random() * (19 - 0) + 0;
-            var urna = Math.random() * (19 - 0) + 0;
-            var pergamino = Math.random() * (19 - 0) + 0;
-        }while(cofre!=llave && cofre!=urna && cofre!=pergamino &&
-            llave!=cofre && llave!=urna && llave!=pergamino &&
-            urna!=cofre && urna!=llave && urna!= pergamino &&
-            pergamino!=cofre && pergamino!=llave && pergamino!=urna);
-*/
-
-            //undefined el valor del atributo del div, 
             
 
     }
@@ -181,9 +168,9 @@ window.onload = function(){
 
        /* var Objetos = ["Llave","Urna","Pergamino","Cofre"]*/
 
-       var Objetos = ["Llave","Urna","Pergamino","Cofre","momia"];
+       var Objetos = ["Llave"];
 
-        //cuantas momias quieres es decir nivel del mapa es 5-4 1=momia en una caja
+        //cuantas momias quieres es decir nivel del mapa es 5-4 1=momia en una caja   dificultad imposible
        /* for (let b = 0; b < nivelMapa-4; b++) {
             Objetos.push("momia");
 
@@ -192,8 +179,9 @@ window.onload = function(){
         for (var i = 0; i < Objetos.length; ) {
 
 
-            var random =Math.floor(Math.random() * (19 - 0 + 1)) + 0;
-            var div = document.getElementById(idDeLaCaja[random]);
+            /*var random =Math.floor(Math.random() * (19 - 0 + 1)) + 0;*/
+            var random =43;
+            var div = document.getElementById(idDeLaCaja[0]);
             //si no tiene atributo undefined y pasa al siguiente div ee
             
             var divAtributo = div.getAttribute("value");
@@ -398,11 +386,11 @@ window.onload = function(){
                 var primeraPosicionDelaCaja = cuadradoDescubierto[index];
                 var dibujarObjeto = idDeLaCaja[primeraPosicionDelaCaja];
     
+                var CajaPosicionParaFondo = document.getElementById(dibujarObjeto-23);
                 var CajaPosicion = document.getElementById(dibujarObjeto);
                 var valorDiv = CajaPosicion.getAttribute("value");
-/*
+
                 //para el fondo
-                var CajaPosicionParaFondo = document.getElementById(dibujarObjeto+21);*/
 
 
 
@@ -411,14 +399,16 @@ window.onload = function(){
                 switch (valorDiv) {
                     case "Llave":{
 
-                      /*  CajaPosicionParaFondo.classList.add("fondo");*/
+                        CajaPosicionParaFondo.classList.add("fondoCaja");
 
                         console.log("cambio llave caja");
                         CajaPosicion.classList.add("Llave");
+                        transparentCaja(dibujarObjeto,CajaPosicion,0);
+
                         
                       break;}
                     case "Cofre":{
-                        console.log("cambio llave caja");
+                        console.log("cambio llave cofre");
                         CajaPosicion.classList.add("Cofre");
                         
                       break;}
@@ -438,33 +428,68 @@ window.onload = function(){
                         
                       break;}
                     default:{
+  
+                        transparentCaja(dibujarObjeto,CajaPosicion,1);
+                   
+                        }
+                    
+                    }
 
+    }
+
+
+
+    }
+
+
+
+    function transparentCaja(dibujarObjeto,CajaPosicion,caja){
+
+        //caja ==1 para pintarla toda, 0 para pintar solo la posicion 2345 y la primera es la lave y la otra elfondo
+
+
+
+if(caja==1){
                         //si entra en dafault la caja q esta siendo vista no contiene nada entonces la pintamos de otro color
                         for (let dosveces = 0; dosveces < 2; dosveces++) {
                 
                             for (let B = dibujarObjeto; B < dibujarObjeto+3; B++) {
                                 var CajaPosicion = document.getElementById(B);
-                             
-                                CajaPosicion.classList.remove("divCaja");
-                                CajaPosicion.classList.add("cajaVacia");
+                                //eliminaba la caja pero no ahce falta ponemos el color a transparent
+                                //CajaPosicion.classList.remove("divCaja");
+                                //CajaPosicion.classList.add("cajaVacia");
+
+                                //ponemos la opacity a vacio
+                                CajaPosicion.style.opacity="0";
          
                           }
                              dibujarObjeto  +=21;
                      
                            }
+                        }else{
+                            //TODO
+                            CajaPosicion-=22;
+                             //si entra en dafault la caja q esta siendo vista no contiene nada entonces la pintamos de otro color
+                        for (let dosveces = 0; dosveces < 2; dosveces++) {
+                
+                            for (let B = dibujarObjeto+1; B < dibujarObjeto+3; B++) {
+                                var CajaPosicion = document.getElementById(B);
+                                //eliminaba la caja pero no ahce falta ponemos el color a transparent
+                                //CajaPosicion.classList.remove("divCaja");
+                                //CajaPosicion.classList.add("cajaVacia");
 
-                       
-                    }
-                    
-                  }
+                                //ponemos la opacity a vacio
+                                CajaPosicion.style.opacity="0";
+         
+                          }
+                             dibujarObjeto  +=21-1;
+                     
+                           }
+                        }
 
     }
 
-
-
-    }
-
-   function moverPerosnaje(movimiento){
+   function moverPersonaje(movimiento){
 
             //obtengo el div viejo
             var posicionPersonajeVieja = document.getElementById(posicionDivPersonaje);
@@ -624,6 +649,12 @@ window.onload = function(){
 
 
 }
+
+    function moverMomia(){
+
+}
+
+
 
     function AjustarAlturaPagina(){
 
