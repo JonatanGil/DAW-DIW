@@ -52,7 +52,7 @@ window.onload = function(){
     //añado el numero contando desde 0 de la caja totalmente rodeada
     var cuadradoDescubierto = [];
     //POSICIONES para pintar los cuadrados
-    let idDeLaCaja=[66,47,51,55,59,106,110,114,118,122,169,173,177,181,185,232,236,240,244,248];
+    let idDeLaCaja=[43,47,51,55,59,106,110,114,118,122,169,173,177,181,185,232,236,240,244,248];
 
     //creo 21 columnas 
     for(var i=0; i<21; i++) {
@@ -385,8 +385,8 @@ window.onload = function(){
 
                 var primeraPosicionDelaCaja = cuadradoDescubierto[index];
                 var dibujarObjeto = idDeLaCaja[primeraPosicionDelaCaja];
-    
-                var CajaPosicionParaFondo = document.getElementById(dibujarObjeto-23);
+                
+                var CajaPosicionParaFondo = document.getElementById(dibujarObjeto+2);
                 var CajaPosicion = document.getElementById(dibujarObjeto);
                 var valorDiv = CajaPosicion.getAttribute("value");
 
@@ -399,10 +399,13 @@ window.onload = function(){
                 switch (valorDiv) {
                     case "Llave":{
 
-                        CajaPosicionParaFondo.classList.add("fondoCaja");
+                       // var CajaPosicion = document.getElementById(dibujarObjeto+23);
+                        //CajaPosicionParaFondo.classList.add("fondoCaja");
 
                         console.log("cambio llave caja");
                         CajaPosicion.classList.add("Llave");
+                        //remuevo el color del div caja
+                        CajaPosicion.classList.remove("divCaja");
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
 
                         
@@ -448,8 +451,8 @@ window.onload = function(){
         //caja ==1 para pintarla toda, 0 para pintar solo la posicion 2345 y la primera es la lave y la otra elfondo
 
 
-
-if(caja==1){
+        console.log(dibujarObjeto+"    Cajapos="+CajaPosicion+"     caja 1-0"+caja);
+            if(caja==1){
                         //si entra en dafault la caja q esta siendo vista no contiene nada entonces la pintamos de otro color
                         for (let dosveces = 0; dosveces < 2; dosveces++) {
                 
@@ -458,7 +461,6 @@ if(caja==1){
                                 //eliminaba la caja pero no ahce falta ponemos el color a transparent
                                 //CajaPosicion.classList.remove("divCaja");
                                 //CajaPosicion.classList.add("cajaVacia");
-
                                 //ponemos la opacity a vacio
                                 CajaPosicion.style.opacity="0";
          
@@ -468,21 +470,20 @@ if(caja==1){
                            }
                         }else{
                             //TODO
-                            CajaPosicion-=22;
                              //si entra en dafault la caja q esta siendo vista no contiene nada entonces la pintamos de otro color
                         for (let dosveces = 0; dosveces < 2; dosveces++) {
                 
-                            for (let B = dibujarObjeto+1; B < dibujarObjeto+3; B++) {
+                            for (let B = dibujarObjeto; B < dibujarObjeto+2; B++) {
                                 var CajaPosicion = document.getElementById(B);
                                 //eliminaba la caja pero no ahce falta ponemos el color a transparent
                                 //CajaPosicion.classList.remove("divCaja");
                                 //CajaPosicion.classList.add("cajaVacia");
-
+                                console.log(dibujarObjeto+"id");
                                 //ponemos la opacity a vacio
                                 CajaPosicion.style.opacity="0";
          
                           }
-                             dibujarObjeto  +=21-1;
+                             dibujarObjeto  +=21;
                      
                            }
                         }

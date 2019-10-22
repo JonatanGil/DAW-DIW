@@ -71,7 +71,6 @@ div{
 
 .divCaja{
     background-color: #6e4a3b;
-    color:#6e4a3b;
     user-select: none; 
     
 }
@@ -170,38 +169,40 @@ div{
 
 
 }
-
+/
 .fondoCaja:after{
 
-     
+    
     background-position: center;
     background-image:url(../img/fondoCaja.png);
-    background-size: 100%;
+    background-size:112%;
     background-repeat: no-repeat;
     content: "";
-    width: 310%;
+    width: 150%;
     overflow: unset;
-    height: 250%;
+    height: 150%;
     display: block;
-    /*margin-left: -204%;*/
-    /*margin-top:-100%;*/
-    background-color: black;
+    margin-left: -110%;
+    
 
+    background-color: transparent;
     
     
-}
+}*/
 .Llave:before{
     
     z-index: 10; 
     background-position: center;
     background-image:url(../img/Key.png);
-    background-size: 100%;
+    background-size: 90%;
     background-repeat: no-repeat;
     content: "";
-    width: 80%;
+    width: 100%;
     overflow: unset;
-    height: 80%;
+    height: 100%;
     display: block;
+    margin-left:-90%; 
+    margin-top: -24%;
     background-color: transparent;
     
 
