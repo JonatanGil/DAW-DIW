@@ -169,7 +169,85 @@ div{
 
 
 }
-/
+
+.Llave:before{
+    
+    background-position: center;
+    background-image:url(../img/Key.png);
+    background-size: 40%;
+    background-repeat: no-repeat;
+    content: "";
+    width: 100%;
+    overflow: unset;
+    height: 100%;
+    display: block;
+    margin-top: -35%;
+    background-color: black;
+    
+
+}
+
+.Cofre:before{
+      
+    background-position: center;
+    background-image:url(../img/cofre.png);
+    background-size: 80%;
+    background-repeat: no-repeat;
+    content: "";
+    width: 100%;
+    overflow: unset;
+    height: 100%;
+    display: block;
+    margin-top: -35%;
+    background-color: black;
+
+}
+
+.Urna:before{
+      
+    background-position: center;
+    background-image:url(../img/urna.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    content: "";
+    width: 100%;
+    overflow: unset;
+    height: 100%;
+    display: block;
+    margin-top: -35%;
+    background-color: black;
+
+}
+.Pergamino:before{
+      
+    background-position: center;
+    background-image:url(../img/pergaminoDardo.png);
+    background-size: 60%;
+    background-repeat: no-repeat;
+    content: "";
+    width: 100%;
+    overflow: unset;
+    height: 100%;
+    display: block;
+    margin-top: -35%;
+    background-color: black;
+    background-color: url(../img/fondo.png);
+
+}
+
+
+/*
+.cajaVacia{
+    background-position: center;
+    background-image:url(../img/vacio.png);
+    background-size: 102%;
+    content: "";
+    width: 100%;
+    overflow: unset;
+    height: 100%;
+    display: block;
+}*/
+/*
 .fondoCaja:after{
 
     
@@ -188,71 +266,4 @@ div{
     background-color: transparent;
     
     
-}*/
-.Llave:before{
-    
-    z-index: 10; 
-    background-position: center;
-    background-image:url(../img/Key.png);
-    background-size: 90%;
-    background-repeat: no-repeat;
-    content: "";
-    width: 100%;
-    overflow: unset;
-    height: 100%;
-    display: block;
-    margin-left:-90%; 
-    margin-top: -24%;
-    background-color: transparent;
-    
-
-}
-
-.Cofre:before{
-      
-    background-position: center;
-    background-image:url(../img/cofre.png);
-    background-size: 102%;
-    content: "";
-    width: 80%;
-    overflow: unset;
-    height: 80%;
-    display: block;
-
-}
-
-.Urna:before{
-      
-    background-position: center;
-    background-image:url(../img/urna.png);
-    background-size: 102%;
-    content: "";
-    width: 80%;
-    overflow: unset;
-    height: 80%;
-    display: block;
-
-}
-.Pergamino:before{
-      
-    background-position: center;
-    background-image:url(../img/pergaminoDardo.png);
-    background-size: 102%;
-    content: "";
-    width: 80%;
-    overflow: unset;
-    height: 80%;
-    display: block;
-
-}
-/*
-.cajaVacia{
-    background-position: center;
-    background-image:url(../img/vacio.png);
-    background-size: 102%;
-    content: "";
-    width: 100%;
-    overflow: unset;
-    height: 100%;
-    display: block;
 }*/
