@@ -10,14 +10,14 @@ article{
 }
 
 :root{
-    background-image: url(../img/fondoGrieta.jpg);
+    background-image: url(../img/fondo1.jpg);
     background-size: cover;
 }
 
 header{
     display: grid;
     /*mitad para score mitad para las vidas*/
-    grid-template-columns: 2.5fr 2.5fr; 
+    grid-template-columns: 1fr 1fr 1fr; 
     height: 7%;
     align-self: center;
     justify-self: center;
@@ -38,28 +38,36 @@ content{
     
 }
 
-
-.men{
+#men{
     color:Red;
     font-size: 15px;
 }
-.vidas{
+#vidas{
     display: inline-block;
-    color:blue;
-    font-size: 15px;
-    margin-left:15px;
+    color:white;
+    font-size: 18px;
+    margin-left: 10%;
+    padding: 2px;
+    background-color: black;
+    font-weight: bold;
 }
 
-.score{
+
+#score{
     color:Red;
     font-size: 15px;
 }
-.puntuacion{
+#puntuacion{
+
     display: inline-block;
-    color:blue;
-    font-size: 15px;
-    margin-left:15px;
+    margin-left: 10%;
+    font-size: 18px;
+    color:white;
+    font-weight: bold;
+    background-color: black;
+    padding: 2px;
 }
+
 
 /*
 
@@ -165,7 +173,6 @@ div{
     background-repeat: no-repeat;
     background-position: center;
     color: transparent;
-    background-color:black;
 
 
 }
@@ -182,7 +189,6 @@ div{
     height: 100%;
     display: block;
     margin-top: -35%;
-    background-color: black;
     
 
 }
@@ -199,7 +205,6 @@ div{
     height: 100%;
     display: block;
     margin-top: -35%;
-    background-color: black;
 
 }
 
@@ -215,7 +220,6 @@ div{
     height: 100%;
     display: block;
     margin-top: -35%;
-    background-color: black;
 
 }
 .Pergamino:before{

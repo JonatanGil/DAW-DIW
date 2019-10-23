@@ -43,16 +43,24 @@ window.onload = function(){
     //div 8 es la columna
     var posicionDivPersonaje=8;
 
-    //para meter mas de una momia en una caja pero no utilizo demomento
-    var nivelMapa=5;
     mapa = [];
     //añado el numero contando desde 0 de la caja totalmente rodeada
     var cuadradoDescubierto = [];
     //POSICIONES para pintar los cuadrados
     let idDeLaCaja=[43,47,51,55,59,106,110,114,118,122,169,173,177,181,185,232,236,240,244,248];
 
+    //nivel del mapa
+    var nivelMapa=1;
+    var vidas=5;
+    //
+    var llaveEncontrado=false;
+    var urnaEncontrada=false;
+    var pergaminoEncontrado=false;
+    var cofreEncontrado=false;
+    var momiaEncontrada=false;
+
     //despues de crear mapa insertamos momias
-    var momiasEnCamino=3; //momias al pasar de nivel aumentamos una
+    var momiasEnCamino=1; //momias al pasar de nivel aumentamos una
     var momiasX = [];
     var momiasY = [];  
 
@@ -441,7 +449,7 @@ window.onload = function(){
                         console.log("cambio llave caja");
                         document.getElementById(dibujarObjeto+22).classList.add("Llave");
                         document.getElementById(dibujarObjeto+22).classList.add("fondo");
-
+                        llaveEncontrado=true;
 
                       break;}
                     case "Cofre":{
@@ -449,6 +457,7 @@ window.onload = function(){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
                         console.log("cambio llave cofre");
                         document.getElementById(dibujarObjeto+22).classList.add("Cofre");
+                        cofreEncontrado=true;
                         
                       break;}
                     case "Urna":{
@@ -456,6 +465,7 @@ window.onload = function(){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
                         console.log("cambio llave urna");
                         document.getElementById(dibujarObjeto+22).classList.add("Urna");
+                        urnaEncontrada=true;
                         
                       break;}
                     case "Pergamino":{
@@ -463,14 +473,16 @@ window.onload = function(){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
                         console.log("cambio llave pergamino");
                         document.getElementById(dibujarObjeto+22).classList.add("Pergamino");
-                        
+                        pergaminoEncontrado=true;
+
                       break;}
                     case "momia":{
 
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
                         console.log("cambio llave momia");
                         document.getElementById(dibujarObjeto+22).classList.add("momia");
-                        
+                        momiaEncontrada=true;
+
                       break;}
                     default:{
   
@@ -479,6 +491,16 @@ window.onload = function(){
                         }
                     
                     }
+
+                    if(cofreEncontrado){
+                        puntuacion(100*nivelMapa);
+                        cofreEncontrado=false;
+                    }
+
+                    if(urna && llaveEncontrado){
+                        abrirPuerta();
+                    }
+
                       //remuevo el color del div caja para los dos after CajaPosicion.classList.remove("divCaja");
                         
 
@@ -486,6 +508,24 @@ window.onload = function(){
 
 
 
+    }
+
+
+    function abrirPuerta(){
+        //por hacer
+        document.getElementById("8");
+        document.classList.add("insertarPuerta");
+
+    }
+
+    //todo
+    function puntuacion(puntos){
+        var div = document.getElementById("puntuacion");
+        var sumarPuntos = div.getAttribute("value");
+        console.log(sumarPuntos+"   puntos de nivel"+puntos+"   nivel"+nivelMapa);
+        div.setAttribute("value",eval(puntos+sumarPuntos));
+        console.log(div.innerHTML+"html       text"+div.innerText);
+        div.innerHTML.replace(div.innerHTML , eval(puntos+sumarPuntos));
     }
 
     function transparentCaja(dibujarObjeto,CajaPosicion,caja){
@@ -701,14 +741,20 @@ window.onload = function(){
 
     }
    
-
     function AjustarAlturaPagina(){
 
         var altura = window.innerHeight-18+"px";
         
         document.getElementById("pagina").style.height=altura;
+
         dibujarMapa();
+
 }
 
 
 };
+/* TODO
+
+window.addEventListener('resize', function(){
+    AjustarAlturaPagina();
+});*/
