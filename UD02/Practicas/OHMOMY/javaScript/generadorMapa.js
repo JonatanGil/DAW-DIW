@@ -53,6 +53,7 @@ window.onload = function(){
     var nivelMapa=1;
     var vidas=5;
     //
+    var escapar=false;
     var llaveEncontrado=false;
     var urnaEncontrada=false;
     var pergaminoEncontrado=false;
@@ -186,10 +187,10 @@ window.onload = function(){
             //console.log(mapa[randomX][randomY]);
             
             //insertomio en la posicion x y, los tengo invertidos matematicamente  
-            //      Y
+            //      x
             //  --------
             //  |
-            // x|
+            // y|
             //la y  mayor q x filas para q las momias no se espameen
 
 
@@ -497,7 +498,7 @@ window.onload = function(){
                         cofreEncontrado=false;
                     }
 
-                    if(urna && llaveEncontrado){
+                    if(urnaEncontrada && llaveEncontrado){
                         abrirPuerta();
                     }
 
@@ -513,9 +514,16 @@ window.onload = function(){
 
     function abrirPuerta(){
         //por hacer
-        document.getElementById("8");
-        document.classList.add("insertarPuerta");
+        console.log(urnaEncontrada+"urna       llave"+llaveEncontrado+"      remuevo peurta");
+        var quitarPuerta = document.getElementById("8");
+        escapar=true;
+        quitarPuerta.classList.remove("insertarPuerta");
+        quitarPuerta.classList.add("divCamino");
+    }
 
+    function ponerPuerta(){
+        var start = document.getElementById("8");
+        start.classList.remove("insertarPuerta");
     }
 
     //todo
@@ -587,8 +595,6 @@ window.onload = function(){
 
 
         if(movimiento=="down"){
-            //sumo una a la fila "Y"
-            personajeY+=1;
             //ir hacia abajo-21
             try {
             
@@ -601,43 +607,64 @@ window.onload = function(){
         }
 
             //si es uno se mueve
-            if(movimientoValido==1){
-            //remover individuo
-            posicionPersonajeVieja.classList.remove("personaje");
-            posicionDivPersonaje+=21;
-            //añado personaje al cuadrao nuevo
-            PosicionPersonajeNueva.classList.add("personaje");
+            if(posicionDivPersonaje!=8){
+                if(movimientoValido==1){
+                    personajeX+=1;
+                //remover individuo
+                posicionPersonajeVieja.classList.remove("personaje");
+                posicionDivPersonaje+=21;
+                //añado personaje al cuadrao nuevo
+                PosicionPersonajeNueva.classList.add("personaje");
+                }else{
+                posicionPersonajeVieja.classList.add("personaje");
+                }
             }else{
-            posicionPersonajeVieja.classList.add("personaje");
-            }
+
+                posicionPersonajeVieja.classList.remove("personaje");
+                posicionPersonajeVieja.classList.remove("divCaminado");
+                posicionPersonajeVieja.classList.remove("divCamino");
+                posicionPersonajeVieja.classList.add("insertarPuerta");
+
+                posicionDivPersonaje+=21;
+                //añado personaje al cuadrao nuevo
+                PosicionPersonajeNueva.classList.add("personaje");
+
+        }
         }
         if(movimiento=="up"){
-            //sumo una a la fila "Y"
-            personajeY-=1;
             //ir hacia abajo-21
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje-21);
             //obtenemos el valor del texto, si es uno puede mover si es dos o no existe no se mueve
             var movimientoValido = document.getElementById(posicionDivPersonaje-21).innerHTML;
-            //si es uno se mueve
+
+
+            
+            if(posicionDivPersonaje!=29){
+
             if(movimientoValido==1){
+                personajeX+=1;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
-            posicionDivPersonaje-=21;
-            //añado personaje al cuadrao nuevo
-            PosicionPersonajeNueva.classList.add("personaje");
-        }else{
-        posicionPersonajeVieja.classList.add("personaje");
+                posicionDivPersonaje-=21;
+                //añado personaje al cuadrao nuevo
+                PosicionPersonajeNueva.classList.add("personaje");
+                if(escapar){siguienteNivel()}
+            }else{
+            posicionPersonajeVieja.classList.add("personaje");
+            }
+            
+            }
         }
-        }
+
         if(movimiento=="rigth"){
             if((posicionDivPersonaje+1)%21==0) return;
-            //sumo una a la columna "Y"
-            personajeY-=1;
             //ir hacia la derecha +1
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje+1);
             var movimientoValido = document.getElementById(posicionDivPersonaje+1).innerHTML;
             //si es uno se mueve
             if(movimientoValido==1){
+                //sumo una a la columna "Y"
+                personajeY-=21;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje+=1;
@@ -649,13 +676,13 @@ window.onload = function(){
         }
         if(movimiento=="left"){
             if(posicionDivPersonaje%21==0) return;
-            //sumo una a la fila "Y"
-            personajeY-=1;
             //ir hacia a la izquierda -11
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje-1);
             var movimientoValido = document.getElementById(posicionDivPersonaje-1).innerHTML;
             //si es uno se mueve
             if(movimientoValido==1){
+                //sumo una a la fila "Y"
+                personajeY+=21;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje-=1;
@@ -675,6 +702,20 @@ window.onload = function(){
 
 
    }
+
+   function siguienteNivel(){
+       //queryselector obtiene todos los elementos que contengan divCaminado
+       var divs = document.querySelector(".divCaminado");
+       for (let i = 0; i < divs.length; i++) {
+           divs[i].setAttribute("value",0);
+           divs[i].classList.remove("divCaminado");
+       }
+       momiasEnCamino=2;
+       escapar=false;
+       cuadradoDescubierto = [];
+       AjustarAlturaPagina();
+   }
+
 
     function addDiv(colum,fil,style,figura){
           
@@ -748,6 +789,7 @@ window.onload = function(){
         document.getElementById("pagina").style.height=altura;
 
         dibujarMapa();
+
 
 }
 
