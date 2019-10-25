@@ -38,6 +38,7 @@ window.onload = function(){
     //id para los divs
     var divs = 0;
 
+    //la posicion 8 son los divs X
     var personajeX = 8;
     var personajeY = 0;
     //div 8 es la columna
@@ -85,7 +86,7 @@ window.onload = function(){
 
 
 
-    function dibujarMapa(){
+    function dibujarMapaInicial(){
 
         
         //dibujo el mapa
@@ -251,7 +252,6 @@ window.onload = function(){
 
         var CajaPosicion = 25;
         ///bajas a las cajaas de abajo con los divs
-        var saltarFila = 0;
 
         var cuadradoDerecha=false;
         var cuadradoIzquierda=false;
@@ -445,45 +445,52 @@ window.onload = function(){
                        // var CajaPosicion = document.getElementById(dibujarObjeto+23);
                         //CajaPosicionParaFondo.classList.add("fondoCaja");
 
+                        //si es false solo lo hace una vez
+                        if(!llaveEncontrado){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
 
-                        console.log("cambio llave caja");
+                        //console.log("cambio llave caja");
                         document.getElementById(dibujarObjeto+22).classList.add("Llave");
                         document.getElementById(dibujarObjeto+22).classList.add("fondo");
                         llaveEncontrado=true;
-
+                        }
                       break;}
                     case "Cofre":{
 
+                        if(!cofreEncontrado){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
-                        console.log("cambio llave cofre");
+                       // console.log("cambio llave cofre");
                         document.getElementById(dibujarObjeto+22).classList.add("Cofre");
                         cofreEncontrado=true;
-                        
+                        }
+
                       break;}
                     case "Urna":{
 
+                        if(!urnaEncontrada){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
-                        console.log("cambio llave urna");
+                        //console.log("cambio llave urna");
                         document.getElementById(dibujarObjeto+22).classList.add("Urna");
                         urnaEncontrada=true;
-                        
+                        }
                       break;}
                     case "Pergamino":{
 
+                        if(!pergaminoEncontrado){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
-                        console.log("cambio llave pergamino");
+                        //console.log("cambio llave pergamino");
                         document.getElementById(dibujarObjeto+22).classList.add("Pergamino");
                         pergaminoEncontrado=true;
-
+                        }
                       break;}
                     case "momia":{
 
+                        if(!momiaEncontrada){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
-                        console.log("cambio llave momia");
+                       // console.log("cambio llave momia");
                         document.getElementById(dibujarObjeto+22).classList.add("momia");
                         momiaEncontrada=true;
-
+                        }
                       break;}
                     default:{
   
@@ -492,6 +499,8 @@ window.onload = function(){
                         }
                     
                     }
+
+
 
                     if(cofreEncontrado){
                         puntuacion(100*nivelMapa);
@@ -502,6 +511,9 @@ window.onload = function(){
                         abrirPuerta();
                     }
 
+                    if(momiaEncontrada){
+
+                    }
                       //remuevo el color del div caja para los dos after CajaPosicion.classList.remove("divCaja");
                         
 
@@ -514,25 +526,20 @@ window.onload = function(){
 
     function abrirPuerta(){
         //por hacer
-        console.log(urnaEncontrada+"urna       llave"+llaveEncontrado+"      remuevo peurta");
+        //console.log(urnaEncontrada+"urna       llave"+llaveEncontrado+"      remuevo peurta");
         var quitarPuerta = document.getElementById("8");
         escapar=true;
         quitarPuerta.classList.remove("insertarPuerta");
         quitarPuerta.classList.add("divCamino");
     }
 
-    function ponerPuerta(){
-        var start = document.getElementById("8");
-        start.classList.remove("insertarPuerta");
-    }
-
     //todo
     function puntuacion(puntos){
         var div = document.getElementById("puntuacion");
         var sumarPuntos = div.getAttribute("value");
-        console.log(sumarPuntos+"   puntos de nivel"+puntos+"   nivel"+nivelMapa);
+        //console.log(sumarPuntos+"   puntos de nivel"+puntos+"   nivel"+nivelMapa);
         div.setAttribute("value",eval(puntos+sumarPuntos));
-        console.log(div.innerHTML+"html       text"+div.innerText);
+       // console.log(div.innerHTML+"html       text"+div.innerText);
         div.innerHTML.replace(div.innerHTML , eval(puntos+sumarPuntos));
     }
 
@@ -541,7 +548,7 @@ window.onload = function(){
         //caja ==1 para pintarla toda, 0 para pintar solo la posicion 2345 y la primera es la lave y la otra elfondo
 
 
-        console.log(dibujarObjeto+"    Cajapos="+CajaPosicion+"     caja 1-0"+caja);
+        //console.log(dibujarObjeto+"    Cajapos="+CajaPosicion+"     caja 1-0"+caja);
             if(caja==1){
                         //si entra en dafault la caja q esta siendo vista no contiene nada entonces la pintamos de otro color
                         for (let dosveces = 0; dosveces < 2; dosveces++) {
@@ -552,7 +559,7 @@ window.onload = function(){
                                 //CajaPosicion.classList.remove("divCaja");
                                 //CajaPosicion.classList.add("cajaVacia");
                                 //ponemos la opacity a vacio
-                                CajaPosicion.style.opacity="0";
+                                CajaPosicion.classList.remove("divCaja");
          
                           }
                              dibujarObjeto  +=21;
@@ -568,10 +575,9 @@ window.onload = function(){
                                 //eliminaba la caja pero no ahce falta ponemos el color a transparent
                                 //CajaPosicion.classList.remove("divCaja");
                                 //CajaPosicion.classList.add("cajaVacia");
-                                console.log(B+"id");
+                               // console.log(B+"id");
                                 //ponemos la opacity a vacio
                                 CajaPosicion.classList.remove("divCaja");
-                                CajaPosicion.classList.add("fondo");
                                 
          
                           }
@@ -588,7 +594,7 @@ window.onload = function(){
             var posicionPersonajeVieja = document.getElementById(posicionDivPersonaje);
 
             posicionPersonajeVieja.classList.add("divCaminado");
-
+            
             posicionPersonajeVieja.classList.add("divCamino");
 
             posicionPersonajeVieja.setAttribute("valor",1);
@@ -632,27 +638,49 @@ window.onload = function(){
         }
         }
         if(movimiento=="up"){
-            //ir hacia abajo-21
+
+            try {
+            
+                //ir hacia abajo-21
             var PosicionPersonajeNueva = document.getElementById(posicionDivPersonaje-21);
             //obtenemos el valor del texto, si es uno puede mover si es dos o no existe no se mueve
             var movimientoValido = document.getElementById(posicionDivPersonaje-21).innerHTML;
 
+                    
+            } catch (error) {
+             //fallo, no existe div debajo de la ultima fila*, pues no puede mover y peta(fallo de compilacion) en obtener el id de un div que no existe.       
+            }
+          
 
             
-            if(posicionDivPersonaje!=29){
+            if(posicionDivPersonaje==29){
 
-            if(movimientoValido==1){
-                personajeX+=1;
+            if(escapar){
+                personajeX-=21;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
-                posicionDivPersonaje-=21;
-                //añado personaje al cuadrao nuevo
-                PosicionPersonajeNueva.classList.add("personaje");
-                if(escapar){siguienteNivel()}
-            }else{
-            posicionPersonajeVieja.classList.add("personaje");
-            }
             
+                PosicionPersonajeNueva.classList.add("personaje");
+                posicionDivPersonaje-=21;
+                siguienteNivel()
+            
+            
+            }else{
+
+                posicionPersonajeVieja.classList.add("personaje");
+            }
+            }else{
+
+                if(movimientoValido==1){
+                    personajeX+=1;
+                    //remover individuo
+                    posicionPersonajeVieja.classList.remove("personaje");
+                    posicionDivPersonaje-=21;
+                    //añado personaje al cuadrao nuevo
+                    PosicionPersonajeNueva.classList.add("personaje");
+                }else{
+                posicionPersonajeVieja.classList.add("personaje");
+                }
             }
         }
 
@@ -705,16 +733,84 @@ window.onload = function(){
 
    function siguienteNivel(){
        //queryselector obtiene todos los elementos que contengan divCaminado
-       var divs = document.querySelector(".divCaminado");
+       var divs = document.querySelectorAll(".divCaminado");
+       console.log(divs);
        for (let i = 0; i < divs.length; i++) {
-           divs[i].setAttribute("value",0);
-           divs[i].classList.remove("divCaminado");
+           divs[i].setAttribute("valor",0);
+           divs[i].classList.remove("divCaminado")
        }
-       momiasEnCamino=2;
-       escapar=false;
-       cuadradoDescubierto = [];
-       AjustarAlturaPagina();
+       reiniciarMapa();
+
+       console.log("nuevo nivel");
+       
    }
+
+   function reiniciarMapa(){
+    console.log("esconder");
+
+    //para esconder las cajas
+    for (let i = 0; i < idDeLaCaja.length; i++) {
+        
+        var dibujarObjeto = idDeLaCaja[i];
+        
+        console.log("id de la caja "+dibujarObjeto);
+
+    for (let dosveces = 0; dosveces < 2; dosveces++) {
+                
+        for (let B = dibujarObjeto; B < dibujarObjeto+3; B++) {
+            var CajaPosicion = document.getElementById(B);
+
+            CajaPosicion.classList.add("divCaja");
+
+      }
+      dibujarObjeto=dibujarObjeto+21;
+
+    }
+    }
+ 
+    //quitar los items de las cajas y despues alatorizar
+
+        var quitarItem = document.querySelector(".Llave");
+        quitarItem.setAttribute("value","vacio");
+
+
+
+        var quitarItem = document.querySelector(".Urna");
+        quitarItem.setAttribute("value","vacio");
+
+        var quitarItem = document.querySelector(".Pergamino");
+        quitarItem.setAttribute("value","vacio");
+
+        var quitarItem = document.querySelector(".Cofre");
+        quitarItem.setAttribute("value","vacio");
+
+    //remover todas las momias
+
+        var quitarItem = document.querySelector(".momia");
+        quitarItem.setAttribute("value","vacio");
+
+    var quitarmomias = document.querySelectorAll(".momia");
+
+        for (let i = 0; i < quitarmomias.length; i++) {
+            quitarmomias[i].classList.remove("momia")
+        }
+    
+        momiaEncontrada=false;
+        cofreEncontrado=false;
+        llaveEncontrado=false;
+        pergaminoEncontrado=false;
+        urnaEncontrada=false;
+        escapar=false;
+        momiasEnCamino++;
+        cuadradoDescubierto = [];
+
+        //random items
+        atributoDivItems();
+
+        console.log(cuadradoDescubierto);
+        momiasRandom();
+
+}
 
 
     function addDiv(colum,fil,style,figura){
@@ -788,7 +884,7 @@ window.onload = function(){
         
         document.getElementById("pagina").style.height=altura;
 
-        dibujarMapa();
+        dibujarMapaInicial();
 
 
 }
