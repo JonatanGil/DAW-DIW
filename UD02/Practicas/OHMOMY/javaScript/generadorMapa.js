@@ -514,14 +514,11 @@ window.onload = function(){
                         abrirPuerta();
                     }
 
-                    if(momiaEncontrada){
+                   /* if(momiaEncontrada){
                         //inserto momia en el campo quitar momia de la caja 
                         document.getElementById(dibujarObjeto+43).classList.add("momia");
-                    }
+                    }*/
 
-                    if(){
-
-                    }
                       //remuevo el color del div caja para los dos after CajaPosicion.classList.remove("divCaja");
                         
 
