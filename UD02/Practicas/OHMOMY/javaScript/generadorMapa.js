@@ -60,6 +60,7 @@ window.onload = function(){
     var pergaminoEncontrado=false;
     var cofreEncontrado=false;
     var momiaEncontrada=false;
+    var unaVez=1; //para que no se repitca suamr puntos cofre infinitamente
 
     //despues de crear mapa insertamos momias
     var momiasEnCamino=1; //momias al pasar de nivel aumentamos una
@@ -451,7 +452,7 @@ window.onload = function(){
 
                         //console.log("cambio llave caja");
                         document.getElementById(dibujarObjeto+22).classList.add("Llave");
-                        document.getElementById(dibujarObjeto+22).classList.add("fondo");
+                       //document.getElementById(dibujarObjeto+22).classList.add("fondo");
                         llaveEncontrado=true;
                         }
                       break;}
@@ -503,8 +504,10 @@ window.onload = function(){
 
 
                     if(cofreEncontrado){
+                        if(unaVez==1){
                         puntuacion(100*nivelMapa);
-                        cofreEncontrado=false;
+                        unaVez++;
+                    }
                     }
 
                     if(urnaEncontrada && llaveEncontrado){
@@ -512,6 +515,11 @@ window.onload = function(){
                     }
 
                     if(momiaEncontrada){
+                        //inserto momia en el campo quitar momia de la caja 
+                        document.getElementById(dibujarObjeto+43).classList.add("momia");
+                    }
+
+                    if(){
 
                     }
                       //remuevo el color del div caja para los dos after CajaPosicion.classList.remove("divCaja");
@@ -522,7 +530,6 @@ window.onload = function(){
 
 
     }
-
 
     function abrirPuerta(){
         //por hacer
@@ -537,10 +544,19 @@ window.onload = function(){
     function puntuacion(puntos){
         var div = document.getElementById("puntuacion");
         var sumarPuntos = div.getAttribute("value");
+        sumarPuntos = parseInt(sumarPuntos,10);
+        puntos = parseInt(puntos,10);
+        var resultado = sumarPuntos+puntos;
         //console.log(sumarPuntos+"   puntos de nivel"+puntos+"   nivel"+nivelMapa);
-        div.setAttribute("value",eval(puntos+sumarPuntos));
-       // console.log(div.innerHTML+"html       text"+div.innerText);
-        div.innerHTML.replace(div.innerHTML , eval(puntos+sumarPuntos));
+        
+        div.setAttribute("value",parseInt(resultado));
+        console.log(resultado);
+        console.log(nivelMapa+"nivdel del mapa");
+
+
+
+        div.innerHTML = resultado;
+        //div.innerHTML.replace(div.getText , eval(puntos+sumarPuntos));
     }
 
     function transparentCaja(dibujarObjeto,CajaPosicion,caja){
@@ -770,23 +786,29 @@ window.onload = function(){
  
     //quitar los items de las cajas y despues alatorizar
 
+        var quitarItem = document.querySelector("div[value='Llave']");
+        quitarItem.setAttribute("value","vacio");
         var quitarItem = document.querySelector(".Llave");
+        quitarItem.classList.remove("Llave");
+
+        var quitarItem = document.querySelector("div[value='Urna']");
         quitarItem.setAttribute("value","vacio");
-
-
-
         var quitarItem = document.querySelector(".Urna");
-        quitarItem.setAttribute("value","vacio");
+        quitarItem.classList.remove("Urna");
 
+        var quitarItem = document.querySelector("div[value='Pergamino']");
+        quitarItem.setAttribute("value","vacio");
         var quitarItem = document.querySelector(".Pergamino");
-        quitarItem.setAttribute("value","vacio");
+        quitarItem.classList.remove("Pergamino");
 
-        var quitarItem = document.querySelector(".Cofre");
+        var quitarItem = document.querySelector("div[value='Cofre']");
         quitarItem.setAttribute("value","vacio");
+        var quitarItem = document.querySelector(".Cofre");
+        quitarItem.classList.remove("Cofre");
 
     //remover todas las momias
-
-        var quitarItem = document.querySelector(".momia");
+        //quitarmomia de la caja apra aleatoriazar
+        var quitarItem = document.querySelector("div[value='momia']");
         quitarItem.setAttribute("value","vacio");
 
     var quitarmomias = document.querySelectorAll(".momia");
