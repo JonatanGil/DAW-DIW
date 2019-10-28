@@ -60,7 +60,7 @@ window.onload = function(){
     var pergaminoEncontrado=false;
     var cofreEncontrado=false;
     var momiaEncontrada=false;
-    var unaVez=1; //para que no se repitca suamr puntos cofre infinitamente
+    var unaVezCofrePorNivel=1; //para que no se repitca suamr puntos cofre infinitamente
 
     //despues de crear mapa insertamos momias
     var momiasEnCamino=1; //momias al pasar de nivel aumentamos una
@@ -210,8 +210,6 @@ window.onload = function(){
         }
     }
 
-
-
     atributoDivItems();
 
     function atributoDivItems(){
@@ -235,7 +233,7 @@ window.onload = function(){
             
             var divAtributo = div.getAttribute("value");
 
-            if(divAtributo==null){
+            if(divAtributo==null || divAtributo=="vacio"){
                // console.log("cambio value");
                 div.setAttribute("value", Objetos[i]);
                 i++;
@@ -504,16 +502,15 @@ window.onload = function(){
 
 
                     if(cofreEncontrado){
-                        if(unaVez==1){
+                        if(unaVezCofrePorNivel==1){
                         puntuacion(100*nivelMapa);
-                        unaVez++;
+                        unaVezCofrePorNivel++;
                     }
                     }
 
                     if(urnaEncontrada && llaveEncontrado){
                         abrirPuerta();
                     }
-
                    /* if(momiaEncontrada){
                         //inserto momia en el campo quitar momia de la caja 
                         document.getElementById(dibujarObjeto+43).classList.add("momia");
@@ -675,7 +672,7 @@ window.onload = function(){
             
                 PosicionPersonajeNueva.classList.add("personaje");
                 posicionDivPersonaje-=21;
-                siguienteNivel()
+                siguienteNivel();
             
             
             }else{
@@ -736,7 +733,7 @@ window.onload = function(){
 
 
 
-        console.log(posicionDivPersonaje+" personajeX:"+personajeX+" personajeY"+personajeY);
+       //    console.log(posicionDivPersonaje+" personajeX:"+personajeX+" personajeY"+personajeY);
 
 
         confirmarCuadrado(mapa);
@@ -753,6 +750,7 @@ window.onload = function(){
            divs[i].classList.remove("divCaminado")
        }
        reiniciarMapa();
+       puntuacion(nivelMapa*100);
 
        console.log("nuevo nivel");
        
@@ -782,33 +780,67 @@ window.onload = function(){
     }
  
     //quitar los items de las cajas y despues alatorizar
+try {
+    
+    var quitarItem = document.querySelector("div[value='Llave']");
+    quitarItem.setAttribute("value","vacio");
+    var quitarItem = document.querySelector(".Llave");
+    quitarItem.classList.remove("Llave");
+} catch (error) {
+    console.log("Llave error");
+}
 
-        var quitarItem = document.querySelector("div[value='Llave']");
-        quitarItem.setAttribute("value","vacio");
-        var quitarItem = document.querySelector(".Llave");
-        quitarItem.classList.remove("Llave");
+try {
+    
+    var quitarItem = document.querySelector("div[value='Urna']");
+    quitarItem.setAttribute("value","vacio");
+    var quitarItem = document.querySelector(".Urna");
+    quitarItem.classList.remove("Urna");
 
-        var quitarItem = document.querySelector("div[value='Urna']");
-        quitarItem.setAttribute("value","vacio");
-        var quitarItem = document.querySelector(".Urna");
-        quitarItem.classList.remove("Urna");
+} catch (error) {
+    
+    console.log("urna error");
+}
 
-        var quitarItem = document.querySelector("div[value='Pergamino']");
-        quitarItem.setAttribute("value","vacio");
-        var quitarItem = document.querySelector(".Pergamino");
-        quitarItem.classList.remove("Pergamino");
+try {
+    
+    var quitarItem = document.querySelector("div[value='Pergamino']");
+    quitarItem.setAttribute("value","vacio");
+    var quitarItem = document.querySelector(".Pergamino");
+    quitarItem.classList.remove("Pergamino");
 
-        var quitarItem = document.querySelector("div[value='Cofre']");
-        quitarItem.setAttribute("value","vacio");
-        var quitarItem = document.querySelector(".Cofre");
-        quitarItem.classList.remove("Cofre");
+} catch (error) {
+    
+    console.log("pergamino error");
+}
 
+try {
+    
+    var quitarItem = document.querySelector("div[value='Cofre']");
+    quitarItem.setAttribute("value","vacio");
+    var quitarItem = document.querySelector(".Cofre");
+    quitarItem.classList.remove("Cofre");
+
+} catch (error) {
+    
+    console.log("cofre error");
+}
     //remover todas las momias
         //quitarmomia de la caja apra aleatoriazar
+        try {
+            
         var quitarItem = document.querySelector("div[value='momia']");
         quitarItem.setAttribute("value","vacio");
+        } catch (error) {
+            console.log("momia");
+        }
 
-    var quitarmomias = document.querySelectorAll(".momia");
+        try {
+            var quitarmomias = document.querySelectorAll(".momia");
+            
+        } catch (error) {
+                console.log("no ahi momias");
+        }
 
         for (let i = 0; i < quitarmomias.length; i++) {
             quitarmomias[i].classList.remove("momia")
@@ -891,8 +923,18 @@ window.onload = function(){
 
     }
 
-    
+    moverMomias();    
     function moverMomias(){
+
+        for (let i = 0; i < momiasEnCamino; i++) {
+            posicionMomiaX = momiasX[i];
+            posicionMomiaY = momiasY[i];
+            setInterval(function(){ alertFunc(posicionMomiaX, "Second param"); }, 2000);
+        }
+
+
+
+
 
 
     }
