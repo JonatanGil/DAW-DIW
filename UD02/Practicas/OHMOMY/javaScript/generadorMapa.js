@@ -1,4 +1,5 @@
 var mapa;
+var  momiasX;
 window.onload = function(){
 
     document.addEventListener("keypress", flechas, false);
@@ -52,7 +53,7 @@ window.onload = function(){
 
     //nivel del mapa
     var nivelMapa=1;
-    var vidas=5;
+    
     //
     var escapar=false;
     var llaveEncontrado=false;
@@ -61,9 +62,10 @@ window.onload = function(){
     var cofreEncontrado=false;
     var momiaEncontrada=false;
     var unaVezCofrePorNivel=1; //para que no se repitca suamr puntos cofre infinitamente
+    var unavezpergamino=1;
 
     //despues de crear mapa insertamos momias
-    var momiasEnCamino=1; //momias al pasar de nivel aumentamos una
+    var momiasEnCamino=3; //momias al pasar de nivel aumentamos una
     var momiasX = [];
     var momiasY = [];  
 
@@ -83,9 +85,9 @@ window.onload = function(){
 
     AjustarAlturaPagina();
     momiasRandom();
+    var movMomias = setInterval(moverMomias, 400);
 
-
-
+    //moverMomias.setInterval=stop;
 
     function dibujarMapaInicial(){
 
@@ -201,7 +203,7 @@ window.onload = function(){
             
                 momiasX.push(randomX);
                 momiasY.push(randomY);
-                mapa[randomX][randomY]="M";
+               // mapa[randomX][randomY]="M";
                 i++;
                 document.getElementById(randomX+randomY*21).classList.add("momia");
                 
@@ -500,6 +502,7 @@ window.onload = function(){
                     }
 
 
+                    
 
                     if(cofreEncontrado){
                         if(unaVezCofrePorNivel==1){
@@ -599,7 +602,7 @@ window.onload = function(){
     }
 
    function moverPersonaje(movimiento){
-
+    
             //obtengo el div viejo
             var posicionPersonajeVieja = document.getElementById(posicionDivPersonaje);
 
@@ -625,7 +628,7 @@ window.onload = function(){
             //si es uno se mueve
             if(posicionDivPersonaje!=8){
                 if(movimientoValido==1){
-                    personajeX+=1;
+                    personajeY+=1;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
                 posicionDivPersonaje+=21;
@@ -636,6 +639,7 @@ window.onload = function(){
                 }
             }else{
 
+                personajeY+=1;
                 posicionPersonajeVieja.classList.remove("personaje");
                 posicionPersonajeVieja.classList.remove("divCaminado");
                 posicionPersonajeVieja.classList.remove("divCamino");
@@ -666,7 +670,7 @@ window.onload = function(){
             if(posicionDivPersonaje==29){
 
             if(escapar){
-                personajeX-=21;
+                personajeX-=1;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
             
@@ -682,7 +686,7 @@ window.onload = function(){
             }else{
 
                 if(movimientoValido==1){
-                    personajeX+=1;
+                    personajeY-=1;
                     //remover individuo
                     posicionPersonajeVieja.classList.remove("personaje");
                     posicionDivPersonaje-=21;
@@ -702,7 +706,7 @@ window.onload = function(){
             //si es uno se mueve
             if(movimientoValido==1){
                 //sumo una a la columna "Y"
-                personajeY-=21;
+                personajeX+=1;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje+=1;
@@ -720,7 +724,7 @@ window.onload = function(){
             //si es uno se mueve
             if(movimientoValido==1){
                 //sumo una a la fila "Y"
-                personajeY+=21;
+                personajeX-=1;
                 //remover individuo
                 posicionPersonajeVieja.classList.remove("personaje");
             posicionDivPersonaje-=1;
@@ -733,7 +737,7 @@ window.onload = function(){
 
 
 
-       //    console.log(posicionDivPersonaje+" personajeX:"+personajeX+" personajeY"+personajeY);
+        console.log(posicionDivPersonaje+" personajeX:"+personajeX+" personajeY"+personajeY);
 
 
         confirmarCuadrado(mapa);
@@ -757,7 +761,11 @@ window.onload = function(){
    }
 
    function reiniciarMapa(){
+
+
     console.log("esconder");
+
+    clearInterval(movMomias);
 
     //para esconder las cajas
     for (let i = 0; i < idDeLaCaja.length; i++) {
@@ -853,14 +861,25 @@ try {
         urnaEncontrada=false;
         escapar=false;
         momiasEnCamino++;
+        personajeX=8;
+        personajeY=0;
+        unaVezCofrePorNivel=1;
+        unavezpergamino=1;
         cuadradoDescubierto = [];
+        momiasX=[];
+        momiasY=[];
 
         //random items
         atributoDivItems();
 
+
+
         console.log(cuadradoDescubierto);
         momiasRandom();
+        
+        alert("next level up");
 
+        movMomias = setInterval(moverMomias, 400);
 }
 
 
@@ -887,7 +906,7 @@ try {
              }
         }
     }
-
+/* kaka
     if(figura=="M"){
        // console.log("añado momia");
         if(style==1 | style==0){
@@ -897,7 +916,7 @@ try {
             para.classList.add("divCamino");
         }
       para.classList.add("momia");
-    }
+    }*/
     if(figura=="P"){
        // console.log("añado personaje");
         if(style==1 | style==0){
@@ -923,22 +942,107 @@ try {
 
     }
 
-    moverMomias();    
+    moverMomias();  
+
+
     function moverMomias(){
 
-        for (let i = 0; i < momiasEnCamino; i++) {
+        /*              Y
+                    |-------
+                   x|
+                    |
+        */
+
+        for (let i = 0; i < momiasX.length; i++) {
             posicionMomiaX = momiasX[i];
             posicionMomiaY = momiasY[i];
-            setInterval(function(){ alertFunc(posicionMomiaX, "Second param"); }, 2000);
+/*
+            // mover derecha
+            if (posicionMomiaX < personajeX) {
+                
+            }
+            else if(){
+
+            }*/
+            //mover derecha
+            console.log( !document.getElementById((posicionMomiaX+1)+posicionMomiaY*21).classList.contains("momia"));
+            if(posicionMomiaX<personajeX && mapa[posicionMomiaX+1][posicionMomiaY]==1 && !document.getElementById((posicionMomiaX+1)+posicionMomiaY*21).classList.contains("momia")){
+                    console.log("se mueve derecha");
+                    document.getElementById(posicionMomiaX+posicionMomiaY*21).classList.remove("momia");
+                    document.getElementById((posicionMomiaX+1)+posicionMomiaY*21).classList.add("momia");
+                    momiasX[i]=posicionMomiaX+1;
+                    //mover izquierda
+            }
+            else if (posicionMomiaX>personajeX && mapa[posicionMomiaX-1][posicionMomiaY]==1 && !document.getElementById((posicionMomiaX-1)+posicionMomiaY*21).classList.contains("momia")) {
+                     document.getElementById(posicionMomiaX+posicionMomiaY*21).classList.remove("momia");
+                     document.getElementById((posicionMomiaX-1)+posicionMomiaY*21).classList.add("momia");
+                     momiasX[i]=posicionMomiaX-1;
+                    
+            }
+            
+
+          else if(posicionMomiaY<personajeY && mapa[posicionMomiaX][posicionMomiaY+1]==1 && !document.getElementById(posicionMomiaX+(posicionMomiaY+1)*21).classList.contains("momia")){
+                    console.log("se mueve arriba");
+                    document.getElementById(posicionMomiaX+posicionMomiaY*21).classList.remove("momia");
+                    document.getElementById(posicionMomiaX+(posicionMomiaY+1)*21).classList.add("momia");
+                    momiasY[i]=posicionMomiaY+1;
+                    //mover izquierda
+                    
+            }
+            else if(posicionMomiaY>personajeY && mapa[posicionMomiaX][posicionMomiaY-1]==1 && !document.getElementById(posicionMomiaX+(posicionMomiaY-1)*21).classList.includes("momia")){
+                        console.log("se mueve abajo");
+                     document.getElementById(posicionMomiaX+posicionMomiaY*21).classList.remove("momia");
+                     document.getElementById(posicionMomiaX+(posicionMomiaY-1)*21).classList.add("momia");
+                     momiasY[i]=posicionMomiaY-1;
+                    
+            }
+
+            //ELIMINAR MOMIA QUITAR VIDA POERGAMINO NO QUITAR VIDA
+            if(personajeY==posicionMomiaY && personajeX==posicionMomiaX){
+                if(pergaminoEncontrado && unavezpergamino==1){
+                    document.getElementById(posicionMomiaX+posicionMomiaY*21).classList.remove("momia");
+                    momiasX.splice(i,1);
+                    momiasY.splice(i,1);
+                    momiasEnCamino--;
+                    pergaminoEncontrado=false;
+                    unavezpergamino=2;
+            }else{
+                vidasAEliminar(1);
+                document.getElementById(posicionMomiaX+posicionMomiaY*21).classList.remove("momia");
+                momiasX.splice(i,1);
+                momiasY.splice(i,1);
+             /*   console.log(momiasX);
+                console.log(momiasY);*/
+                momiasEnCamino--;
+            }
+
+            }
+        
+
+            //console.log(momiasX);
+            //console.log(posicionMomiaX+"momiaX          momiaY"+posicionMomiaY);
+
+
+           
         }
-
-
-
-
-
 
     }
    
+    function vidasAEliminar(vidasActuales){
+        
+        var div = document.getElementById("vidas");
+        var vidasAtributo = div.getAttribute("value");
+        vidasAtributo = parseInt(vidasAtributo,10);
+        vidasActuales = parseInt(vidasActuales,10);
+        //console.log(vidasAtributo + "  hola   "+ vidasActuales);
+        resultado= vidasAtributo-vidasActuales;
+        div.setAttribute("value",parseInt(resultado));
+
+
+        div.innerHTML = resultado;
+        //div.innerHTML ,vidas);
+    }
+
     function AjustarAlturaPagina(){
 
         var altura = window.innerHeight-18+"px";
