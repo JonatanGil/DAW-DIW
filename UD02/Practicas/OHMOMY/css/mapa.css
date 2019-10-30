@@ -104,8 +104,11 @@ div{
 }
 
 .divCaja{
-    background-color: #6e4a3b;
+    background-color: rgb(178,34,34,0.6);
     user-select: none; 
+
+    /*para ver defeat*/
+    z-index: -1;
     
 }
 
@@ -117,6 +120,9 @@ div{
     background-color: black;
     color:black;    
     user-select: none;
+
+    /*para ver defeat*/
+    z-index: -1;
 }
 
 .momiaCaja:after{
@@ -222,6 +228,8 @@ div{
     background-position: center;
     color: transparent;
 
+    /*para ver defeat*/
+    z-index: -1;
 
 }
 
@@ -300,7 +308,16 @@ div{
     
 
 }
+.defeat{
 
+    background-image: url(../img/defeat.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 59%;
+
+    
+
+}
 
 /*
 .cajaVacia{

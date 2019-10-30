@@ -1,5 +1,6 @@
 var mapa;
 var  momiasX;
+var momiasY;
 window.onload = function(){
 
     document.addEventListener("keypress", flechas, false);
@@ -63,9 +64,10 @@ window.onload = function(){
     var momiaEncontrada=false;
     var unaVezCofrePorNivel=1; //para que no se repitca suamr puntos cofre infinitamente
     var unavezpergamino=1;
+    var unavezmomia=1;
 
     //despues de crear mapa insertamos momias
-    var momiasEnCamino=3; //momias al pasar de nivel aumentamos una
+    var momiasEnCamino=6; //momias al pasar de nivel aumentamos una
     var momiasX = [];
     var momiasY = [];  
 
@@ -490,6 +492,19 @@ window.onload = function(){
                         transparentCaja(dibujarObjeto,CajaPosicion,0);
                        // console.log("cambio llave momia");
                         document.getElementById(dibujarObjeto+22).classList.add("momia");
+
+                        var posicionDivXmomia=(dibujarObjeto+22)%21;
+                        momiasX.push(parseInt(posicionDivXmomia));
+                        var posicionDivYmomia=(dibujarObjeto+22)/21;
+                        momiasY.push(parseInt(posicionDivYmomia+1));
+                        //añado una momia mas
+                        momiasEnCamino++;
+                        //reinciiar el intervalo parfa que la momia añadida este, 21/ para la Y  resto para la X
+                        clearInterval(movMomias);
+                        movMomias = setInterval(moverMomias, 400);
+                            
+                        /*console.log(momiasX);
+                        console.log(momiasY);*/
                         momiaEncontrada=true;
                         }
                       break;}
@@ -514,10 +529,12 @@ window.onload = function(){
                     if(urnaEncontrada && llaveEncontrado){
                         abrirPuerta();
                     }
-                   /* if(momiaEncontrada){
+                   if(momiaEncontrada && unavezmomia==1){
                         //inserto momia en el campo quitar momia de la caja 
                         document.getElementById(dibujarObjeto+43).classList.add("momia");
-                    }*/
+                        unavezmomia=2;
+
+                    }
 
                       //remuevo el color del div caja para los dos after CajaPosicion.classList.remove("divCaja");
                         
@@ -865,6 +882,7 @@ try {
         personajeY=0;
         unaVezCofrePorNivel=1;
         unavezpergamino=1;
+        unavezmomia=1;
         cuadradoDescubierto = [];
         momiasX=[];
         momiasY=[];
@@ -952,7 +970,7 @@ try {
                    x|
                     |
         */
-
+        
         for (let i = 0; i < momiasX.length; i++) {
             posicionMomiaX = momiasX[i];
             posicionMomiaY = momiasY[i];
@@ -989,7 +1007,7 @@ try {
                     //mover izquierda
                     
             }
-            else if(posicionMomiaY>personajeY && mapa[posicionMomiaX][posicionMomiaY-1]==1 && !document.getElementById(posicionMomiaX+(posicionMomiaY-1)*21).classList.includes("momia")){
+            else if(posicionMomiaY>personajeY && mapa[posicionMomiaX][posicionMomiaY-1]==1 && !document.getElementById(posicionMomiaX+(posicionMomiaY-1)*21).classList.contains("momia")){
                         console.log("se mueve abajo");
                      document.getElementById(posicionMomiaX+posicionMomiaY*21).classList.remove("momia");
                      document.getElementById(posicionMomiaX+(posicionMomiaY-1)*21).classList.add("momia");
@@ -1017,6 +1035,12 @@ try {
             }
 
             }
+
+            vidasGameOver = parseInt(vidas.getAttribute("value"));
+            console.log(vidasGameOver);
+            if(vidasGameOver==0){
+                GAMEOVER();
+            }
         
 
             //console.log(momiasX);
@@ -1026,6 +1050,15 @@ try {
            
         }
 
+    }
+
+
+    function GAMEOVER(){
+        var contenedor = document.getElementById("pagina");
+        contenedor.classList.add("defeat");
+        clearInterval(movMomias);
+        //para no mover personaje
+        document.removeEventListener("keypress", flechas, { capture: false }); 
     }
    
     function vidasAEliminar(vidasActuales){
@@ -1043,6 +1076,7 @@ try {
         //div.innerHTML ,vidas);
     }
 
+
     function AjustarAlturaPagina(){
 
         var altura = window.innerHeight-18+"px";
@@ -1053,6 +1087,8 @@ try {
 
 
 }
+
+
 
 
 };
