@@ -1,0 +1,45 @@
+:root{
+    background-image: url(./img/yasuo.png);
+    background-size: cover;
+    background-repeat: no-repeat;  
+    filter: brightness(90%);
+    
+}
+
+.keys{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-items: center;
+
+    
+}
+.key{
+    transition: 0.7s;
+    width: 154px;
+    height: 120px;
+    border: 8px solid black;
+    text-align: center; 
+    padding: 8px;
+    margin-top: +230%;
+    margin-left: 50%;
+    background-color: white;
+    background-color: rgb(192, 192, 192,0.5);
+}
+kbd{
+    font-size: 60px;
+    text-align: center;
+    display: block;
+    color:white;
+    
+}
+span{
+    color: yellow;
+    font-size: 30px;
+}
+
+.sombra{
+    transition: 0.4s;
+    text-shadow: 0 0 60px yellow;
+    box-shadow: 2px 1px 15px 12px rgba(226, 223, 24, 0.9);
+}
