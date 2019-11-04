@@ -20,23 +20,23 @@ div:before{
 }
 
 .linear{
-    transition: linear 1s;
+    transition: transform linear 1s;
 }
 
 .ease-in{
-    transition: ease-in 1s;
+    transition: transform ease-in 1s;
 }
 
 .ease-out{
-    transition: ease-out 1s;
-}
+    transition: transform ease-out 1s;
+} 
 
 .ease{
-    transition: ease 1s;
+    transition: transform ease 1s;
 }
 
 .ease-in-out{
-    transition: ease-in-out 1s;
+    transition: transform ease-in-out 1s;
 }
 
 .transicion{
