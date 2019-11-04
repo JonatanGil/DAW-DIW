@@ -1,0 +1,47 @@
+section{
+    border: 4px solid black dashed;
+    outline-style: dotted;
+    margin: 3px;
+}
+
+
+
+div:before{
+    background-position: center;
+    background-image:url(cthulhu.svg);
+    background-size:100%;
+    background-repeat: no-repeat;
+    content: "";
+    width: 50px;
+    overflow: unset;
+    height: 50px;
+    display: block;
+    border: 1px solid black;
+}
+
+.linear{
+    transition: linear 1s;
+}
+
+.ease-in{
+    transition: ease-in 1s;
+}
+
+.ease-out{
+    transition: ease-out 1s;
+}
+
+.ease{
+    transition: ease 1s;
+}
+
+.ease-in-out{
+    transition: ease-in-out 1s;
+}
+
+.transicion{
+    transform: translateX(96%);
+}
+
+
+
