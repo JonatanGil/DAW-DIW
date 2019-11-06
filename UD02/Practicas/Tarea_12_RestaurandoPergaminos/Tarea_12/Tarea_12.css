@@ -1,0 +1,99 @@
+body{
+    background-color:grey;
+    padding: 3rem;
+}
+
+container{
+    margin: 1rem;
+    display: grid;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+    grid-template-columns: repeat(5,1fr);
+    grid-template-rows: repeat(4,150px);
+    grid-gap: 4px;
+
+}
+
+button{
+    border: 3px solid darkgrey;
+}
+
+
+box{
+    background-color: #1e0;
+    border:3px solid #AABBAA;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+    border-radius: 10px;
+    /*cuando vuelva el cuadrado transition*/
+    transition: transform cubic-bezier(0.40, 0, 0.58, 1) 2s;
+}
+
+.evoluciona{
+    background-color: #e10;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+    /*muevo el cuadrado hacia la derecha el 100% mas el grap del grid*/
+    transform: translateX(Calc(100% + 4px));
+    transition: transform cubic-bezier(0.65, 0.05, 0.38, 1) 2s;
+    
+    
+}
+
+.desevoluciona{
+    background-color: #10e;
+        /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+}
+
+.ultimate{
+    background-color: #441155;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   *//*
+    background-image: url(../cthulhu.svg);
+    background-size: 100%;
+*/
+
+background-position: center;
+background-image:url(../cthulhu.svg);
+content: "";
+background-size: cover;
+width: 97%;
+height: 97%;
+
+
+}
+
+.ultimate:hover{
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+   border-color: aquamarine;
+   width: 110%;
+   height: 110%;
+   margin-left: -5%;
+   margin-top: -5%;
+   z-index: 10
+   
+
+
+
+
+}
