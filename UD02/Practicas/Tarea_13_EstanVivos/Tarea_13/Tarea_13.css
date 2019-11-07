@@ -1,0 +1,160 @@
+body{
+    background-color:grey;
+    padding: 3rem;
+}
+
+container{
+    margin: 1rem;
+    display: grid;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+    grid-template-columns: repeat(5,11%);
+    grid-template-rows: repeat(4,140px);
+    grid-gap: 4px;
+
+}
+
+box{
+    background-color: #1e0;
+    border:3px solid #AABBAA;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+    border-radius: 10px;
+    /*cuando vuelva el cuadrado transition*/
+    transition: transform cubic-bezier(0.40, 0, 0.58, 1) 2s;
+
+}
+
+button{
+    border: 3px solid darkgrey;
+    height: 110px;
+}
+
+img{
+    height: 100%;
+    width: 50%;
+    border:1px solid black;
+}
+
+header{
+    display: grid;
+    grid-template-columns: 300px 200px 200px 200px;
+    
+}
+
+.evoluciona{
+    background-color: #e10;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+    /*muevo el cuadrado hacia la derecha el 100% mas el grap del grid*/
+    transform: translateX(Calc(100% + 4px));
+    transition: transform cubic-bezier(0.65, 0.05, 0.38, 1) 2s;
+    
+    
+}
+
+.desevoluciona{
+    background-color: #10e;
+        /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+}
+
+.ultimate{
+    background-color: #441155;
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   *//*
+    background-image: url(../cthulhu.svg);
+    background-size: 100%;
+*/
+
+    background-position: center;
+    background-image:url(../cthulhu.svg);
+    content: "";
+    background-size: cover;
+
+
+}
+
+.ultimate:hover{
+    /* 
+ 
+    ^(;,;)^ : Fragmento perdido
+
+   */
+   border-color: aquamarine;
+   width: 110%;
+   height: 110%;
+   margin-left: -5%;
+   margin-top: -5%;
+   z-index: 10;
+   
+}
+
+.girarCthulu{
+    
+    animation-name: girandoCthulu;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+}
+
+@keyframes girandoCthulu { 
+  0% {
+    opacity:1;
+    transform:  rotate(0deg) ;
+  }
+  100% {
+    /*para que se vcaya desvaneciendo mientras hace la animacion*/
+    /*opacity:0;*/
+    transform:  rotate(360deg) ;
+  }
+        
+}
+
+.dvdCthulu{
+    
+    animation-name: dvdCthulu;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+
+
+}
+
+@keyframes dvdCthulu { 
+  
+
+    0% {
+        transform:  translate(-10px,-10px);
+      }
+      25% {
+        transform:  translate(2px,2px);
+      }
+      50%{
+          transform: translate(10px,-10px);
+      }
+      75% {
+        transform:  translate(2px,2px);
+      }
+      100% {
+        transform:  translate(-10px,-10px);
+      }
+
+    }
+
