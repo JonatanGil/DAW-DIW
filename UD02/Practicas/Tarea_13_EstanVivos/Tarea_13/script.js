@@ -7,13 +7,27 @@ window.onload=init();
 
 girarCthulu=false;
 dvdCthulu=false;
-stop=true;
+stop=false;
+
+/*
+function resetear(){
+  girarCthulu=false;
+  dvdCthulu=false;
+  stop=false;
+  console.log(girarCthulu);
+  console.log(dvdCthulu);
+  console.log(stop);
+
+  al clickar la pagina se resetean los bloleans pero se cargan los anteriores
+
+}*/
 
 function init(e){
-    
+
   this.document.querySelector("button").addEventListener('click',InsertarCaja);
   this.document.querySelectorAll("img").forEach(tipoAnimacion => tipoAnimacion.addEventListener("click", animacion));
-
+  //casi pero no
+  /*this.document.querySelector("body").addEventListener('mousedown', resetear);*/
 }
 
 
@@ -21,7 +35,7 @@ function init(e){
 
   function animacion(){
     var animacionOK = this.getAttribute("value");
-
+    
     switch (animacionOK) {
       case "girarCthulu":{
         girarCthulu=true;dvdCthulu=false; stop=false;
@@ -33,7 +47,7 @@ function init(e){
         girarCthulu=false; dvdCthulu=false; stop=true;
       }break;
     }
-
+  
     console.log(girarCthulu);
     console.log(dvdCthulu);
     console.log(stop);
@@ -70,7 +84,6 @@ function mover(){
   //si es dos pongo chutulu y paro
   if(valor==2){
       this.classList.add("ultimate");
-      this.removeEventListener("click", mover, false);
       //para que no repinte el chutlu lo pinta una vez y se para el bucle
       valor=3;
   }else{
@@ -78,12 +91,17 @@ function mover(){
     if(valor==null || valor==1){
       valor++;
       this.classList.toggle("evoluciona");
-      this.setAttribute("value", valor);
+      this.setAttribute("value", valor); 
+      //para q se desespera angel
+      this.removeEventListener("click", mover, false);
+      this.addEventListener('transitionend',function(){this.addEventListener('click',mover)});
+      
     }
   }
-  
 
-  
+
+    //cuando se vea el cthulu(valor 3) se mueve
+    if(valor==3){
     if(girarCthulu){
       console.log("girarCthulu entra");
       if(!this.classList.contains("girarCthulu") && !this.classList.contains("dvdCthulu") || this.classList.contains("stop")){
@@ -99,14 +117,16 @@ function mover(){
       }
     }
     if(stop){
+      console.log(stop+" es true parar");
       if(this.classList.contains("girarCthulu") || this.classList.contains("dvdCthulu")){
         this.classList.remove("girarCthulu");
         this.classList.remove("dvdCthulu");
         stop=false;
       }
     }
+  }
   
-  
+
   //si es dos paro el event 
   /*
   if(valor==2){
