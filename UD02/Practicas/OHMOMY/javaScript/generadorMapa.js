@@ -10,6 +10,7 @@ window.onload = function(){
 
 
         var keyCode = event.keyCode;
+        console.log(flecha);
         //a = 97
         //s = 115
         //d = 100
