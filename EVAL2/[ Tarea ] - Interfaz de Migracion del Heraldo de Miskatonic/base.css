@@ -18,7 +18,7 @@ body{
     height:100vh;
     
     /*background-color:#323232;*/
-    /*background-image:url("https://picsum.photos/1600/900");*/
+    background-image:url("https://picsum.photos/1600/900");
     font-family: 'OuroborosRegular';
     font-weight: normal;
     font-style: normal;
@@ -34,13 +34,12 @@ body{
 items{
     display: grid;
     grid-template-columns: 1fr;
-    grid-gap: 10px;
     justify-content: center;
     align-items: center;
     text-align: center;
     grid-template-columns: flex-start;
     background-color: rgba(0, 0, 0,0.7);
-    padding: 20px;
+    padding: 40px;
     font-size: 20px;
     
     /* 
@@ -51,6 +50,7 @@ items{
 }
 
 item{
+    text-shadow: 5px 5px 5px rgba(87,17,17,1);
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^
@@ -64,14 +64,14 @@ item{
 button{
     
     border-radius: 12px 12px 12px 12px;
-    width: 40%;
+    width: 35%;
     height: 50px;
     background-color: purple;
-    font-family: 'OuroborosRegular';
-    
-    font-size: 20px;
-    margin: 25px;
+    background: -webkit-linear-gradient(top, rgba(128,22,199,1) 0%, rgba(171,21,71,1) 68%, rgba(171,21,71,1) 100%);
+    margin: 20px;
+    margin-bottom: 35px;
     color:#ffffff;
+    
 
     /* 
      * Fragmentos perdidos 
@@ -107,7 +107,7 @@ button:active {
 steps{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-gap: 10px;
+    grid-gap: 30px;
     justify-content: center;
     align-items: center;
     /* 
@@ -125,7 +125,7 @@ steps{
 */
 steps * {
     opacity: 0;
-    transition: 1s;
+    transition: 0.3s;
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^
@@ -134,7 +134,7 @@ steps * {
 
 .estabaEscondido{
    opacity: 1;
-   transition:3s;
+   transition:1s;
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^
@@ -147,6 +147,12 @@ steps * {
 * CSS for ProgressBars
 */
 progress{
+    border:1px solid black; 
+    width: 0;
+    animation-name: neon;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
 
     /* 
      * Fragmentos perdidos 
@@ -156,16 +162,40 @@ progress{
 
 
 
-finalmsg{
+finalmsg{    
+    text-shadow: 5px 5px 5px rgba(87,17,17,1);
+    color:rgba(102, 0, 0, 1);
+    transition: 2s;
+    animation-name: parpadeo;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
 
+    
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^
      */
 }
+
+@keyframes parpadeo {
+    
+    0%     {color:rgba(102, 0, 0, 1);}
+    50%  {color:yellowgreen;}
+    0% {color:rgba(102, 0, 0, 1);}
+
+}
+
+
 
 @keyframes neon {
- 
+    
+    0%     {background-color:blue;}
+
+    100.0%  {
+        background-color:blue;
+        width: 100%;}
+
     /* 
      * Fragmentos perdidos 
      * ^(;,;)^

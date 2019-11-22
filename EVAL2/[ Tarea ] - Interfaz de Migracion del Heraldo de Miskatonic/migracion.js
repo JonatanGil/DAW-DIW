@@ -18,15 +18,25 @@ function startMigration(){
     // Fragmentos perdidos
     // ^(;,;)^
     //var pasos = document.querySelectorAll("data-step");
+   
     //obtener los elementos de toda la pagina y obtener elementos con x atributo
-
-
     var etapas = ObtenerEtapas();
     //etapas.forEach(boton => {boton.addEventListener('transitionend', iniciarTransiciones(etapas,0))});
     //setInterval(function(){ etapas[a].classList.toggle("estabaEscondido"); }, etapas[a].getAttribute("data-step"));
 
+
+
+
+
+    console.log(etapas);
+
+
+
+
+
+    etapas[0].classList.add("estabaEscondido");  
     etapas[0].addEventListener('transitionend', iniciarTransiciones(etapas,etapas[0].getAttribute("data-step")-1));
-    etapas[0].classList.toggle("estabaEscondido");
+    
     
 
 }
@@ -34,23 +44,16 @@ function startMigration(){
 
 function iniciarTransiciones(etapas,numero){
 
-    if(numero<5){
+    if(numero<17){
         numero++;
         console.log(numero);
-        etapas[numero].addEventListener('transitionend', iniciarTransiciones(etapas,numero));
+        etapas[numero].addEventListener('transitionend', etapas[numero].classList.add("estabaEscondido"));
+        iniciarTransiciones(etapas,numero);
         
-        etapas[numero].classList.toggle("estabaEscondido");
         console.log("ok");
     }
 
 }
-
-
-
-
-
-
-
 
 
 
