@@ -13,7 +13,7 @@ FUNCIONES PERDIDAS
 ^(;,;)^
 
 */
-function startMigration(){
+async function startMigration(){
 
     // Fragmentos perdidos
     // ^(;,;)^
@@ -30,27 +30,64 @@ function startMigration(){
 
     console.log(etapas);
 
+    await new Promise(resolve => {
+        resFunc = resolve;
+        etapas[0].addEventListener('transitionend',resFunc);
+        etapas[0].classList.add("estabaEscondido");  
+        /*resFunc = resolve;
+        myEle.addEventListener("transitionend", resFunc);
+        myEle.classList.add("animate");*/
+    });
 
 
 
 
-    etapas[0].classList.add("estabaEscondido");  
-    etapas[0].addEventListener('transitionend', iniciarTransiciones(etapas,etapas[0].getAttribute("data-step")-1));
+   /*
+    //its works
+    for (let numero = 1; numero < 18; numero++) {
+        
+        await new Promise(resolve => {
+            etapas[numero].addEventListener('transitionend',resolve);
+            etapas[numero].classList.add("estabaEscondido");  
+        });
+        
+    }*/
+
+
+
     
-    
+    iniciarTransiciones(etapas);
 
 }
 
-
-function iniciarTransiciones(etapas,numero){
+var numero=0;
+ async function iniciarTransiciones(etapas){
 
     if(numero<17){
+
         numero++;
-        console.log(numero);
-        etapas[numero].addEventListener('transitionend', etapas[numero].classList.add("estabaEscondido"));
+
+        await new Promise(resolve => {
+
+            if(numero==1 | numero ==4 | numero==7 | numero==10 | numero==13 | numero==16){
+                
+                etapas[numero].addEventListener('animationend', resolve);
+                etapas[numero].classList.add("estabaEscondido");  
+                etapas[numero].classList.toggle("progressBarra");
+                if(numero==1 | numero==7 | numero==10 | numero==16){
+                    etapas[numero].classList.add("barragorda");
+                }
+                if(numero==13){
+                    //barra mas gorda cambiando la propiedad con elstyle q pereza
+                    etapas[numero].style.height="45px";
+                }
+            }else{
+                etapas[numero].addEventListener('transitionend', resolve);
+                etapas[numero].classList.add("estabaEscondido");  
+            }
+        });
+        //bucle infinito jajaa
         iniciarTransiciones(etapas,numero);
-        
-        console.log("ok");
     }
 
 }

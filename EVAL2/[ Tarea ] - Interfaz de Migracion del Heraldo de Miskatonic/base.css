@@ -19,6 +19,7 @@ body{
     
     /*background-color:#323232;*/
     background-image:url("https://picsum.photos/1600/900");
+    background-repeat: no-repeat;
     font-family: 'OuroborosRegular';
     font-weight: normal;
     font-style: normal;
@@ -71,6 +72,8 @@ button{
     margin: 20px;
     margin-bottom: 35px;
     color:#ffffff;
+    font-family: 'OuroborosRegular';
+    font-size: 26px;
     
 
     /* 
@@ -110,6 +113,7 @@ steps{
     grid-gap: 30px;
     justify-content: center;
     align-items: center;
+    height: 500px;
     /* 
     /* 
      * Fragmentos perdidos 
@@ -147,12 +151,10 @@ steps * {
 * CSS for ProgressBars
 */
 progress{
-    border:1px solid black; 
+    border-radius: 20px 20px 20px 20px;
+    border:8px solid black; 
+    
     width: 0;
-    animation-name: neon;
-    animation-duration: 3s;
-    animation-timing-function: linear;
-    animation-fill-mode: forwards;
 
     /* 
      * Fragmentos perdidos 
@@ -160,7 +162,15 @@ progress{
      */
 }
 
-
+.progressBarra{
+    animation-name: neon;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+.barragorda{
+    height: 35px;
+}
 
 finalmsg{    
     text-shadow: 5px 5px 5px rgba(87,17,17,1);
@@ -178,6 +188,11 @@ finalmsg{
      */
 }
 
+
+
+
+
+
 @keyframes parpadeo {
     
     0%     {color:rgba(102, 0, 0, 1);}
@@ -194,7 +209,7 @@ finalmsg{
 
     100.0%  {
         background-color:blue;
-        width: 100%;}
+        width: 110%;}
 
     /* 
      * Fragmentos perdidos 
