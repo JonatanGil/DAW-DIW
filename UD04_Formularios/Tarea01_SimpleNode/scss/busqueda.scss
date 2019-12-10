@@ -1,0 +1,34 @@
+$font-stack: Helvetica,
+sans-serif;
+$primary-color: rgb(173, 117, 33);
+$font-color   :rgb(173, 117, 33);
+
+body {
+
+    font            : 100% $font-stack;
+    background-color: $primary-color;
+}
+
+%fuente-basica {
+    border       : 1px solid grey;
+    padding      : 10px;
+    margin       : 5vw+10vw;
+    border-radius: 10px;
+    color        : $font-color;
+    font-family  : Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+.resultados {
+
+    h1 {
+        font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    coordenadas ul {
+        li {
+            list-style: none;
+            width     : 50vw;
+            @extend %fuente-basica;
+        }
+    }
+}
