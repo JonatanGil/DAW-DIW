@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="CSS/pagina.css">
+    <script src="buscarAPI.js"></script> 
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="PHP/fallasAPI.php">
+        Buscador:
+        <input type="text" name="buscador" id="buscador"><br>
+        <input type="radio" name="tipoFallas" value="principales">FALLAS principales<br>
+        <input type="radio" name="tipoFallas" value="infantiles"> FALLAS infantiles<br>
+        <input type="submit" value="BUSCAR">
+    </form>
+
+    <div class="fallas" id="contenedorFallas">
+    </div>
+
+    
+</body>
+</html>

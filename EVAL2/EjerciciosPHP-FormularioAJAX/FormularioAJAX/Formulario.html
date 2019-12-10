@@ -1,0 +1,291 @@
+<html>
+        <head>
+          <title></title>
+          <meta charset="utf-8">
+              <script>
+
+
+
+                errores = new Array();
+                errores[0]="Nombre invalido";
+                errores[1]="Apellido invalido";
+                errores[2]="e-mail invalido";
+                errores[3]="DNI no valido";
+                errores[4]="contrasela invalida";
+                errores[5]="Contraseña no igual";
+                errores[6]="IP invalida";
+
+                var contraReal;
+
+
+
+                  function nombreCorrecto(nombre){
+                    nombreOk = document.valor.String.value;
+                    if(ctype_alpha (nombre)){
+
+                    var expresionRegular= /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+
+                    if(expresionRegular.test (nombre.value) == true){errores[0]="Correcto"; }else{
+                      errores[0]="El nombre es incorrecto";
+                    }
+                    alert(nombreOk);
+                  }
+                  
+                  function apellidoCorrecto(apellido){
+
+                    var expresionRegular= /^([A-ZÁÉÍÓÚ]{1}[a-zñáéíóú]+[\s]*)+$/;
+
+                    if(expresionRegular.test (apellido.value) == true){errores[1]="Correcto"; }else{
+                        errores[1]="El apellido es incorrecto";
+                    } 
+                  }
+
+                    var numero;
+                    var letr;
+                    var letra;
+                    var expresion_regular_dni;
+                  function correoCorrecto(correo){
+
+                    expresionRegular=/^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$/;
+                      if (expresionRegular.test (correo.value) == true){
+                        /*alert("La dirección de email " + correo + " es correcta.");*/
+                        
+                        errores[2]="Correcto";
+                      } else {
+                        errores[2]="La dirección de email es incorrecta";
+                      }
+                    }
+
+                  function pwdCorrecto(pwd){
+
+                      regexp_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&]){8,50}/;
+
+                      if(regexp_password.test (pwd.value)){
+                        errores[4]="Correcto";
+                        contraReal=pwd.value;
+                      }else{
+                        errores[4]="Contraseña invalida";
+                      }
+
+                    }
+
+                  function pwdRepeatCorrecto(pwd2){
+                     
+                     regexp_password = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&]){8,50}/;
+
+                        if(contraReal==pwd2.value){
+                          /*5 PARA SI LA PWD ES IGUAL A LA INTRODUCIDA Y ES CORRECTA 5 DEL ARRAY*/
+                          errores[5]="Correcto";
+                        }else{
+                          errores[5]="Contraseña no igual";
+                        }
+                    }
+
+                  }
+
+                  function ipValidar(ip){
+                  }
+                  function DNICorrecto(dni){
+                    
+                  var numero; 
+                  var letr;
+                  var letra;
+                  var expresion_regular_dni;
+
+                  /*cosa copiada de ethernet*/
+                  expresion_regular_dni = /^\d{8}[a-zA-Z]$/;
+                  /*si no cumple 8 digitos y una letra todo junto error*/
+                  if(expresion_regular_dni.test (dni.value) == true){
+                  /*Obtienes los numeros menos el ultimo que es la letra*/
+                  numero = dni.value.substring(0,dni.value.length-1);
+  
+                  /*Obtienes la letra el ultimo digito*/
+                  letr= dni.value[dni.value.length-1];
+    
+                   /*divides el dni por 23 para saber que letra toca*/
+                  numero = numero % 23;
+
+                  letra='TRWAGMYFPDXBNJZSQVHLCKET';
+
+                  /*obtienes la letra para validar con el dni enconcreto*/
+                  letra=letra[numero];
+    
+                  /*pasamos la letra a uper por si acaso lo a puesto en minuscula*/
+                  if (letra!=letr.toUpperCase()) {
+                  errores[3]="Dni erroneo, la letra del DNI no coincide";
+                  }else{
+                  errores[3]="Correcto";
+                  }
+
+                  }else{
+                  errores[3]="Dni erroneo, formato no válido";
+                  }
+                  }
+
+                  function IPCorrecto(ip){
+
+                      var arrayNumeros = ip.split(".");
+                    if(ip.value.length<16 && ip.value.length>6){
+
+                      var arrayNumeros = ip.value.split(".");
+                
+                    if(arrayNumeros.length!=4){
+                    }else{
+                       for(var i = 0; arrayNumeros.length>i;i++){
+
+
+                       if(arrayNumeros[i]>0 && arrayNumeros[i]<256){
+                         errores[6]="Correcto";
+                       }else{
+                        errores[6]="Formato invalido de la IP"; 
+                        break;}
+                      }
+                    
+                  }
+                    }else{
+                        errores[6]="Formato invalido de la IP"; 
+                      }
+                  }
+
+                  function enviar(){
+
+                    todoOk = false;
+
+                    for (let i = 0; i < 7; i++) {
+                      
+                      if(errores[i]="Correcto"){
+                        todoOk = true;
+                      }else{
+                        todoOk = false;return;
+                      }
+                      
+                    }
+
+                    if(!todoOk){
+                    alert("Nombre:"+errores[0]+"\n"+
+                    "Apellidos:"+errores[1]+"\n"+
+                    "e-mail:"+errores[2]+"\n"+
+                    "DNI:"+errores[3]+"\n"+
+                    "Password:"+errores[4]+"\n"+
+                    "Password es igual?:"+errores[5]+"\n"+
+                    "IP del equipo:"+errores[6]+"\n");
+                    }else{
+                      alert("TODO OK");
+                    }
+
+                  }
+
+              </script>
+
+              <style>
+                
+                p{
+                  padding-top: 0px;
+                  text-align: right;
+                }
+
+                div{
+                  background-color: #979797;
+                  padding-bottom: 1px;
+                }
+                div div{
+                  padding: 20px;
+                  padding-right: 0px;
+                  width: 25%;
+                  float: left;
+                  height: 260px;
+                }
+
+
+                .segundodiv{
+                  width: 222px;
+                  height: 260px;
+                }
+                .primerdiv{
+                  width: 20%;
+                  float: left;
+                  margin-right: 12px;
+                  margin-top:-13px;
+                }
+                .segundodiv{
+                  padding:10px;
+                }
+                #contenedor{
+                  margin: 100px;
+                  border: 2px solid black;
+                }
+
+                .segundodiv input {
+                  border: 1px solid black;
+                  margin-top: 15px;
+                  display: block;
+                  width: 100%;
+                }
+
+                .contenedor{
+                  float: left;
+                  margin:100px;
+                  width: 60%;
+                  margin: 10px;
+                  width: 70%; 
+                }
+
+                h2{
+                  margin-top: 20px;
+                  margin-bottom: 0px;
+                  text-align: center;
+                  text-align: center;
+                  color:white;
+                  font-size: 22px;
+                  padding-top: 12px;
+                }
+
+                .enviar{
+                  float:none;
+                  text-align: center;
+                  margin-left: 40%;
+                  width: 19%;
+                  height: 40px;
+                  background-color: blue;
+                  color:white;
+                  border-color: blue;
+                }
+
+                input{
+                  margin-top: 5px;
+                }
+
+              </style>
+
+        </head>
+        <body>
+
+          <div id="contenedor">
+
+              <h2>Formulario Total</h2>
+            <div class="primerdiv">
+                <p>Nombre:</p>
+                <p>Apellidos:</p>
+                <p>e-mail:</p>
+                <p>DNI:</p>
+                <p>Password:</p>
+                <p>Repetir password:</p>
+                <p>IP Equipo:</p>
+            </div>
+
+            <div class="segundodiv">
+              <input type="text" onblur="nombreCorrecto(this)">
+              <input type="text" onblur="apellidoCorrecto(this)">
+              <input type="text" onblur="correoCorrecto(this)">
+              <input type="text" onblur="DNICorrecto(this)">
+              <input type="password" id="pwd" onblur="pwdCorrecto(this)">
+              <input type="password" id="pwd2" onblur="pwdRepeatCorrecto(this)">
+              <input type="text" onblur="IPCorrecto(this)">
+            </div>
+
+            <input class="enviar"  type="submit" onclick="enviar()">
+
+          </div>
+
+        </body>
+      </html>
