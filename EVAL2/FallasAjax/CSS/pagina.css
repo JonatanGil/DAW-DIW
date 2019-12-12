@@ -63,9 +63,10 @@ figure{
     background-color: rgba(15, 15, 15, 0.5);
 }
 
-button{
+input[type="button"]{
  
-    height: 100px;
+    height: 38px;
+    width: 150px;
     background-color: royalblue;
     border:1px solid black;
 }

@@ -11,12 +11,15 @@
 <body>
 
     <form action="PHP/fallasAPI.php">
-        Buscador:
-        <input type="text" name="buscador" id="buscador"><br>
-        <input type="radio" name="tipoFallas" value="principales">FALLAS principales<br>
-        <input type="radio" name="tipoFallas" value="infantiles"> FALLAS infantiles<br>
-        <input type="submit" value="BUSCAR">
+        <input type="text" name="buscador" id="textoAbuscar"><input type="button" value="BUSCAR" id="buscador"><br>
+        <input type="radio" id="tipoFallasPrincipales" name="tipoFallas" value="principales">FALLAS principales<br>
+        <input type="radio" id="tipoFallasInfantiles" name="tipoFallas" value="infantiles"> FALLAS infantiles<br>
+        <select name="select">
+
+        </select><br>
     </form>
+
+
 
     <div class="fallas" id="contenedorFallas">
     </div>
