@@ -23,7 +23,8 @@ img{
 form{
     /*text-align: center;*/
     margin:40px;
-    margin-left:60px;
+    text-align: center;
+
 }
 
 input[type="submit"]{
@@ -64,8 +65,8 @@ figure{
 }
 
 input[type="button"]{
- 
-    height: 38px;
+    margin-left: 5px;
+    height:28px;
     width: 150px;
     background-color: royalblue;
     border:1px solid black;

@@ -1,6 +1,7 @@
 window.onload = init;
 
 const fallasUrl = "http://mapas.valencia.es/lanzadera/opendata/Monumentos_falleros/JSON";
+var secciones = ['TODAS'];
 
 function init() {
 
@@ -8,10 +9,48 @@ function init() {
 
   document.getElementById("tipoFallasPrincipales").addEventListener("click", tipoFalla);
   document.getElementById("tipoFallasInfantiles").addEventListener("click", tipoFalla);
+  document.getElementById("sectores").addEventListener("click", mostrarSecciones);
+
 
   fetch(fallasUrl)
     .then(function (response) { return response.json(); })
     .then(function (myJson) { imprimirFallas(myJson["features"]); });
+
+}
+
+
+function mostrarSecciones() {
+
+  //fallas princiopales o infantiles a mostrar falta hacer
+  var seccionMostrar = this.value;
+
+  fetch(fallasUrl).then(response => { return response.json(); }).then(respuesta => {
+    respuesta.features.forEach(secciones.push(seccionesObtener()));
+  });
+
+  secciones.forEach(seccionesMostrar);
+
+}
+
+function seccionesMostrar(nombreSeccion) {
+
+  var lista = document.getElementById("sectores");
+  var elemento = document.createElement("option");
+  elemento.value = nombreSeccion;
+  elemento.text = nombreSeccion;
+  lista.appendChild(elemento);
+
+}
+
+
+
+function seccionesObtener(falla) {
+
+  if (!secciones.includes(falla.properties.seccion)) {
+    return secciones.push(falla.properties.seccion);
+  }
+  
+
 
 }
 
@@ -86,29 +125,25 @@ function buscador() {
 
 function tipoFalla() {
 
-
   fallasAbuscar = this.value;
   var enviar = new Array;
 
   fetch(fallasUrl)
     .then(function (response) { return response.json(); })
-    .then(function (myJson) { 
+    .then(function (myJson) {
       console.log(fallasAbuscar);
-      if(fallasAbuscar=="principales"){
+      //imprimir principales sin mas
+      if (fallasAbuscar == "principales") {
+        document.getElementById("contenedorFallas").innerHTML = "";
         imprimirFallas(myJson.features);
-      }else{
-        myJson.forEach( falla => { enviar.push(falla.properties.boceto=falla.properties.boceto_i)  });
-        
-
+      } else {
+        //cambiar boceto principal por infaltin y imprimir normalmente
+        document.getElementById("contenedorFallas").innerHTML = "";
+        myJson.features.forEach(falla => { enviar.push(falla.properties.boceto = falla.properties.boceto_i) });
         imprimirFallas(myJson.features);
       }
 
 
     });
-
-
-
-
-
 
 }
