@@ -36,7 +36,7 @@ function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
       zoom: 10,
       center: {
-          lat: 6.066385702972249, 
+          lat: 6.066385702972249,
           lng: -74.07493328924413
       }
   });
@@ -298,8 +298,20 @@ function imprimirFallas(myJson) {
     ubicacionBoton.innerHTML = "UBICACIÓN";
     contenidoInsertar.appendChild(imagen);
     contenidoInsertar.appendChild(nombre);
-
     contenidoInsertar.appendChild(ubicacionBoton);
+
+    //crear estrellas
+    var estrellas = document.createElement("estrellas");
+    estrellas.classList.add("valoracion");
+    for (let i = 1; i <= 5; i++) {
+      var estrella = document.createElement("button");
+      estrella.value=i;
+      estrellas.appendChild(estrella);
+    }
+    contenidoInsertar.appendChild(estrellas);
+
+
+
     contenedor.appendChild(contenidoInsertar);
 
 
