@@ -16,7 +16,7 @@ function init() {
   document.getElementById("FundacionHasta").addEventListener("click", fundacionHasta);
   document.getElementById("tipoFallasPrincipales").addEventListener("click", tipoFalla);
   document.getElementById("tipoFallasInfantiles").addEventListener("click", tipoFalla);
-  document.getElementById("sectores").addEventListener("click", MostrarFallaPorSeccion);
+  document.getElementById("sectores").addEventListener("blur", MostrarFallaPorSeccion);
 
   fetch(fallasUrl)
     .then(function (response) { return response.json(); })
@@ -30,32 +30,60 @@ function init() {
 
 }
 
-var map, markerA, markerB;
-function initMap() {
-  // 1. Initialize map
-  map = new google.maps.Map(document.getElementById('map'), {
-      zoom: 10,
-      center: {
-          lat: 6.066385702972249,
-          lng: -74.07493328924413
-      }
-  });
 
-  // 2. Put first marker in Bucaramanga
-  markerA = new google.maps.Marker({
-      position: {
-          lat: 7.099473939079819, 
-          lng: -73.10677064354888
-      },
-      map: map,
-      icon: {
-          url: 'http://maps.google.com/mapfiles/kml/pushpin/red-pushpin.png'
-      },
-      title: "Marker A"
-  });
+//Ubicación, se requiera de coordenadas, nombre y div contenedor del mapa
+function crearMapa() {
+
+  eliminarMapa();
+  var ubicaciones = this.value.split(",");
+
+  let nombre = this.getAttribute("nombreFalla");
+  let longitud = ubicaciones[1].longitud;
+  let latitud = ubicaciones[0].latitud;
+
+  let contenedorMapa = document.createElement('div');
+  let boton = document.createElement('button');
+  let divMapa = document.createElement('div');
+
+  contenedorMapa.id = 'divMapa';
+  boton.id = 'cerrarMapa';
+  boton.innerText = 'X';
+  divMapa.id = 'map';
+  boton.addEventListener('click', eliminarMapa);
+  contenedorMapa.appendChild(boton);
+  contenedorMapa.appendChild(divMapa);
+
+  document.getElementById('map').appendChild(contenedorMapa);
+
+  let firstProjection = '+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs';
+  let secondProjection = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
+  let iarCoordinate = [longitud, latitud];
+
+  coordenadas = proj4(firstProjection, secondProjection, iarCoordinate);
+
+  let mapa = L.map('map').setView([coordenadas[1], coordenadas[0]], 17);
+  let tilerMapUrl = 'https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=FeZF25xvZUuP463NS59g';
+  L.tileLayer(tilerMapUrl, {
+    attribution: 'ÒwÓ > UwU',
+  }).addTo(mapa);
+
+  L.marker(coordenadas).addTo(mapa);
+
+  var punto = new L.Marker([coordenadas[1], coordenadas[0]]);
+  punto.addTo(mapa);
+  punto.bindPopup(nombre).openPopup();
 }
 
+function eliminarMapa() {
 
+  let div = document.getElementById('divMapa');
+
+  if (div !== null) {
+
+    div.parentNode.removeChild(div);
+
+  }
+}
 
 
 
@@ -115,8 +143,6 @@ function fundacionHasta(){
 
         });
       }
-
-
 
     }
 
@@ -296,29 +322,61 @@ function imprimirFallas(myJson) {
     nombre.innerHTML = myJson[i].properties.nombre;
     ubicacionBoton.value = myJson[i].geometry.coordinates;
     ubicacionBoton.innerHTML = "UBICACIÓN";
+    ubicacionBoton.setAttribute("nombreFalla",myJson[i].properties.nombre);
+    ubicacionBoton.addEventListener('click',crearMapa);
     contenidoInsertar.appendChild(imagen);
     contenidoInsertar.appendChild(nombre);
     contenidoInsertar.appendChild(ubicacionBoton);
 
     //crear estrellas
-    var estrellas = document.createElement("estrellas");
+    var estrellas = document.createElement("form");
+    estrellas.method="POST";
+    estrellas.action="action='puntuaciones/'";
     estrellas.classList.add("valoracion");
-    for (let i = 1; i <= 5; i++) {
-      var estrella = document.createElement("button");
-      estrella.value=i;
-      estrellas.appendChild(estrella);
+
+    for (let l = 5; l >= 1; l--) {
+      var estrella = document.createElement("div");
+      estrella.setAttribute('puntuacion',l);
+      estrella.setAttribute('idFalla',myJson[i].properties.id);
+      estrella.setAttribute('nombreFalla',myJson[i].properties.nombre);
+      estrella.addEventListener("click", InsertarPuntuación);
+      estrellas.appendChild(estrella); 
     }
-    contenidoInsertar.appendChild(estrellas);
 
-
+    contenidoInsertar.appendChild(estrellas); 
 
     contenedor.appendChild(contenidoInsertar);
 
 
-
+         
   }
 
 }
+
+
+function InsertarPuntuación(div){
+
+  console.log("se conecta a mongo jajaa");
+  console.log(div.target);
+  console.log(div.target.getAttribute("idfalla"));
+  console.log(div.target.getAttribute("puntuacion"));
+
+
+  const datos = ({
+      idFalla:div.target.getAttribute("idfalla"),
+      ip:String,
+      puntuacion:div.target.getAttribute("puntuacion")
+  },{
+      timestamps:true
+  });
+  
+
+  module.exports = mongoose.model('Puntuacion',datos);
+
+
+
+}
+
 
 
 function buscador() {
