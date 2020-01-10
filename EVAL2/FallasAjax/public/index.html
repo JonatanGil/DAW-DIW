@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <!--mapa-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.0/proj4-src.js"></script>
+
+    <script src="../JS/buscarAPI.js"></script> 
+
+    <style>
+      @import url("../CSS/pagina.css");
+    </style>
+
+    <title>Document</title>
+</head>
+<body>
+    <form action="PHP/fallasAPI.php">
+
+        <input type="text" name="buscador" id="textoAbuscar"><input type="button" value="BUSCAR" id="buscador">
+        Seccion: <select name="select" id="sectores"></select>
+        FALLAS principales<input type="radio" id="tipoFallasPrincipales" name="tipoFallas" value="principales">
+        FALLAS infantiles<input type="radio" id="tipoFallasInfantiles" name="tipoFallas" value="infantiles">
+        </select>
+        
+        Fundacion Desde: <input type="number" id="FundacionDesde" value="1979" min="1979" max="2019"><br>
+        Fundacion Hasta: <input type="number" id="FundacionHasta" value="2019" min="1979" max="2019"><br>
+        <br>
+
+    </form> 
+
+    <maps class ="mapaCSS" id="mapaContenedor"></maps>  
+
+    <div class="fallas" id="contenedorFallas">
+    </div>
+
+    
+</body>
+</html>
