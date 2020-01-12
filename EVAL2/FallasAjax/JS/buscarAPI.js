@@ -6,6 +6,7 @@ const fallasUrl = "http://mapas.valencia.es/lanzadera/opendata/Monumentos_faller
 var secciones = ['TODAS'];
 var seccionDirecto="TODAS";
 var principal=true;
+var ipHost;
 
 function init() {
 
@@ -22,24 +23,29 @@ function init() {
     .then(function (response) { return response.json(); })
     .then(function (myJson) { imprimirFallas(myJson["features"]); });
 
-    //initMap();
-
-  /*var grid = document.querySelector('fallas');
-  waterfall(grid);
-  console.log(grid);*/
+  getIPAddress();
 
 }
+//Función que obtiene la ip pública del cliente
+function getIPAddress() {
+  $.getJSON('https://api.ipify.org?format=jsonp&callback=?', function(data) {
+    ipHost = data.ip;
+    console.log(ipHost);
+  });
+};
 
 
 //Ubicación, se requiera de coordenadas, nombre y div contenedor del mapa
 function crearMapa() {
-
   eliminarMapa();
   var ubicaciones = this.value.split(",");
-
+  
   let nombre = this.getAttribute("nombreFalla");
-  let longitud = ubicaciones[1].longitud;
-  let latitud = ubicaciones[0].latitud;
+  let longitud = parseFloat(ubicaciones[0]);
+  let latitud = parseFloat(ubicaciones[1]);
+
+  
+  console.log(ubicaciones);
 
   let contenedorMapa = document.createElement('div');
   let boton = document.createElement('button');
@@ -53,25 +59,33 @@ function crearMapa() {
   contenedorMapa.appendChild(boton);
   contenedorMapa.appendChild(divMapa);
 
-  document.getElementById('map').appendChild(contenedorMapa);
+
+  document.getElementById('mapaContenedor').appendChild(contenedorMapa);
 
   let firstProjection = '+proj=utm +zone=30 +ellps=GRS80 +units=m +no_defs';
+
   let secondProjection = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
+
   let iarCoordinate = [longitud, latitud];
 
   coordenadas = proj4(firstProjection, secondProjection, iarCoordinate);
 
   let mapa = L.map('map').setView([coordenadas[1], coordenadas[0]], 17);
+
   let tilerMapUrl = 'https://api.maptiler.com/maps/streets/256/{z}/{x}/{y}.png?key=FeZF25xvZUuP463NS59g';
+
   L.tileLayer(tilerMapUrl, {
-    attribution: 'ÒwÓ > UwU',
+    attribution: 'MAGIA',
   }).addTo(mapa);
 
   L.marker(coordenadas).addTo(mapa);
 
   var punto = new L.Marker([coordenadas[1], coordenadas[0]]);
+
   punto.addTo(mapa);
+
   punto.bindPopup(nombre).openPopup();
+
 }
 
 function eliminarMapa() {
@@ -355,26 +369,77 @@ function imprimirFallas(myJson) {
 
 
 function InsertarPuntuación(div){
-
+/*
   console.log("se conecta a mongo jajaa");
   console.log(div.target);
   console.log(div.target.getAttribute("idfalla"));
-  console.log(div.target.getAttribute("puntuacion"));
+  console.log(ipHost);
+  console.log(div.target.getAttribute("puntuacion"));*/
 
-
-  const datos = ({
-      idFalla:div.target.getAttribute("idfalla"),
-      ip:String,
-      puntuacion:div.target.getAttribute("puntuacion")
-  },{
-      timestamps:true
+  let datos = JSON.stringify({
+    'idFalla':div.target.getAttribute("idfalla"),
+    'ip': ipHost,
+    'puntuacion': div.target.getAttribute("puntuacion")
   });
-  
 
-  module.exports = mongoose.model('Puntuacion',datos);
+  console.log(datos);
+
+  //  Realizar petición HTTP
+  InsertarPuntuacionConfirmar(datos);
+
+}
 
 
 
+//Comprueba que la ip no ha votado a la falla actual
+function InsertarPuntuacionConfirmar(datos) {
+
+  let query = 'http://localhost:3000/api/puntuaciones/encontrar';
+  let xhr = new XMLHttpRequest();
+
+  xhr.open("POST", query, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState === 4 && xhr.status === 200) {
+
+      if (xhr.responseText == "") {
+
+        //No existe por lo que se procede a crear la puntuacion
+        Promise.resolve(añadirPuntuacion(datos)).then(function (value) {
+          obtenerPuntuaciones();
+        }, function (value) {
+          // no es llamada  
+        });
+      }else{
+        console.log("fallo2");
+      }
+    }else{
+      console.log("fallo1");
+    }
+  };
+
+  xhr.send(datos);
+
+}
+
+//Añade a la base de datos la votación
+function añadirPuntuacion(datos) {
+
+  let query = 'http://localhost:3000/api/puntuaciones'
+
+  let xhr = new XMLHttpRequest();
+
+  xhr.open("POST", query, true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.onreadystatechange = function () {
+
+    if (xhr.readyState === 4 && xhr.status === 200) {
+      //Añadido
+    }
+  };
+
+  xhr.send(datos);
 }
 
 
