@@ -1,0 +1,91 @@
+
+$empresa: evilCorp;
+
+$logo: "";
+$colorPrincipal: "";
+$colorSecundario: "";
+$colorTernario: "";
+
+@if $empresa == cthulhu{
+    $logo: "../img/cthulhu.png";
+    $colorPrincipal: rgb(5, 156, 5);
+    $colorSecundario: rgb(2, 71, 2);
+    $colorTernario: rgb(0, 0, 0);
+}  @else {@if $empresa == evilCorp {
+    $logo: "../img/evilcorp.png";
+    $colorPrincipal: rgb(255, 15, 15);
+    $colorSecundario: rgb(173, 26, 26);
+    $colorTernario: rgb(15, 14, 14);
+  }
+    
+}
+
+
+
+body {
+    position: relative;
+    font-size: medium;
+    background: linear-gradient(90deg, $colorPrincipal 0%, $colorSecundario 8%, $colorTernario 50%, $colorSecundario 92%, $colorPrincipal 100%);
+}
+
+
+
+#logo {
+    float: left;
+    margin-right: 30px;
+    margin-top: 30px;
+    height: 140px;
+    width: 140px;
+    background-image: url($logo);
+    background-size: contain;
+}#logo2 {
+    float: right;
+    margin-right: 30px;
+    margin-top: 30px;
+    height: 140px;
+    width: 140px;
+    background-image: url($logo);
+    background-size: contain;
+}
+
+form[id="buscadores"]{
+    
+    background-color: $colorPrincipal;
+    background-color: rgba(0,0,0,0.5); 
+    padding: 20px;
+    text-align: center;
+    border:1px solid $colorPrincipal;
+}
+
+div[id="buscadorCentrado"]{
+    display: grid;
+    justify-content: center;
+
+}
+input:nth-child(1){
+    margin:0px;
+}
+
+input{
+    margin-top:12px;
+}
+select{
+    margin-top: 16px;
+}
+
+content{
+    
+    border:2px solid $colorPrincipal;
+
+    img{
+        margin-top: 10px;
+        border:1px solid $colorTernario;
+    }
+    button{
+        width: 100%;
+        background-color: $colorPrincipal;
+        border:1px solid black;
+        box-shadow: 0px 1px 2px 3px rgba(0,0,0,0.75);
+    }
+
+}

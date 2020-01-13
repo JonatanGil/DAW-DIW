@@ -14,28 +14,35 @@
         <!--mapa-->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.6.0/proj4-src.js"></script>
 
-    <script src="../JS/buscarAPI.js"></script>
+    <script src="./JS/buscarAPI.js"></script>
 
     <style>
-      @import url("../CSS/pagina.css");
+      @import url("./CSS/style.css");
+      @import url("./CSS/pagina.css");
     </style>
 
     <title>Document</title>
 </head>
 <body>
-    <form action="PHP/fallasAPI.php">
 
-        <input type="text" name="buscador" id="textoAbuscar"><input type="button" value="BUSCAR" id="buscador">
-        Seccion: <select name="select" id="sectores"></select>
-        FALLAS principales<input type="radio" id="tipoFallasPrincipales" name="tipoFallas" value="principales">
-        FALLAS infantiles<input type="radio" id="tipoFallasInfantiles" name="tipoFallas" value="infantiles">
-        </select>
-        
-        <br>Fundacion Desde: <input type="number" id="FundacionDesde" value="1979" min="1979" max="2019">
-        <input type="number" id="FundacionHasta" value="2019" min="1979" max="2019"><br>
-        <br>
+    <div id="logo"></div>
+    <div id="logo2"></div>
+    <div id="buscadorCentrado">
+        <h1>Fallas Valencia</h1>
+        <form id="buscadores">
 
-    </form> 
+          <input type="text" name="buscador" id="textoAbuscar"><input type="button" value="BUSCAR" id="buscador">
+            
+            <br>Fundacion Desde: <input type="number" id="FundacionDesde" value="1979" min="1979" max="2019">
+            <input type="number" id="FundacionHasta" value="2019" min="1979" max="2019">
+            
+            <br>FALLAS principales<input type="radio" id="tipoFallasPrincipales" name="tipoFallas" value="principales">
+            FALLAS infantiles<input type="radio" id="tipoFallasInfantiles" name="tipoFallas" value="infantiles">
+            
+            <br>Seccion: <select name="select" id="sectores"></select>
+
+         </form> 
+    </div>
 
     <maps class ="mapaCSS" id="mapaContenedor"></maps>  
 

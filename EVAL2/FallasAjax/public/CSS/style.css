@@ -1,0 +1,55 @@
+body {
+  position: relative;
+  font-size: medium;
+  background: linear-gradient(90deg, #ff0f0f 0%, #ad1a1a 8%, #0f0e0e 50%, #ad1a1a 92%, #ff0f0f 100%); }
+
+#logo {
+  float: left;
+  margin-right: 30px;
+  margin-top: 30px;
+  height: 140px;
+  width: 140px;
+  background-image: url("../img/evilcorp.png");
+  background-size: contain; }
+
+#logo2 {
+  float: right;
+  margin-right: 30px;
+  margin-top: 30px;
+  height: 140px;
+  width: 140px;
+  background-image: url("../img/evilcorp.png");
+  background-size: contain; }
+
+form[id="buscadores"] {
+  background-color: #ff0f0f;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ff0f0f; }
+
+div[id="buscadorCentrado"] {
+  display: grid;
+  justify-content: center; }
+
+input:nth-child(1) {
+  margin: 0px; }
+
+input {
+  margin-top: 12px; }
+
+select {
+  margin-top: 16px; }
+
+content {
+  border: 2px solid #ff0f0f; }
+  content img {
+    margin-top: 10px;
+    border: 1px solid #0f0e0e; }
+  content button {
+    width: 100%;
+    background-color: #ff0f0f;
+    border: 1px solid black;
+    box-shadow: 0px 1px 2px 3px rgba(0, 0, 0, 0.75); }
+
+/*# sourceMappingURL=style.css.map */
