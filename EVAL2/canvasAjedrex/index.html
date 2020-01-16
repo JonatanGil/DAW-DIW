@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ejemplos Básicos CANVAS - 01</title>
+    <link rel="stylesheet" href="./css/canvas.css">
+</head>
+<body>
+    <header>
+        <h1> Ejemplos de Canvas Básico - 01</h1>
+    </header>
+
+    <main>
+        <canvas width="400" height="400">
+        </canvas>
+    </main>
+
+    <script>
+        const canvas = document.querySelector("canvas");
+        let ctx = canvas.getContext("2d");
+        let blancas = true;
+
+        canvas.addEventListener('click',alertMostrar);
+        function alertMostrar(){
+            alert("asa");
+        }
+
+        
+        //ctx.fillRect(10,10,100,200);
+        //trazo linea
+        //ctx.strokeStyle="purple";
+        //ctx.lineWidth=1;
+        //ctx.strokeRect(10,10,100,200);
+
+        //saber cuadrado por id.
+        idCuadrado=0;
+
+        for (let y = 0; y < 400; y+=50) {
+            console.log(y);
+            if(blancas){colorCuadrado="purple"}else{colorCuadrado="black";}
+
+            for (let x = 0; x < 400;x+=50) {
+
+                ctx.fillStyle=colorCuadrado;
+                ctx.id=idCuadrado;
+                
+                ctx.fillRect(x,y,50,50);
+                idCuadrado++;
+                if(colorCuadrado=="purple"){colorCuadrado="black";}else{colorCuadrado="purple";}
+                
+            }
+            
+            if(blancas){blancas=false;}else{blancas=true;}
+            
+        }
+
+
+
+        function mostrarAlert(){
+            alert("raulesfeo");
+        }
+
+/*
+        ctx.beginPath();
+        ctx.moveTo(100,100);
+        ctx.lineTo(50,50);
+        ctx.lineTo(50,100);
+        ctx.lineTo(100,100);
+        //ctx.fill();
+        ctx.stroke();
+
+        ctx.moveTo(200,200);
+
+        // control, destino
+        //ctx.quadraticCurveTo(100,100,200,0);
+        //ctx.bezierCurveTo(100,100,70,70,200,0);
+
+        ctx.beginPath();
+
+        //ctx.arc(200,200,50,0.2,1 * Math.PI);
+
+
+        ctx.stroke();
+
+        const dioses = [
+        {nombre:"Cthulhu",poder:1000,color:"green"},
+        {nombre:"Nyarlatothep",poder:600,color:"red"},
+        {nombre:"Azazoth",poder:1400,color:"grey"},
+        {nombre:"Pepe",poder:800,color:"purple"}
+        ];
+        
+        let anguloActual = -0.5 * Math.PI;
+
+        
+        for(let dios of dioses){
+            
+            ctx.arc(200,200,40,);
+            ctx.fillStyle=dios.color;
+            
+
+        }*/
+        
+
+        
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
