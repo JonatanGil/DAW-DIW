@@ -1,26 +1,54 @@
 function buildGrafico(){
 
-    const canvas = document.querySelector("canvas");
+    var datos = document.querySelectorAll("input");
+    console.log(datos);
 
+
+    const canvas = document.querySelector("canvas")
+    var tamanoCanvas = canvas.height;
     // contexto -> ctx
     let ctx = canvas.getContext("2d");
 
-
-    var datos = document.querySelectorAll("input");
-
-
-
-for (let index = 1; index < array.length; index++) {
-
-    ctx.beginPath();
-    ctx.rect(20, 20, 150, 100);
-    ctx.stroke();
+    var inicioDibujo=0  ;
+    var total = 0;
+    var longitud = 0;
+    for (let b = 1; b < datos.length; b++) {
+        if(b%2==0){
+            total +=parseInt(datos[b].value);
+        }
+    }
 
 
-    
-}
+    for (let a = 1; a < datos.length; a++) {
 
-    console.log(datos);
+        if(a%2==0){
+            longitud = datos[a].value;
+            longitud = (longitud*100)/total;
+            longitud = (300*longitud)/100;
+            
+            ctx.beginPath(); 
+            ctx.rect(inicioDibujo, tamanoCanvas-20, 40, -longitud);
+            ctx.stroke();
+            ctx.fillStyle="red";
+            ctx.fill();
+            console.log(inicioDibujo);
+        }else{
+            var nombre = datos[a].value;
+
+            if(a!=1)inicioDibujo+=50;
+        
+    		ctx.font="10pt Verdana";
+		    ctx.strokeStyle="black";
+		    ctx.lineWidth = 2;
+            ctx.strokeText(nombre,inicioDibujo+5    ,tamanoCanvas);
+            
+        }
+
+
+
+
+
+    }
 
 
 }
