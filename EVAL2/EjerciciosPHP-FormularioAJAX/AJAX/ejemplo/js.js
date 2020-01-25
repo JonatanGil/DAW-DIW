@@ -13,5 +13,5 @@ function descargar() {
     alert(document.getElementById("nombre").value + " " + peticion_http.responseText);
     }
     }
-    }
+}
     
