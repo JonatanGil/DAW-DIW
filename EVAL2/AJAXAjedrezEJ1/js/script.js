@@ -12,33 +12,51 @@ function init() {
 
 }
 
+//por get añadir en la url ?varibales = "algo"&... 
 function obtenerJSONFech() {
 
-    var data = {nombre: "Angel"};
+    var data = { nombre: "Angel" };
 
-    fetch("http://192.168.4.92/rest-get.php?nombre=Angel", {
-        method: 'GET', 
+    let url = new URL('http://192.168.4.92/rest-get.php');
+    let data = { nombre: 'Angel' };
+    url.search = new URLSearchParams(data).toString();
+
+    fetch(url, {
+        method: 'GET', // or 'PUT'
+        body: JSON.stringify(data), // quitar stringify si no funciona probar con 
         headers: {
             'Content-Type': 'application/json'
         }
-    }).then(function (res) {
-        if (res.status >= 200 && res.status < 300) {
-            return res.json();
-        }
-    }).then(resjson => {
-        console.log(resjson);
+    }).then(res => res.json())
+        .catch(error => console.error('Error:', error))
+        .then(response => console.log('Success:', response));
 
-       document.getElementById("datos").innerHTML = "Nombre:" + resjson.nombre + "  Edad:" + resjson.edad;
 
-    }).catch(function (err) {
-    });
+
+    /*
+        fetch("http://192.168.4.92/rest-get.php?nombre=Angel", {
+            method: 'GET', 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(function (res) {
+            if (res.status >= 200 && res.status < 300) {
+                return res.json();
+            }
+        }).then(resjson => {
+            console.log(resjson);
+    
+           document.getElementById("datos").innerHTML = "Nombre:" + resjson.nombre + "  Edad:" + resjson.edad;
+    
+        }).catch(function (err) {
+        });*/
 
 }
 
 
 
 
-//htmlrequest
+//htmlrequest    AJAX
 function obtenerJSON() {
 
 
@@ -166,30 +184,3 @@ function obtenerJSONFech() {
 */
 
 
-
-//
-
-/*
-function obtenerJSONFech() {
-
-    var data = {nombre: "Angel"};
-
-    fetch("http://192.168.4.92/rest-get.php?nombre=Angel", {
-        method: 'GET', 
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    }).then(function (res) {
-        if (res.status >= 200 && res.status < 300) {
-            return res.json();
-        }
-    }).then(resjson => {
-        console.log(resjson);
-
-       document.getElementById("datos").innerHTML = "Nombre:" + resjson.nombre + "  Edad:" + resjson.edad;
-
-    }).catch(function (err) {
-    });
-
-}
-*/
