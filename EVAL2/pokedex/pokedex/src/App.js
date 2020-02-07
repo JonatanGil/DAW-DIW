@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-const logo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png';
+//const logo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png';
 
 
 //<React.Frafment>
@@ -12,6 +12,8 @@ class Buscador extends React.Component {
   constructor(props) {
     super(props);
     this.state = { value: 'Pokemon a buscar aquí' };
+    this.pokemonsLista = [{}];
+    this.pokemonActual = {};
 
     //porque hacer llamadas asi
     this.cambiarNombreCuandoCambia = this.cambiarNombreCuandoCambia.bind(this);
@@ -22,16 +24,60 @@ class Buscador extends React.Component {
     this.setState({ value: event.target.value });
   }
 
+  componentDidUpdate() {
+    this._commitAutoSave();
+  }
+  async _commitAutoSave() {
+    const pokemonListaIDS = await fetch('https://pokeapi.co/api/v2/pokemon');
+    const jsonOK = await pokemonListaIDS.json();
+
+    //console.log(jsonOK.results[0].name);
+    //console.log(this.state.value);
+    if (jsonOK.results[0].name == this.state.value) {
+      console.log(jsonOK.results[0].url);
+      const pokemonActualJson = await fetch(jsonOK.results[0].url);
+      this.pokemonActual = await pokemonActualJson.json();
+      console.log(this.pokemonActual);
+
+
+
+    } else {
+      //console.log("id:132 == ditto");
+      const pokemonActualJson = await fetch('https://pokeapi.co/api/v2/pokemon/132');
+      this.pokemonActual = await pokemonActualJson.json();
+
+
+    }
+
+
+  }
+
+
+
   hacerSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
-    buscarPokemon(this.state.value);
+    //function buscarPokemon(this.state.value,this.pokemonsLista);
     event.preventDefault();
   }
 
   vaciarNombre() {
     this.setState({ value: "" });
   }
+  /*
+    async componentDidMount() {
+      //carga todos los pokemones(20?? limit) y tenemos el json para cuando haga el submit imprimimos pokemon
+      const pokemonListaIDS = await fetch('https://pokeapi.co/api/v2/pokemon');
+      const jsonOK = await pokemonListaIDS.json();
+      //console.log(jsonOK);
+      this.pokemonsLista = jsonOK;
+      //console.log(this.pokemonsLista);
+  
+      //directamente el object ahi y au console.log(this.pokemonsLista.pokemon);
+  
+    }*/
+
   render() {
+
     return (
       <div className="App-buscador">
         <form onSubmit={this.hacerSubmit}>
@@ -46,22 +92,34 @@ class Buscador extends React.Component {
   }
 }
 
-function buscarPokemon(nombrePokemon) {
-  console.log("buscando: " + nombrePokemon);
-
+async function ditto(){
+  let jsonPokemonDefault = await fetch('https://pokeapi.co/api/v2/pokemon/132');
+  let jsonPokemonDefaultJson = jsonPokemonDefault.json();
+  return jsonPokemonDefaultJson;
 }
 
 
 class Pokemon extends React.Component {
   constructor(props) {
     super(props);
-    this.nombre = "bulbasur";
+    this.pokemonDefaultJson = ditto();
+    console.log(this.pokemonDefaultJson);
+
+    this.nombre = "Ditto";
     this.type = "poison";
     this.img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png";
-    this.peso = "55";
-    this.mov = ["mov1", "mov2", "mov3"];
+    this.peso = "40";
+    this.mov = ["imposter", "limber", "mov3"];
   }
 
+  async componentDidMount() {
+
+    /*const obetenerJSON = new Buscador();
+    const jsonOK = await obetenerJSON.pokemonsLista;
+    console.log(jsonOK);*/
+
+
+  }
 
   render() {
     return (
@@ -77,43 +135,17 @@ class Pokemon extends React.Component {
     );
   }
 }
-/*
-class obtenerJSON extends React.Component () {
-
-  constructor(props) {
-    super(props)
-    this.pokemones = { pokemonesJSON: [] }
-  }
-/*
-  componentWillMount() {
-    fetch('https://pokeapi.co/api/v2/pokemon')
-      .then((response) => {
-        return response.json()
-      })
-      .then((pokemones) => {
-        this.setState({ pokemonesJSON: pokemones })
-      })
-  }
-*//*
-  render() {
-    return "as";
-  }
-
-}*/
-
-
 
 //<img src={logo} className="App-logo" alt="logo" />
 function App() {
 
-  let input = new Buscador;
+  //let input = new Buscador;
 
   return (
     <div className="App-body">
       <header className="App-header">
         <Buscador />
         <Pokemon />
-        <obtenerJSON />
 
 
       </header>
