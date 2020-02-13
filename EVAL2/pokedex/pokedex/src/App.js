@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
-//import Pokemon from './DevolverPokemones.js';
+import Pokemon from './DevolverPokemones.js';
 //import logo from './public/logo192.png';
 //const logo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png';
-
+const logo = 'https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png';
 
 class Buscador extends React.Component {
   //input = (<input type='text' onClick={buscarPokemon}></input>);
@@ -13,7 +13,6 @@ class Buscador extends React.Component {
       value: "Pokemon a buscar aquí",
       pokemonActual: {},
       pokemonsLista: [{}],
-
     };
 
     //porque hacer llamadas asi
@@ -43,17 +42,14 @@ class Buscador extends React.Component {
 
     //promise all obtiene todas las respuestas de las promesas
     const pokes = Promise.all(pok).then(resp => {
-      console.log(resp);
       this.setState({
         pokemonsLista: resp,
       });
 
-
     })
 
-
-
   }
+
   componentDidUpdate() {
     //this._commitAutoSave();
   }
@@ -73,38 +69,16 @@ class Buscador extends React.Component {
   }
 
   render() {
-    /*
-            <img src={this.img} className="App-logo" alt="logo" />
-            <h3>{this.nombre}</h3>
-            <h3>{this.type}</h3>
-            <h3>{this.peso}</h3>
-            <h3>{this.mov[0]}</h3>
-            <h3>{this.mov[1]}</h3>
-            <h3>{this.mov[2]}</h3>*/
 
-    /*        console.log(this.state.pokemonsLista);
-    if (this.state.value.length>2) {
-      
-      this.state.pokemonsLista.forEach(peke => {
-        if (peke.name == this.state.value) {
-          console.log();
-          this.setState({
-            pokemonActual: peke,
-          });
-        }
-      });
-    }*/
-
-    console.log(this.state.value);
 
     //carga la funcion pokemon undefined y peta ?? antes que el didunmount carga antes el render??
-    if(this.state.pokemonsLista[0].sprites==null){return null}
+    if (this.state.pokemonsLista[0].sprites == null) { return null }
 
     return (
       <div className="App-buscador">
         <form onSubmit={this.hacerSubmit}>
+        <img src={logo} className="App-logo" alt="logo" />
           <label>
-            Pokemones:
           <input type="text" value={this.state.value} onChange={this.cambiarNombreCuandoCambia} onClick={this.vaciarNombre} />
           </label>
           <input type="submit" value="Buscar" />
@@ -114,60 +88,9 @@ class Buscador extends React.Component {
       </div>
     );
   }
- 
-  
+
+
 }
-
-function Pokemon({valorPokemon}){
-
-  var pokemonActual;
-  const pokemones = valorPokemon.pokemonsLista;
-  const nombrePokemon = valorPokemon.value;
-
-  //obtenemos el pokemon solo uno demomento
-  pokemones.forEach(peke => {
-    //console.log(peke.name);
-    if(peke.name==nombrePokemon){
-      pokemonActual = peke;
-    }
-  });
-
-  //si el pokemon no existe en la lista imprime el ditto
-  if(pokemonActual==null){
-    //ditto
-    console.log(" pokemones null");
-    pokemonActual = pokemones[131];
-  }
-
-
-  //if (Object.keys(valorPokemon).length == 0) return null;
-  return (
-    <div className="App-center">
-      <img src={pokemonActual.sprites.front_default} className="App-logo" alt="logo" />
-        <h3>{pokemonActual.name}</h3>
-        <h3>{pokemonActual.types[0].type.name}</h3>
-        <h3>{pokemonActual.weight}</h3>
-        {pokemonActual.moves.map(move => {   
-          console.log(move)       
-         return ( <h3>{move.move.name}</h3>)
-        })}
-
-    </div>
-  );
-}
-
-
-/*
-        <img src={this.img} className="App-logo" alt="logo" />
-        <h3>{this.nombre}</h3>
-        <h3>{this.type}</h3>
-        <h3>{this.peso}</h3>
-        <h3>{this.mov[0]}</h3>
-        <h3>{this.mov[1]}</h3>
-        <h3>{this.mov[2]}</h3>*/
-
-//<img src={logo} className="App-logo" alt="logo" />
-
 
 
 function App() {

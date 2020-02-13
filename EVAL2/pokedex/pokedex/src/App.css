@@ -1,15 +1,15 @@
 .App-body {
   text-align: center;
-  background-color: #ff0e0e;
+  background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(217,8,8,1) 100%);
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
+/*no hace falta el header**/
 .App-header {
-  background-color: #ff0e0e;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -18,18 +18,19 @@
 }
 form{
   margin-bottom: 18px;
+  
 }
-.App-logo {
+.App-logo-pokemon {
   height: 40vmin;
+  height: 16vw;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
-  grid-row: span 3;
-  grid-column: span 2;
-  margin:50px;
+  margin:15px;
   align-items: center;
   justify-items: center;
   justify-content: center;
+
 }
 
 .App-buscador{
@@ -39,32 +40,43 @@ form{
 .App-buscador input{
   background-color: red;
   color:white;
-  border-radius:15%;
+  border-radius:8px;
   border:solid 5px black;
   margin-left:10px;
   font-size: 25px;
 }
 
+.tarjeta{
+  border:1px solid rgb(238, 54, 54);
+  border-radius:30%;
+  margin:15px;
+  width: 20vw;
+}
+
 .App-center{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  /* //100vw pantalla */
   background-color: rgba(0, 0, 0, 0.5);
-  border-radius:15%;
+  border-radius:100px;
   border:solid 15px black;
+  width: calc(80vw);
 }
+
 
 .App-center h3{
   border-radius:15%;
-  border:solid 15px black;
-  border-bottom: 0px;
-  margin:10px;
   text-align: center;
+  font-size: calc(2vw);
 
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .App-logo-pokemon {
+    animation: salto infinite 8s linear;
+  }
+  .App-logo{
+    animation: aumentar infinite 4s linear;
   }
 }
 
@@ -72,11 +84,44 @@ form{
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+
+
+@keyframes salto {
+  0% {
+    transform: translateY(10px) rotate(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  25% {
+    transform: translateY(0px) rotate(90deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
+  75%{
+    transform: translateY(0px) rotate(270deg);
+  }
+  100%{
+    transform: translateY(10px) rotate(359deg);
   }
 }
+
+
+
+@keyframes aumentar {
+  0% {
+    width: 15vw;
+  }
+  25% {
+    width: 10vw;
+  }
+  50% {
+    width: 8vw;
+  }
+  75%{
+    width: 10vw;
+  }
+  100%{
+    width: 15vw;
+  }
+}
+
