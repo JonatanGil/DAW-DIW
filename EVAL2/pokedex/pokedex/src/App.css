@@ -1,3 +1,5 @@
+
+
 .App-body {
   text-align: center;
   background: radial-gradient(circle, rgba(0,0,0,1) 0%, rgba(217,8,8,1) 100%);
@@ -22,7 +24,7 @@ form{
 }
 .App-logo-pokemon {
   height: 40vmin;
-  height: 16vw;
+  height: 14vw;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
@@ -48,9 +50,10 @@ form{
 
 .tarjeta{
   border:1px solid rgb(238, 54, 54);
+  background-color: rgba(238, 54, 54,0.05);
   border-radius:30%;
   margin:15px;
-  width: 20vw;
+  width: 22vw;
 }
 
 .App-center{
@@ -67,16 +70,61 @@ form{
 .App-center h3{
   border-radius:15%;
   text-align: center;
-  font-size: calc(2vw);
+  font-size: 1.3vw;
+  margin-top: 0px;
 
 }
 
+
+
+@media (max-width: 680px) {
+  .App-center{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+
+.tarjeta{
+
+  width: 32vw;
+
+
+}
+
+}
+
+
+@media (max-width: 400px) {
+  .App-center{
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+
+
+.tarjeta{
+
+  width: 72vw;
+
+
+}
+
+}
+
+
+
+
+
+
+
+
+
+
 @media (prefers-reduced-motion: no-preference) {
   .App-logo-pokemon {
-    animation: salto infinite 8s linear;
+    animation: salto infinite 2s linear;
   }
   .App-logo{
-    animation: aumentar infinite 4s linear;
+    animation: /*aumentar*/ infinite 4s linear;
   }
 }
 
@@ -89,19 +137,19 @@ form{
 
 @keyframes salto {
   0% {
-    transform: translateY(10px) rotate(0deg);
+    transform: translateY(2px) /*rotate(0deg)*/;
   }
   25% {
-    transform: translateY(0px) rotate(90deg);
+    transform: translateY(0px) /*rotate(90deg)*/;
   }
   50% {
-    transform: translateY(-10px) rotate(180deg);
+    transform: translateY(-5px) /*rotate(180deg)*/;
   }
   75%{
-    transform: translateY(0px) rotate(270deg);
+    transform: translateY(0px) /*rotate(270deg)*/;
   }
   100%{
-    transform: translateY(10px) rotate(359deg);
+    transform: translateY(2px) /*rotate(359deg)*/;
   }
 }
 
