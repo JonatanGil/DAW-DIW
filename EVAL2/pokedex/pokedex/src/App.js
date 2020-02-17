@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import Pokemon from './DevolverPokemones.js';
+import Menu from './DevolverPokemones.js';
 //import logo from './public/logo192.png';
 //const logo = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png';
 const logo = 'https://raw.githubusercontent.com/PokeAPI/media/master/logo/pokeapi_256.png';
@@ -13,15 +13,22 @@ class Buscador extends React.Component {
       value: "Pokemon a buscar aquí",
       pokemonActual: {},
       pokemonsLista: [{}],
+      mostrarDetallePokemon: this.mostrarDetallePokemon.bind(this),
     };
 
     //porque hacer llamadas asi
     this.cambiarNombreCuandoCambia = this.cambiarNombreCuandoCambia.bind(this);
     this.hacerSubmit = this.hacerSubmit.bind(this);
     this.vaciarNombre = this.vaciarNombre.bind(this);
+    this.mostrarDetallePokemon = this.mostrarDetallePokemon.bind(this);
   }
   cambiarNombreCuandoCambia(event) {
     this.setState({ value: event.target.value });
+  }
+
+  mostrarDetallePokemon(e){
+    console.log(e);
+    console.log(e.target);
   }
 
   async componentDidMount() {
@@ -83,15 +90,16 @@ class Buscador extends React.Component {
           </label>
           <input type="submit" value="Buscar" />
         </form>
-        <Pokemon valorPokemon={this.state} />
 
+        <Menu valorPokemons={this.state.pokemonsLista} valorBuscador={this.state.value}/>
       </div>
     );
   }
 
 
 }
-
+/*
+        <Pokemon valorPokemon={this.state} />*/
 
 function App() {
 

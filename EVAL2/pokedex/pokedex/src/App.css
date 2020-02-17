@@ -20,11 +20,12 @@
 }
 form{
   margin-bottom: 18px;
+  width: calc(80vw);
   
 }
 .App-logo-pokemon {
   height: 40vmin;
-  height: 14vw;
+  height: 18vw;
   pointer-events: none;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
@@ -37,6 +38,8 @@ form{
 
 .App-buscador{
   margin:50px;
+  margin-top: 10px;
+
 }
 
 .App-buscador input{
@@ -46,6 +49,12 @@ form{
   border:solid 5px black;
   margin-left:10px;
   font-size: 25px;
+  width: calc(80vw);
+}
+
+.App-buscador input[value="Buscar"]{
+  width: calc(25vw);
+  margin-top: 4px;
 }
 
 .tarjeta{
@@ -54,6 +63,7 @@ form{
   border-radius:30%;
   margin:15px;
   width: 22vw;
+  padding: 3px;
 }
 
 .App-center{
@@ -70,19 +80,27 @@ form{
 .App-center h3{
   border-radius:15%;
   text-align: center;
-  font-size: 1.3vw;
+  font-size: calc(10px + 2vmin);
   margin-top: 0px;
 
 }
 
 
 
-@media (max-width: 680px) {
+@media (max-width: 780px) {
   .App-center{
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
 
+
+  .App-buscador input{
+    width: calc(70vw);
+  }
+  .App-buscador input[value="Buscar"]{
+    width: calc(25vw);
+    margin-top: 4px;
+  }
 
 .tarjeta{
 
@@ -94,29 +112,28 @@ form{
 }
 
 
-@media (max-width: 400px) {
+@media (max-width: 430px) {
   .App-center{
     display: grid;
     grid-template-columns: 1fr;
   }
 
-
+.App-buscador input{
+  width: calc(70vw);
+}
+.App-buscador input[value="Buscar"]{
+  width: calc(30vw);
+  margin-top: 4px;
+}
 .tarjeta{
 
-  width: 72vw;
+  width: 70vw;
+  font-size: calc(8px + 2vmin);
 
 
 }
 
 }
-
-
-
-
-
-
-
-
 
 
 @media (prefers-reduced-motion: no-preference) {
