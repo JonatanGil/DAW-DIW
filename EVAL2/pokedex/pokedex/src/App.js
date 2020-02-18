@@ -10,29 +10,37 @@ class Buscador extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: "Pokemon a buscar aquí",
+      value: "pokemon",
       pokemonActual: {},
       pokemonsLista: [{}],
-      mostrarDetallePokemon: this.mostrarDetallePokemon.bind(this),
     };
 
     //porque hacer llamadas asi
     this.cambiarNombreCuandoCambia = this.cambiarNombreCuandoCambia.bind(this);
     this.hacerSubmit = this.hacerSubmit.bind(this);
     this.vaciarNombre = this.vaciarNombre.bind(this);
-    this.mostrarDetallePokemon = this.mostrarDetallePokemon.bind(this);
+    this.submitEnviarNombre = this.submitEnviarNombre.bind(this);
   }
-  cambiarNombreCuandoCambia(event) {
+
+
+  submitEnviarNombre(event){
+    console.log(event.target.value);
     this.setState({ value: event.target.value });
   }
 
-  mostrarDetallePokemon(e){
-    console.log(e);
-    console.log(e.target);
+  cambiarNombreCuandoCambia(event) {
+    console.log(event.target.value);
+    this.setState({ value: event.target.value });
   }
 
-  async componentDidMount() {
 
+  mostrarDetallePokemon(e) {
+    console.log(e);
+    console.log(e.target);
+}
+
+
+  async componentDidMount() {
 
     const pokemonListaIDS = await fetch('https://pokeapi.co/api/v2/pokemon?limit=1000');
     const pokemonsListaJson = await pokemonListaIDS.json();
@@ -48,22 +56,14 @@ class Buscador extends React.Component {
     });
 
     //promise all obtiene todas las respuestas de las promesas
-    const pokes = Promise.all(pok).then(resp => {
+    const pokes = Promise.all(pok).then(pokemones => {
       this.setState({
-        pokemonsLista: resp,
+        pokemonsLista: pokemones,
       });
-
-    })
+    });
 
   }
 
-  componentDidUpdate() {
-    //this._commitAutoSave();
-  }
-
-  async _commitAutoSave() {
-    console.log("hola");
-  }
 
   hacerSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
@@ -83,7 +83,7 @@ class Buscador extends React.Component {
 
     return (
       <div className="App-buscador">
-        <form onSubmit={this.hacerSubmit}>
+        <form onSubmit={this.hacerSubmit} onsubmit={this.submitEnviarNombre}>
         <img src={logo} className="App-logo" alt="logo" />
           <label>
           <input type="text" value={this.state.value} onChange={this.cambiarNombreCuandoCambia} onClick={this.vaciarNombre} />
@@ -91,9 +91,10 @@ class Buscador extends React.Component {
           <input type="submit" value="Buscar" />
         </form>
 
-        <Menu valorPokemons={this.state.pokemonsLista} valorBuscador={this.state.value}/>
+        <Menu valorPokemons={this.state.pokemonsLista} valorBuscador={this.state.value} />
       </div>
     );
+
   }
 
 

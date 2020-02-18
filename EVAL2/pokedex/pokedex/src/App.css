@@ -26,7 +26,8 @@ form{
 .App-logo-pokemon {
   height: 40vmin;
   height: 18vw;
-  pointer-events: none;
+  /*quitar todo los eventos
+  pointer-events: none;*/
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 50%;
   margin:15px;
@@ -138,7 +139,7 @@ form{
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo-pokemon {
-    animation: salto infinite 2s linear;
+    animation: /*salto*/ infinite 2s linear;
   }
   .App-logo{
     animation: /*aumentar*/ infinite 4s linear;
@@ -168,6 +169,7 @@ form{
   100%{
     transform: translateY(2px) /*rotate(359deg)*/;
   }
+  
 }
 
 

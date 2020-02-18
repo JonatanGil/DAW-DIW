@@ -2,65 +2,144 @@ import React, { Component } from 'react';
 //import Buscador from './App.js';
 
 
-class Menu extends React.Component{
+class Menu extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+        console.log(this.props.valorPokemons);
         this.state = {
-          pokemonActual: {},
-          pokemonsLista: this.props.valorPokemons,
+            pokemonActuales: [this.props.valorPokemons[131]],
+            pokemonBuscar: this.props.valorBuscador,
+            pokemonsLista: this.props.valorPokemons,
+            unSoloPokemon: false,
         };
-       this.mostrarDetallePokemon = this.props.mostrarDetallePokemon.bind(this);
+        this.mostrarDetallePokemon = this.mostrarDetallePokemon.bind(this);
     }
 
-    render(){
-        console.log(this.state.pokemonsLista);
-        return(
-        <div className="App-center">
-            <div className="tarjeta"  onClick={this.vaciarNombre}>
-        <h3> {this.props.valorPokemons[0].name}</h3>
-            </div>
-        </div>
-        );
-    }   
+    mostrarDetallePokemon(e) {
+
+        console.log(e.target);
+        console.log(e.target.id);
+        this.setState({
+            unSoloPokemon: true,
+        });
+
+    }
+
+
+    componentWillReceiveProps() {
+
+        var pokemonsCambiar=[];
+        pokemonsCambiar.push(this.state.pokemonsLista[131]);
+        var pokemonNombre = this.props.valorBuscador;
+
+
+        if (pokemonNombre.length < 3 || pokemonNombre === "") {
+        } else {
+
+
+            pokemonsCambiar = this.state.pokemonsLista.filter(pokem => pokem.name.includes(pokemonNombre));
+
+            //si el pokemon no existe en la lista imprime el ditto
+            if (pokemonsCambiar.length === 0) {
+                //ditto
+            }
+        }
+
+        this.setState({
+            pokemonActuales: pokemonsCambiar,
+            pokemonBuscar: this.props.valorBuscador,
+
+        });
+        console.log(this.props.valorBuscador);
+        console.log(this.state.pokemonActuales);  
+
+    }
+
+
+    componentDidMount() {
+
+        var pokemonsCambiar = [
+
+        ];
+        pokemonsCambiar.push(this.state.pokemonsLista[131]);
+
+
+        this.setState({
+            pokemonActuales: pokemonsCambiar,
+            pokemonBuscar: this.props.valorBuscador,
+
+        });
+
+    }
+
+
+    render() {
+
+        //if (Object.keys(this.state.pokemonActuales).length == 0) return null;
+
+
+        if (!this.state.unSoloPokemon) {
+
+            return (
+                <div className="App-center">
+                    {this.state.pokemonActuales && this.state.pokemonActuales.slice(0, 10).map(pokemon => {
+                        return (
+                            <div className="tarjeta">
+                                <img onClick={this.mostrarDetallePokemon} id={pokemon.id} src={pokemon.sprites.front_default || this.state.pokemonsLista[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
+                                <h3>{pokemon.name}</h3>
+                                <h3>
+                                </h3>
+                                <TraductorTypesWiki valorTypes={pokemon.types} />
+                                <h3 name="Peso">Peso: {pokemon.weight}</h3>
+                            </div>)
+
+                    })}
+
+                </div>
+            );
+        } else {
+            return "hola";
+        }
+    }
+
+    /*
+        return (
+            <div className="App-center">
     
-/*
-    return (
-        <div className="App-center">
-
-
-            {pokemonActuales.map(pokemon => {
-                return (<div className="tarjeta"  onClick={prueba}>
-                    <img src={pokemon.sprites.front_default || pokemones[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
-                    <h3>{pokemon.name}</h3>
-                    <h3>
-                        <TraductorTypesWiki valorTypes={pokemon.types} />
-                    </h3>
-                    <h3 name="Peso">Peso: {pokemon.weight}</h3>
-                    </div>)
-
-            })}
-        </div>
-    );*/
+    
+                {pokemonActualeses.map(pokemon => {
+                    return (<div className="tarjeta"  onClick={prueba}>
+                        <img src={pokemon.sprites.front_default || pokemones[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
+                        <h3>{pokemon.name}</h3>
+                        <h3>
+                            <TraductorTypesWiki valorTypes={pokemon.types} />
+                        </h3>
+                        <h3 name="Peso">Peso: {pokemon.weight}</h3>
+                        </div>)
+    
+                })}
+            </div>
+        );*/
 
 }
 
 /*
 function Pokemon({ valorPokemon }) {
 
-    var pokemonActuales = [];
+    var pokemonActualeses = [];
     const pokemones = valorPokemon.pokemonsLista;
     const nombrePokemon = valorPokemon.value;
 
-    if (nombrePokemon.length < 3) { pokemonActuales.push(pokemones[131]); } else {
+    if (nombrePokemon.length < 3) { pokemonActualeses.push(pokemones[131]); } else {
 
-        pokemonActuales = pokemones.filter(pokem => pokem.name.includes(nombrePokemon));
+        pokemonActualeses = pokemones.filter(pokem => pokem.name.includes(nombrePokemon));
 
         //si el pokemon no existe en la lista imprime el ditto
-        if (pokemonActuales.length === 0) {
+        if (pokemonActualeses.length === 0) {
             //ditto
             console.log(" pokemones null");
-            pokemonActuales.push(pokemones[131]);
+            pokemonActualeses.push(pokemones[131]);
         }
     }
 
@@ -69,7 +148,7 @@ function Pokemon({ valorPokemon }) {
         <div className="App-center">
 
 
-            {pokemonActuales.map(pokemon => {
+            {pokemonActualeses.map(pokemon => {
                 return (<div className="tarjeta"  onClick={prueba}>
                     <img src={pokemon.sprites.front_default || pokemones[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
                     <h3>{pokemon.name}</h3>
@@ -86,15 +165,6 @@ function Pokemon({ valorPokemon }) {
 }
 
 */
-function prueba(e){
-    console.log(e);
-    //tarjeta
-    console.log(e.currentTarget);
-    //nombre
-    console.log(e.currentTarget.childNodes[1].textContent);
-    
-
-}
 
 /*
 {pokemon.types.map(types => {
@@ -162,7 +232,7 @@ function TraductorTypesWiki(valorTypes) {
                 nombreTipo = "https://vignette.wikia.nocookie.net/es.pokemon/images/1/10/Tipo_veneno.gif";
                 break;
             case "ground":
-                nombreTipo = "https://vignette.wikia.nocookie.net/es.pokemon/images/1/1d/Tipo_tierra.gif";  
+                nombreTipo = "https://vignette.wikia.nocookie.net/es.pokemon/images/1/1d/Tipo_tierra.gif";
                 break;
             case "bug":
                 nombreTipo = "https://vignette.wikia.nocookie.net/es.pokemon/images/f/fe/Tipo_bicho.gif";
