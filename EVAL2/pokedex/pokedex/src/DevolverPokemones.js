@@ -25,16 +25,19 @@ class Menu extends React.Component {
         });
 
     }
+    //sin el if del didupdate este metodo se guarda el estado una vez sin renderizar, al cambiar otra vez los props, se ejecuta y se guarda el anterior reducido
+    // es decir va un paso atrasado, el didupdate se ejucuta al instante el render. con el if si cambia el valor nombre hace el setstate si no con allpromieses
+    // se ejecuta muchas veces y peta
+    //componentWillReceiveProps(){}
+    componentDidUpdate() {
 
-
-    componentWillReceiveProps() {
-
-        var pokemonsCambiar=[];
-        pokemonsCambiar.push(this.state.pokemonsLista[131]);
+        if (this.props.valorBuscador !== this.state.pokemonBuscar) {
+        var pokemonsCambiar = [];
         var pokemonNombre = this.props.valorBuscador;
 
 
         if (pokemonNombre.length < 3 || pokemonNombre === "") {
+            pokemonsCambiar.push(this.state.pokemonsLista[131]);
         } else {
 
 
@@ -43,6 +46,7 @@ class Menu extends React.Component {
             //si el pokemon no existe en la lista imprime el ditto
             if (pokemonsCambiar.length === 0) {
                 //ditto
+                pokemonsCambiar.push(this.state.pokemonsLista[131]);
             }
         }
 
@@ -52,8 +56,9 @@ class Menu extends React.Component {
 
         });
         console.log(this.props.valorBuscador);
-        console.log(this.state.pokemonActuales);  
+        console.log(this.state.pokemonActuales);
 
+    }
     }
 
 
