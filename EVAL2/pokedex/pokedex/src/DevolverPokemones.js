@@ -12,6 +12,7 @@ class Menu extends React.Component {
             pokemonBuscar: this.props.valorBuscador,
             pokemonsLista: this.props.valorPokemons,
             unSoloPokemon: false,
+            pokemonSolo: {},
         };
         this.mostrarDetallePokemon = this.mostrarDetallePokemon.bind(this);
     }
@@ -19,10 +20,13 @@ class Menu extends React.Component {
     mostrarDetallePokemon(e) {
 
         console.log(e.target);
-        console.log(e.target.id);
+        console.log(e.target.id - 1);
         this.setState({
             unSoloPokemon: true,
+            pokemonSolo: this.state.pokemonsLista[e.target.id - 1],
         });
+        console.log(this.state.pokemonsLista);
+        console.log(this.state.pokemonsLista[e.target.id - 1]);
 
     }
     //sin el if del didupdate este metodo se guarda el estado una vez sin renderizar, al cambiar otra vez los props, se ejecuta y se guarda el anterior reducido
@@ -32,48 +36,43 @@ class Menu extends React.Component {
     componentDidUpdate() {
 
         if (this.props.valorBuscador !== this.state.pokemonBuscar) {
-        var pokemonsCambiar = [];
-        var pokemonNombre = this.props.valorBuscador;
+            var pokemonsCambiar = [];
+            var pokemonNombre = this.props.valorBuscador;
 
 
-        if (pokemonNombre.length < 3 || pokemonNombre === "") {
-            pokemonsCambiar.push(this.state.pokemonsLista[131]);
-        } else {
-
-
-            pokemonsCambiar = this.state.pokemonsLista.filter(pokem => pokem.name.includes(pokemonNombre));
-
-            //si el pokemon no existe en la lista imprime el ditto
-            if (pokemonsCambiar.length === 0) {
-                //ditto
+            if (pokemonNombre.length < 3 || pokemonNombre === "") {
                 pokemonsCambiar.push(this.state.pokemonsLista[131]);
+            } else {
+
+
+                pokemonsCambiar = this.state.pokemonsLista.filter(pokem => pokem.name.includes(pokemonNombre));
+
+                //si el pokemon no existe en la lista imprime el ditto
+                if (pokemonsCambiar.length === 0) {
+                    //ditto
+                    pokemonsCambiar.push(this.state.pokemonsLista[131]);
+                }
             }
+
+            this.setState({
+                pokemonActuales: pokemonsCambiar,
+                pokemonBuscar: this.props.valorBuscador,
+
+            });
+            console.log(this.props.valorBuscador);
+            console.log(this.state.pokemonActuales);
+
         }
-
-        this.setState({
-            pokemonActuales: pokemonsCambiar,
-            pokemonBuscar: this.props.valorBuscador,
-
-        });
-        console.log(this.props.valorBuscador);
-        console.log(this.state.pokemonActuales);
-
-    }
     }
 
 
     componentDidMount() {
 
-        var pokemonsCambiar = [
-
-        ];
+        var pokemonsCambiar = [];
         pokemonsCambiar.push(this.state.pokemonsLista[131]);
-
-
         this.setState({
             pokemonActuales: pokemonsCambiar,
             pokemonBuscar: this.props.valorBuscador,
-
         });
 
     }
@@ -86,6 +85,7 @@ class Menu extends React.Component {
 
         if (!this.state.unSoloPokemon) {
 
+            // DEVOLVER POKEMONS LISTA CON BUSCADOR
             return (
                 <div className="App-center">
                     {this.state.pokemonActuales && this.state.pokemonActuales.slice(0, 10).map(pokemon => {
@@ -94,9 +94,9 @@ class Menu extends React.Component {
                                 <img onClick={this.mostrarDetallePokemon} id={pokemon.id} src={pokemon.sprites.front_default || this.state.pokemonsLista[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
                                 <h3>{pokemon.name}</h3>
                                 <h3>
+                                    <TraductorTypesWiki valorTypes={pokemon.types} />
                                 </h3>
-                                <TraductorTypesWiki valorTypes={pokemon.types} />
-                                <h3 name="Peso">Peso: {pokemon.weight}</h3>
+                                <h3 name="Peso">Peso: {pokemon.weight / 10}KG</h3>
                             </div>)
 
                     })}
@@ -104,7 +104,20 @@ class Menu extends React.Component {
                 </div>
             );
         } else {
-            return "hola";
+
+            //DEVOLVER UN SOLO POKEMONS AL CLICAR LA IMAGEN
+            return (
+                <div className="App-center-unPokemon">
+                    <img id={this.state.pokemonSolo.id} src={this.state.pokemonSolo.sprites.front_default || this.state.pokemonsLista[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
+                    <h3>{this.state.pokemonSolo.name}</h3>
+                    <h3> <TraductorTypesWiki valorTypes={this.state.pokemonSolo.types} /> </h3>
+                    <h3 name="Peso">Peso: {this.state.pokemonSolo.weight / 10}KG</h3>
+                    <h3 id="moves">MOVES</h3>
+                    {this.state.pokemonSolo.moves.map(move => {
+                        return(<h3>{move.move.name}</h3>)
+                    })}
+                </div>
+            )
         }
     }
 
@@ -170,12 +183,6 @@ function Pokemon({ valorPokemon }) {
 }
 
 */
-
-/*
-{pokemon.types.map(types => {
-    return (<p>{types.type.name}</p>)
-})}
-                        */
 
 
 

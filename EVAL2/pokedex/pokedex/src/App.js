@@ -83,7 +83,7 @@ class Buscador extends React.Component {
 
     return (
       <div className="App-buscador">
-        <form onSubmit={this.hacerSubmit} onsubmit={this.submitEnviarNombre}>
+        <form onSubmit={this.submitEnviarNombre}>
         <img src={logo} className="App-logo" alt="logo" />
           <label>
           <input type="text" value={this.state.value} onChange={this.cambiarNombreCuandoCambia} onClick={this.vaciarNombre} />
