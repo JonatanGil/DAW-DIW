@@ -19,20 +19,34 @@ class Menu extends React.Component {
 
     mostrarDetallePokemon(e) {
 
-        console.log(e.target);
-        console.log(e.target.id - 1);
-        this.setState({
-            unSoloPokemon: true,
-            pokemonSolo: this.state.pokemonsLista[e.target.id - 1],
-        });
-        console.log(this.state.pokemonsLista);
-        console.log(this.state.pokemonsLista[e.target.id - 1]);
+        console.log(e.target.id);
+        if (e.target.id<10000) {
+            if (this.state.unSoloPokemon === false) {
+                console.log(this.state.unSoloPokemon);
+                this.setState({
+                    unSoloPokemon: true,
+                    pokemonSolo: this.state.pokemonsLista[e.target.id - 1],
+                });
+            } else {
+                console.log(this.state.unSoloPokemon);
+                this.setState({
+                    unSoloPokemon: false,
+                    pokemonSolo: this.state.pokemonsLista[e.target.id - 1],
+                });
+            }
+        }
+
 
     }
     //sin el if del didupdate este metodo se guarda el estado una vez sin renderizar, al cambiar otra vez los props, se ejecuta y se guarda el anterior reducido
     // es decir va un paso atrasado, el didupdate se ejucuta al instante el render. con el if si cambia el valor nombre hace el setstate si no con allpromieses
     // se ejecuta muchas veces y peta
     //componentWillReceiveProps(){}
+    componentWillReceiveProps() {
+        this.setState({
+            unSoloPokemon: this.props.unSoloPokemon,
+        });
+    }
     componentDidUpdate() {
 
         if (this.props.valorBuscador !== this.state.pokemonBuscar) {
@@ -63,6 +77,9 @@ class Menu extends React.Component {
             console.log(this.state.pokemonActuales);
 
         }
+
+
+
     }
 
 
@@ -108,14 +125,18 @@ class Menu extends React.Component {
             //DEVOLVER UN SOLO POKEMONS AL CLICAR LA IMAGEN
             return (
                 <div className="App-center-unPokemon">
-                    <img id={this.state.pokemonSolo.id} src={this.state.pokemonSolo.sprites.front_default || this.state.pokemonsLista[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
+                    <img onClick={this.mostrarDetallePokemon} id={this.state.pokemonSolo.id} src={this.state.pokemonSolo.sprites.front_default || this.state.pokemonsLista[131].sprites.front_default} className="App-logo-pokemon" alt="logo" />
                     <h3>{this.state.pokemonSolo.name}</h3>
                     <h3> <TraductorTypesWiki valorTypes={this.state.pokemonSolo.types} /> </h3>
                     <h3 name="Peso">Peso: {this.state.pokemonSolo.weight / 10}KG</h3>
-                    <h3 id="moves">MOVES</h3>
-                    {this.state.pokemonSolo.moves.map(move => {
-                        return(<h3>{move.move.name}</h3>)
-                    })}
+                    <h3 id="moves">MOVES<br></br>
+                    <select id="movesOptions">
+                            {this.state.pokemonSolo.moves.map(move => {
+                                return (<option>{move.move.name}</option>)
+                            })}
+                        </select>
+                    </h3>
+                    <h3 id="descripcion">Descripción de pokemon<br></br><p>Descripcion de pokemon buscar TODOaaaaaaaaaaa</p></h3>
                 </div>
             )
         }

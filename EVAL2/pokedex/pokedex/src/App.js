@@ -13,6 +13,7 @@ class Buscador extends React.Component {
       value: "pokemon",
       pokemonActual: {},
       pokemonsLista: [{}],
+      unSoloPokemon2: false,
     };
 
     //porque hacer llamadas asi
@@ -20,12 +21,23 @@ class Buscador extends React.Component {
     this.hacerSubmit = this.hacerSubmit.bind(this);
     this.vaciarNombre = this.vaciarNombre.bind(this);
     this.submitEnviarNombre = this.submitEnviarNombre.bind(this);
+    this.inicio = this.inicio.bind(this);
   }
 
+  inicio(){
+    console.log("inicio");
+
+
+    return(
+    <Menu unSoloPokemon={this.state.unSoloPokemon2} />);
+
+
+  }
 
   submitEnviarNombre(event){
-    console.log(event.target.value);
-    this.setState({ value: event.target.value });
+    console.log(event.target.childNodes[1].value);
+    this.setState({ value: event.target.childNodes[1].value });
+    event.preventDefault();
   }
 
   cambiarNombreCuandoCambia(event) {
@@ -84,21 +96,23 @@ class Buscador extends React.Component {
     return (
       <div className="App-buscador">
         <form onSubmit={this.submitEnviarNombre}>
-        <img src={logo} className="App-logo" alt="logo" />
-          <label>
+        <img src={logo} className="App-logo" alt="logo" onClick={this.inicio}/>
           <input type="text" value={this.state.value} onChange={this.cambiarNombreCuandoCambia} onClick={this.vaciarNombre} />
-          </label>
           <input type="submit" value="Buscar" />
         </form>
-
-        <Menu valorPokemons={this.state.pokemonsLista} valorBuscador={this.state.value} />
-      </div>
+        <Menu valorPokemons={this.state.pokemonsLista} valorBuscador={this.state.value} unSoloPokemon={false}/>
+        </div>
     );
 
   }
 
 
 }
+/*  {this.state.unSoloPokemon ?
+        <Menu valorPokemons={this.state.pokemonsLista} valorBuscador={this.state.value} unSoloPokemon={true}/>
+        :
+        <Menu valorPokemons={this.state.pokemonsLista} valorBuscador={this.state.value} unSoloPokemon={false}/>
+        }*/
 /*
         <Pokemon valorPokemon={this.state} />*/
 

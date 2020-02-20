@@ -93,7 +93,7 @@ form{
   align-items: center;
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: repeat(4,1fr);
-  grid-template-rows: auto 5px auto repeat(all,10px);
+  grid-template-rows: auto auto auto 100px;
   
   
 
@@ -120,8 +120,27 @@ form{
 }
 
 .App-center-unPokemon h3[id="moves"]{
-  grid-column: span 3;
+  grid-column: span 1;
   align-self: center;
+}
+
+img[id]:hover{
+  width:86%;
+  border:0.5px solid red;
+  
+}
+
+.App-center-unPokemon h3[id="descripcion"]{
+  grid-column: span 2;
+  align-self: start;
+}
+.App-center-unPokemon p{
+  font-size: 2vw;
+}
+
+.App-center-unPokemon select{
+  width: 15vh;  
+  justify-self: center;
 }
 
 @media (max-width: 780px) {
