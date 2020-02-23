@@ -13,11 +13,12 @@ class Menu extends React.Component {
             pokemonsLista: this.props.valorPokemons,
             unSoloPokemon: false,
             pokemonSolo: {},
+            DescripcionPokemon:"",
         };
         this.mostrarDetallePokemon = this.mostrarDetallePokemon.bind(this);
     }
-
-    mostrarDetallePokemon(e) {
+    mostrarDetallePokemon = async(e) =>{
+        
 
         console.log(e.target.id);
         if (e.target.id<10000) {
@@ -35,7 +36,12 @@ class Menu extends React.Component {
                 });
             }
         }
-
+        //https://pokeapi.co/api/v2/pokemon-species/4/
+        const pokemonSpecies = await fetch(this.state.pokemonsLista[e.target.id - 1].species.url);
+        const restSpecies = await pokemonSpecies.json();
+            this.setState({
+                 DescripcionPokemon:restSpecies.flavor_text_entries[14].flavor_text,
+             });
 
     }
     //sin el if del didupdate este metodo se guarda el estado una vez sin renderizar, al cambiar otra vez los props, se ejecuta y se guarda el anterior reducido
@@ -136,7 +142,7 @@ class Menu extends React.Component {
                             })}
                         </select>
                     </h3>
-                    <h3 id="descripcion">Descripción de pokemon<br></br><p>Descripcion de pokemon buscar TODOaaaaaaaaaaa</p></h3>
+                        <h3 id="descripcion">Descripción de pokemon<br></br><p>{this.state.DescripcionPokemon}</p></h3>
                 </div>
             )
         }
@@ -204,8 +210,6 @@ function Pokemon({ valorPokemon }) {
 }
 
 */
-
-
 
 function TraductorTypesWiki(valorTypes) {
 

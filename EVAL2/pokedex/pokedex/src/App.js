@@ -90,7 +90,7 @@ class Buscador extends React.Component {
   render() {
 
 
-    //carga la funcion pokemon undefined y peta ?? antes que el didunmount carga antes el render??
+    //carga la funcion pokemon undefined y peta ?? antes que el didunmount carga antes el render, caarga dos veces¿¿ en el didmouint al cambiar state cambia x2???
     if (this.state.pokemonsLista[0].sprites == null) { return null }
 
     return (

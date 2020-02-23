@@ -81,7 +81,7 @@ form{
 .App-center h3{
   border-radius:15%;
   text-align: center;
-  font-size: calc(10px + 2vmin);
+  font-size: calc(10px + 1vmin);
   margin-top: 0px;
 
 }
@@ -93,10 +93,8 @@ form{
   align-items: center;
   grid-template-columns: repeat(3,1fr);
   grid-template-rows: repeat(4,1fr);
-  grid-template-rows: auto auto auto 100px;
-  
-  
-
+  grid-template-rows: auto; 
+  grid-row-gap: 30px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius:100px;
   border:solid 15px black;
@@ -125,7 +123,6 @@ form{
 }
 
 img[id]:hover{
-  width:86%;
   border:0.5px solid red;
   
 }
@@ -133,14 +130,29 @@ img[id]:hover{
 .App-center-unPokemon h3[id="descripcion"]{
   grid-column: span 2;
   align-self: start;
+  text-decoration: underline yellow;
+  
 }
 .App-center-unPokemon p{
-  font-size: 2vw;
+  font-size: 1.8vw;
+  padding: 20px;
+  text-decoration: none;
+  list-style-type: none;
+}
+.App-center-unPokemon p:hover{
+  background-color: rgba(238, 215, 13,0.5);
+  border-radius: 40%;
 }
 
 .App-center-unPokemon select{
-  width: 15vh;  
+  width: 18vh;  
   justify-self: center;
+  background-color: red;
+  color:white;
+  border-radius:8px;
+  border:solid 5px black;
+  margin-left:10px;
+  font-size: 15px;
 }
 
 @media (max-width: 780px) {
